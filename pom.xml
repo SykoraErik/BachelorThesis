@@ -5,37 +5,27 @@
         http://maven.apache.org/POM/4.0.0
         http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-
     <groupId>org.jboss.arquillian.examples</groupId>
-    <artifactId>arquillian-tutorial</artifactId>
+    <artifactId>Bachelor-thesis</artifactId>
     <version>1.0.0-SNAPSHOT</version>
     <packaging>jar</packaging>
-
-    <name>arquillian-tutorial</name>
-    <url>http://arquillian.org/guides/getting_started/</url>
-
-    <properties>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <browser>phantomjs</browser> <!-- PhantomJS will be our default browser if no profile is specified-->
-    </properties>
+    <name>Bachelor-thesis</name>
 
     <build>
-        <plugins>
-            
+        <plugins>            
             <plugin>
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>2.12</version>
             </plugin>
-        </plugins>
-        
+        </plugins>      
         <testResources>
-        <testResource>
-            <directory>src/test/resources</directory>
-            <filtering>true</filtering>
-        </testResource>
-    </testResources>
-        
-    </build>
+        	<testResource>
+            	<directory>src/test/resources</directory>
+            	<filtering>true</filtering>
+        	</testResource>
+    	</testResources>        
+	</build>
+	
     <dependencyManagement>
         <dependencies>
             <dependency>
@@ -45,22 +35,23 @@
                 <scope>import</scope>
                 <type>pom</type>
             </dependency>
-<dependency>
-  <groupId>org.jboss.arquillian.extension</groupId>
-  <artifactId>arquillian-drone-bom</artifactId>
-  <version>2.0.0.Alpha3</version>
-  <type>pom</type>
-  <scope>import</scope>
-</dependency>
-        <dependency>
-            <groupId>org.jboss.arquillian.selenium</groupId>
-            <artifactId>selenium-bom</artifactId>
-            <version>2.43.1</version>
-            <type>pom</type>
-            <scope>import</scope>
-        </dependency>
+			<dependency>
+  				<groupId>org.jboss.arquillian.extension</groupId>
+  				<artifactId>arquillian-drone-bom</artifactId>
+  				<version>2.0.0.Alpha3</version>
+  				<type>pom</type>
+  				<scope>import</scope>
+			</dependency>
+        	<dependency>
+            	<groupId>org.jboss.arquillian.selenium</groupId>
+            	<artifactId>selenium-bom</artifactId>
+            	<version>2.43.1</version>
+            	<type>pom</type>
+            	<scope>import</scope>
+        	</dependency>
         </dependencies>
     </dependencyManagement>
+    
     <dependencies>
         <dependency>
             <groupId>junit</groupId>
@@ -74,25 +65,27 @@
             <scope>test</scope>
         </dependency>
         <dependency>
-    <groupId>org.jboss.arquillian.graphene</groupId>
-    <artifactId>graphene-webdriver</artifactId>
-    <version>2.0.3.Final</version>
-    <type>pom</type>
-    <scope>test</scope>
-</dependency>
+    		<groupId>org.jboss.arquillian.graphene</groupId>
+    		<artifactId>graphene-webdriver</artifactId>
+    		<version>2.0.3.Final</version>
+    		<type>pom</type>
+    		<scope>test</scope>
+		</dependency>
     </dependencies>
+    
     <profiles>
-      <profile>
-       <id>firefox</id>
-       <properties>
-          <browser>firefox</browser>
-       </properties>
-    </profile>
-    <profile>
-       <id>chrome</id>
-       <properties>
-           <browser>chrome</browser>
-       </properties>
-    </profile>
+    	<profile>
+    		<id>firefox</id>
+       		<properties>
+          		<browser>firefox</browser>
+       		</properties>
+    	</profile>
+    	<profile>
+      		<id>chrome</id>
+       		<properties>
+       			<browser>chrome</browser>
+       		</properties>
+    	</profile>
     </profiles>
+    
 </project>
