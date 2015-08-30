@@ -1,97 +1,100 @@
 package cz.muni.proso.geography.test;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertTrue;
 
-import org.jboss.arquillian.drone.api.annotation.Drone;
-import org.jboss.arquillian.graphene.Graphene;
-import org.jboss.arquillian.graphene.page.InitialPage;
+import org.jboss.arquillian.graphene.page.Page;
 import org.jboss.arquillian.junit.Arquillian;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.By;
+import org.openqa.selenium.support.FindBy;
 
+import cz.muni.proso.geography.fragment.NavigationMenu;
+import cz.muni.proso.geography.fragment.ProgressButton;
+import static org.jboss.arquillian.graphene.Graphene.guardHttp;
 import cz.muni.proso.geography.page.MapOverview;
 
 @RunWith(Arquillian.class)
-public class MapOverviewTest {
-
-    @Drone
-    private WebDriver browser;
+public class MapOverviewTest extends MyTestClass  {
     
-    @Test
-    public void testViewWorld(@InitialPage MapOverview page){
-    	Graphene.waitModel().until().element(page.getWorld().getViewPlace()).is().visible();
-    	page.getWorld().getViewPlace().click();
-    	assertEquals("http://slepemapy.cz/view/world/", browser.getCurrentUrl());
-    }
+    @Page
+    private MapOverview page;
+    
+	@FindBy(css = "#wrap > div.navbar.navbar-inverse")
+	private NavigationMenu navMenu;
+    
+	@Before
+	public void openPage() throws InterruptedException{
+		browser.get(baseUrl+"/overview/");
+		if(!navMenu.getLoggedInButton().isDisplayed()){
+	    	navMenu.clickLoginButton();
+			navMenu.getLogin().loginWithEmail(username, password);
+	    	browser.get(baseUrl+"/overview/");
+		}
+    	waitUntilPageLoaded();
+		Thread.sleep(3000);
+	}
 	
     @Test
-    public void testWorldStates(@InitialPage MapOverview page){
-    	Graphene.waitModel().until().element(page.getWorld().getFirstProgressButton().getButton()).is().visible();
-    	page.getWorld().getFirstProgressButton().getButton().click();
-    	assertEquals("http://slepemapy.cz/practice/world/state", browser.getCurrentUrl());
+    public void testWorld() throws InterruptedException{
+    	page.getWorld().getProgressBar().mouseOverProgressBar();
+    	assertTrue(page.getWorld().isTooltipDisplayed());
+    	System.out.println(page.getWorld().getProgressBar().getLearnedBar().getAttribute("style"));
+    	
+    	for(ProgressButton place: page.getWorld().getProgressButtonList()){ 
+    		place.getProgressBar().mouseOverProgressBar();
+    		assertTrue(page.getWorld().isTooltipDisplayed());
+    	}
+    	
+    	String placeTitle = page.getWorld().getPlaceTitle();
+    	page.getWorld().clickViewPlace();
+    	assertTrue(browser.findElement(By.xpath("//*[@id='ng-view']/div[1]/h1")).getText().equals(placeTitle));
+    	browser.get(baseUrl+"/overview/");
+    	waitUntilPageLoaded();
+    	page.getWorld().getProgressButtonList().get(0).clickButton();
+    	waitUntilPageLoaded();
+    	assertTrue(browser.findElement(By.className("practice")).isDisplayed());
     }
     
     @Test
-    public void testWorldCities(@InitialPage MapOverview page){
-    	Graphene.waitModel().until().element(page.getWorld().getSecondProgressButton().getButton()).is().visible();
-    	page.getWorld().getSecondProgressButton().getButton().click();
-    	assertEquals("http://slepemapy.cz/practice/world/city", browser.getCurrentUrl());
-    }
+    public void testContinents() throws InterruptedException{
+    	page.getListOfContinents().get(0).getProgressBar().mouseOverProgressBar();
+    	assertTrue(page.getListOfContinents().get(0).isTooltipDisplayed());
+        
+    	for(ProgressButton place: page.getListOfContinents().get(0).getProgressButtonList()){ 
+    		place.getProgressBar().mouseOverProgressBar();
+    		assertTrue(page.getWorld().isTooltipDisplayed());
+    	}
+    	
+    	String continentTitle = page.getListOfContinents().get(0).getPlaceTitle();
+        page.getListOfContinents().get(0).clickViewPlace();
+        assertTrue(browser.findElement(By.xpath("//*[@id='ng-view']/div[1]/h1")).getText().equals(continentTitle));
+    	browser.get(baseUrl+"/overview/");
+    	waitUntilPageLoaded();
+    	page.getListOfContinents().get(0).getProgressButtonList().get(0).clickButton();
+    	waitUntilPageLoaded();
+    	assertTrue(browser.findElement(By.className("practice")).isDisplayed());
+   	}
+    
     
     @Test
-    public void testWorldRivers(@InitialPage MapOverview page){
-    	Graphene.waitModel().until().element(page.getWorld().getThirdProgressButton().getButton()).is().visible();
-    	page.getWorld().getThirdProgressButton().getButton().click();
-    	assertEquals("http://slepemapy.cz/practice/world/river", browser.getCurrentUrl());
-    }
-    
-    @Test
-    public void testWorldLakes(@InitialPage MapOverview page){
-    	Graphene.waitModel().until().element(page.getWorld().getFourthProgressButton().getButton()).is().visible();
-    	page.getWorld().getFourthProgressButton().getButton().click();
-    	assertEquals("http://slepemapy.cz/practice/world/lake", browser.getCurrentUrl());
-    }
-    
-    @Test
-    public void testWorldMountains(@InitialPage MapOverview page){
-    	Graphene.waitModel().until().element(page.getWorld().getFifthProgressButton().getButton()).is().visible();
-    	page.getWorld().getFifthProgressButton().getButton().click();
-    	assertEquals("http://slepemapy.cz/practice/world/mountains", browser.getCurrentUrl());
-    }
-    
-    @Test
-    public void testWorldIslands(@InitialPage MapOverview page){
-    	Graphene.waitModel().until().element(page.getWorld().getSixthProgressButton().getButton()).is().visible();
-    	page.getWorld().getSixthProgressButton().getButton().click();
-    	assertEquals("http://slepemapy.cz/practice/world/island", browser.getCurrentUrl());
-    }
-    
-    @Test
-    public void testViewAfrica(@InitialPage MapOverview page){
-    	Graphene.waitModel().until().element(page.getAfrica().getViewPlace()).is().visible();
-    	page.getAfrica().getViewPlace().click();
-    	assertEquals("http://slepemapy.cz/view/africa/", browser.getCurrentUrl());
-    }
-    
-    @Test
-    public void testAfricaStates(@InitialPage MapOverview page){
-    	Graphene.waitModel().until().element(page.getAfrica().getFirstProgressButton().getButton()).is().visible();
-    	page.getAfrica().getFirstProgressButton().getButton().click();
-    	assertEquals("http://slepemapy.cz/practice/africa/state", browser.getCurrentUrl());
-    }
-    
-    @Test
-    public void testAfricaCities(@InitialPage MapOverview page){
-    	Graphene.waitModel().until().element(page.getAfrica().getSecondProgressButton().getButton()).is().visible();
-    	page.getAfrica().getSecondProgressButton().getButton().click();
-    	assertEquals("http://slepemapy.cz/practice/africa/city", browser.getCurrentUrl());
-    }
-    
-    @Test
-    public void testAfricaRivers(@InitialPage MapOverview page){
-    	Graphene.waitModel().until().element(page.getAfrica().getThirdProgressButton().getButton()).is().visible();
-    	page.getAfrica().getThirdProgressButton().getButton().click();
-    	assertEquals("http://slepemapy.cz/practice/africa/river", browser.getCurrentUrl());
+    public void testStates() throws InterruptedException{
+    	page.getListOfStates().get(0).getProgressBar().mouseOverProgressBar();
+    	assertTrue(page.getListOfStates().get(0).isTooltipDisplayed());
+        
+    	for(ProgressButton place: page.getListOfStates().get(0).getProgressButtonList()){ 
+    		place.getProgressBar().mouseOverProgressBar();
+    		assertTrue(page.getWorld().isTooltipDisplayed());
+    	}
+    	
+    	String stateTitle = page.getListOfStates().get(0).getPlaceTitle();
+        page.getListOfStates().get(0).clickViewPlace();
+        assertTrue(browser.findElement(By.xpath("//*[@id='ng-view']/div[1]/h1")).getText().equals(stateTitle));
+    	guardHttp(browser).get(baseUrl+"/overview/");
+    	waitUntilPageLoaded();
+    	page.getListOfStates().get(0).getProgressButtonList().get(0).clickButton();
+    	waitUntilPageLoaded();
+    	assertTrue(browser.findElement(By.className("practice")).isDisplayed());
     }
 }
