@@ -45,19 +45,6 @@ public class WorldMapTest extends MyTestClass{
     	Thread.sleep(2000);
     	System.out.println(page.getWorldMap().getTooltip().getTitle());
         assertTrue(page.getWorldMap().getTooltip().getTitle().equals("Greenland"));
-        /*
-    	for(WebElement place: worldMap.getListOfStates()){
-    	String stateName = place.getAttribute("data-name");
-    	Thread.sleep(3000);
-    	worldMap.mouseOverSpecificPlace(stateName, worldMap.getListOfStates());
-    	zoomIn();
-    	worldMap.mouseOverSpecificPlace(stateName, worldMap.getListOfStates());
-    	Thread.sleep(3000);
-    	System.out.println(stateName);
-    	System.out.println(worldMap.getTooltip().getTitle());
-        assertTrue(worldMap.getTooltip().getTitle().equals(stateName));
-    	}
-    	*/
     }
      
      @Test
@@ -65,13 +52,6 @@ public class WorldMapTest extends MyTestClass{
 
     	Thread.sleep(3000);
     	page.getMapControl().clickWaterTab();
-    	/*
-    	Thread.sleep(3000);
-    	worldMap.mouseOverSpecificPlace("Volga", worldMap.getListOfRivers());
-    	Thread.sleep(1000);
-    	System.out.println(worldMap.getTooltip().getTitle());
-        assertTrue(worldMap.getTooltip().getTitle().equals("Volga"));
-        */
     	Thread.sleep(3000);
     	page.getWorldMap().mouseOverSpecificPlace("Lake Victoria", page.getWorldMap().getListOfLakes());
     	Thread.sleep(2000);
