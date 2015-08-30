@@ -4,13 +4,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.jboss.arquillian.graphene.Graphene;
 import org.jboss.arquillian.graphene.GrapheneElement;
-import org.jboss.arquillian.drone.api.annotation.Drone;
-import org.openqa.selenium.WebDriver;
 
 public class FacebookAuth {
-	
-	@Drone
-	private WebDriver browser;
 	
 	@FindBy(id = "email")
 	private GrapheneElement emailOrPhone;
