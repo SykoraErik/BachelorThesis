@@ -4,14 +4,9 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.jboss.arquillian.graphene.Graphene;
 import org.jboss.arquillian.graphene.GrapheneElement;
-import org.jboss.arquillian.drone.api.annotation.Drone;
-import org.openqa.selenium.WebDriver;
 import static org.jboss.arquillian.graphene.Graphene.guardAjax;
 
 public class Login {
-	
-	@Drone
-	private WebDriver browser;
 		
 	@FindBy(css = "body > div.modal.fade.ng-isolate-scope.in > div > div")
 	private SignUp signUpFragment;
