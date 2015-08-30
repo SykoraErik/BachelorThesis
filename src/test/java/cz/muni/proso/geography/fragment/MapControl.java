@@ -1,20 +1,16 @@
 package cz.muni.proso.geography.fragment;
 
 import org.jboss.arquillian.drone.api.annotation.Drone;
-import org.jboss.arquillian.graphene.fragment.Root;
+import org.jboss.arquillian.graphene.Graphene;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 public class MapControl {
 	
-	@Root
-	private WebElement mapControlRoot;
-	
 	@Drone
 	private WebDriver browser;
 	
-	//political map
 	@FindBy(css = "#container > div.layers-tabs > div:nth-child(1)")
 	private WebElement politicalMapTab;
 
@@ -30,7 +26,6 @@ public class MapControl {
 	@FindBy(css = "#container > ul:nth-child(4) > div > li:nth-child(2) > div.collapse-control > a")
 	private WebElement practiceCitiesButton;
 	
-	//water map
 	@FindBy(css = "#container > div.layers-tabs > div:nth-child(2)")
 	private WebElement waterTab;
 	
@@ -46,7 +41,6 @@ public class MapControl {
 	@FindBy(css = "#container > ul:nth-child(5) > div > li:nth-child(2) > div.collapse-control > a")
 	private WebElement practiceLakesButton;
 	
-	//surface map
 	@FindBy(css = "#container > div.layers-tabs > div:nth-child(3)")
 	private WebElement surfaceTab;
 	
@@ -120,5 +114,66 @@ public class MapControl {
 
 	public WebElement getPracticeIslandsButton() {
 		return practiceIslandsButton;
+	}
+
+	public void clickPoliticalMapTab() {
+		politicalMapTab.click();
+	}
+
+	public void clickShowStatesTab() {
+		showStatesTab.click();
+	}
+
+	public void clickPracticeStatesButton() {
+		practiceStatesButton.click();
+	}
+
+	public void clickShowCitiesTab() {
+		showCitiesTab.click();
+	}
+
+	public void clickPracticeCitiesButton() {
+		practiceCitiesButton.click();
+	}
+
+	public void clickWaterTab() {
+		Graphene.waitModel().until().element(waterTab).is().visible();
+		waterTab.click();
+	}
+
+	public void clickShowRiversTab() {
+		showRiversTab.click();
+	}
+
+	public void clickPracticeRiversButton() {
+		practiceRiversButton.click();
+	}
+
+	public void clickShowLakesTab() {
+		showLakesTab.click();
+	}
+
+	public void clickPracticeLakesButton() {
+		practiceLakesButton.click();
+	}
+
+	public void clickSurfaceTab() {
+		surfaceTab.click();
+	}
+
+	public void clickShowMountainsTab() {
+		showMountainsTab.click();
+	}
+
+	public void clickPracticeMountainsButton() {
+		practiceMountainsButton.click();
+	}
+
+	public void clickShowIslandsTab() {
+		showIslandsTab.click();
+	}
+
+	public void clickPracticeIslandsButton() {
+		practiceIslandsButton.click();
 	}
 }
