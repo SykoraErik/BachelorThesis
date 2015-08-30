@@ -2,24 +2,17 @@ package cz.muni.proso.geography.fragment;
 
 import java.util.List;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.jboss.arquillian.graphene.Graphene;
-import org.jboss.arquillian.graphene.fragment.Root;
+import org.jboss.arquillian.graphene.GrapheneElement;
 import org.jboss.arquillian.drone.api.annotation.Drone;
 import org.openqa.selenium.WebDriver;
 
 public class GoogleAuth {
-
-	@Root
-	private WebElement googleAuthRoot;
 	
 	@Drone
 	private WebDriver browser;
-	
-	//Google sign up page fragment elements
 	
 	@FindBy(id = "Email")
 	private WebElement email;
@@ -33,20 +26,17 @@ public class GoogleAuth {
 	@FindBy(id = "signIn")
 	private WebElement signInButton;
 
-	@FindBy(css = "#account-chooser-add-account")
+	@FindBy(id = "account-chooser-add-account")
 	private WebElement addEmail;
 	
 	@FindBy(id = "account-list")
-	private WebElement accountsForm;
+	private GrapheneElement accountsForm;
+	
+	@FindBy(xpath= "/html/body/div/div[2]/div[2]")
+	private GrapheneElement gaiaForm;
 	
 	@FindBy(name = "Email")
 	private List<WebElement> userAccounts;
-	
-	//Google sign up/sign in methods
-	
-	public WebElement getGoogleAuthRoot() {
-		return googleAuthRoot;
-	}
 
 	public WebElement getEmail() {
 		return email;
@@ -64,33 +54,48 @@ public class GoogleAuth {
 		return signInButton;
 	}
 
-	public WebElement getAccountsForm(){
+	public GrapheneElement getAccountsForm(){
 		return accountsForm;
 	}
 	
+	public GrapheneElement getGaiaForm(){
+		return gaiaForm;
+	}
+	
 	public void inputEmail(String emailAddress){
+		Graphene.waitModel().until().element(email).is().present();
+		email.clear();
 		email.sendKeys(emailAddress);
 	}
 	
 	public void clickEmailNextButton(){
+		Graphene.waitAjax().until().element(emailNextButton).is().present();
 		emailNextButton.click();
 	}
 	
 	public void inputPassword(String pwd){
+		Graphene.waitAjax().until().element(password).is().present();
+		password.clear();
 		password.sendKeys(pwd);
 	}
 	
 	public void clickSignInButton(){
+		Graphene.waitAjax().until().element(signInButton).is().present();
 		signInButton.click();
 	}
 	
-	//this method tries to log in or sign up a user who does not have saved credentials
-	//users that have saved their credentials are logged in instantly. This is accounted for in LoginFragment and SignUpFragment
+	public boolean isGaiaFormPresent(){
+		return gaiaForm.isPresent();
+	}
+	
+	public boolean isAccountsFormPresent(){
+		return accountsForm.isPresent();
+	}
 	
 	public WebElement getAccount(String email){
 		WebElement userAccount = null;
 		for(WebElement e: userAccounts){
-			if(e.getAttribute("value")==email){
+			if(e.getAttribute("value").equals(email)){
 				userAccount = e;
 			}
 		}
@@ -98,21 +103,28 @@ public class GoogleAuth {
 	}
 	
 	public void login(String emailAddress, String pwd){
-		try{
-		if(accountsForm.isDisplayed()){
+		if(isAccountsFormPresent()){
 			getAccount(emailAddress).click();
+			Graphene.waitAjax().until().element(email).is().visible();
+			inputEmail(emailAddress);
+			Graphene.waitAjax().until().element(emailNextButton).is().visible();
+			clickEmailNextButton();
+			Graphene.waitAjax().until().element(password).is().visible();
+			inputPassword(pwd);
+			Graphene.waitAjax().until().element(signInButton).is().visible();
+			clickSignInButton();
 		}
+		if(isGaiaFormPresent()){
+			inputEmail(emailAddress);
+			Graphene.waitAjax().until().element(emailNextButton).is().visible();
+			clickEmailNextButton();
+			Graphene.waitAjax().until().element(password).is().visible();
+			inputPassword(pwd);
+			Graphene.waitAjax().until().element(signInButton).is().visible();
+			clickSignInButton();
 		}
-		catch(NoSuchElementException ex){
-		Graphene.waitGui().until().element(email).is().present();
-		inputEmail(emailAddress);
-		Graphene.waitGui().until().element(emailNextButton).is().present();
-		clickEmailNextButton();
-		Graphene.waitGui().until().element(password).is().present();
-		inputPassword(pwd);
-		Graphene.waitGui().until().element(signInButton).is().present();
-		clickSignInButton();
+		else{
+			System.out.println("No google form was found.");
 		}
 	}
-	
 }
