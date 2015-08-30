@@ -1,36 +1,23 @@
 package cz.muni.proso.geography.fragment;
 
 import org.jboss.arquillian.drone.api.annotation.Drone;
-import org.jboss.arquillian.graphene.fragment.Root;
+import org.jboss.arquillian.graphene.Graphene;
+import org.jboss.arquillian.graphene.GrapheneElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 public class Feedback {
-
-	@Root
-	private WebElement feedbackRoot;
 	
 	@Drone
 	private WebDriver browser;
-	
-	public WebElement getFeedbackFragmentRoot() {
-		return feedbackRoot;
-	}
-
-	public void setFeedbackFragmentRoot(WebElement feedbackFragmentRoot) {
-		this.feedbackRoot = feedbackFragmentRoot;
-	}
 
 	public WebDriver getBrowser() {
 		return browser;
 	}
-
-	@FindBy(id = "feedback-btn")
-	private WebElement feedbackButton;
 	
-	@FindBy(css= "body > div.modal.fade.ng-isolate-scope.in > div > div > div.modal-body.ng-scope > textarea")
-	private WebElement feedbackTextBox;
+	@FindBy(css = "body > div.modal.fade.ng-isolate-scope.in > div > div > div.modal-body.ng-scope > textarea")
+	private GrapheneElement feedbackTextBox;
 	
 	@FindBy(css = "body > div.modal.fade.ng-isolate-scope.in > div > div > div.modal-body.ng-scope > input")
 	private WebElement optionalEmail;
@@ -41,19 +28,19 @@ public class Feedback {
 	@FindBy(css = "body > div.modal.fade.ng-isolate-scope.in > div > div > div.modal-footer.ng-scope > button.btn.btn-danger.ng-binding")
 	private WebElement closeFeedbackButton;
 	
+	@FindBy(css = "body > div.modal.fade.ng-isolate-scope.in > div > div > div.modal-body.ng-scope > div > div > span")
+	private GrapheneElement feedbackSentMessage;
+	
+	@FindBy(css = "body > div.modal.fade.ng-isolate-scope.in > div > div > div.modal-body.ng-scope > div > button")
+	private WebElement feedbackSentMessageCloseButton;
+	
 	@FindBy(css = "body > div.modal.fade.ng-isolate-scope.in > div > div > div.modal-body.ng-scope > div")
-	private WebElement errorMessage;
+	private GrapheneElement errorMessage;
 	
 	@FindBy(css = "body > div.modal.fade.ng-isolate-scope.in > div > div > div.modal-body.ng-scope > div > button")
 	private WebElement errorMessageCloseButton;
 	
-	
-	//get and set methods
-	public WebElement getFeedbackButton(){
-		return feedbackButton;
-	}
-	
-	public WebElement getFeedbackTextBox() {
+	public GrapheneElement getFeedbackTextBox() {
 		return feedbackTextBox;
 	}
 
@@ -68,54 +55,68 @@ public class Feedback {
 	public WebElement getCloseFeedbackButton() {
 		return closeFeedbackButton;
 	}
-	
-	public WebElement getErrorMessage(){
+
+	public GrapheneElement getFeedbackSentMessage() {
+		return feedbackSentMessage;
+	}
+
+	public WebElement getFeedbackSentMessageCloseButton() {
+		return feedbackSentMessageCloseButton;
+	}
+
+	public WebElement getErrorMessageCloseButton() {
+		return errorMessageCloseButton;
+	}
+
+	public GrapheneElement getErrorMessage(){
 		return errorMessage;
 	}
 	
-	public WebElement getErrorMessageCloseButton(){
-		return errorMessageCloseButton;
-	}
-	
-	public void setFeedbackText(String feedback){
-		feedbackTextBox.sendKeys(feedback);
-	}
-	
-	public void setEmail(String email){
-		optionalEmail.sendKeys(email);
-	}
-	
-	//methods for working with feedback fragment
-	
-	public void inputFeedbackTextBox(String feedback) {
+	public void inputFeedbackText(String feedback){
+		Graphene.waitAjax().until().element(feedbackTextBox).is().present();
+		feedbackTextBox.clear();
 		feedbackTextBox.sendKeys(feedback);
 	}
 	
 	public void inputOptionalEmail(String email) {
+		Graphene.waitAjax().until().element(optionalEmail).is().present();
+		optionalEmail.clear();
 		optionalEmail.sendKeys(email);
 	}
 	
-	public void clickFeedbackButton(){
-		feedbackButton.click();
-	}
-	
 	public void clickSendFeedbackButton(){
+		Graphene.waitAjax().until().element(sendFeedbackButton).is().present();
 		sendFeedbackButton.click();
+		Graphene.waitAjax().until().element(feedbackSentMessage).is().present();
 	}
 	
 	public void clickCloseFeedbackButton(){
+		Graphene.waitAjax().until().element(closeFeedbackButton).is().present();
 		closeFeedbackButton.click();
+		Graphene.waitAjax().until().element(feedbackTextBox).is().not().present();
 	}
 	
 	public void clickErrorMessageCloseButton(){
+		Graphene.waitAjax().until().element(errorMessageCloseButton).is().present();
 		errorMessageCloseButton.click();
+		Graphene.waitAjax().until().element(errorMessage).is().not().present();
+	}
+	
+	public boolean isFeedbackFormPresent(){
+		return feedbackTextBox.isPresent();
+	}
+	
+	public boolean isErrorMsgPresent(){
+		return errorMessage.isPresent();
+	}
+	
+	public boolean isFeedbackSentMessagePresent(){
+		return feedbackSentMessage.isPresent();
 	}
 	
 	public void sendFeedback(String feedbackText, String email){
-		inputFeedbackTextBox(feedbackText);
+		inputFeedbackText(feedbackText);
 		inputOptionalEmail(email);
 		clickSendFeedbackButton();
 	}
-	
-	
 }
