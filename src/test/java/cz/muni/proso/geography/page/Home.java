@@ -1,6 +1,5 @@
 package cz.muni.proso.geography.page;
 
-import org.jboss.arquillian.graphene.page.Location;
 import org.jboss.arquillian.drone.api.annotation.Drone;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -10,8 +9,6 @@ import cz.muni.proso.geography.fragment.Feedback;
 import cz.muni.proso.geography.fragment.Footer;
 import cz.muni.proso.geography.fragment.NavigationMenu;
 
-
-@Location("http://slepemapy.cz/")
 public class Home {
 	
 	@Drone
@@ -28,21 +25,4 @@ public class Home {
 	
 	@FindBy(id = "footer")
 	private Footer footer;
-	
-	public Feedback getFeedbackFragment(){
-		return feedback;
-	}
-	
-	public NavigationMenu getNavMenuFragment(){
-		return navMenu;
-	}
-	
-	public Footer getFooterFragment(){
-		return footer;
-	}
-	
-	public WebElement getFeedbackButton(){
-		return feedbackButton;
-	}
-	
 }
