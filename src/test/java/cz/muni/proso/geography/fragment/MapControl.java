@@ -1,15 +1,10 @@
 package cz.muni.proso.geography.fragment;
 
-import org.jboss.arquillian.drone.api.annotation.Drone;
 import org.jboss.arquillian.graphene.Graphene;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 public class MapControl {
-	
-	@Drone
-	private WebDriver browser;
 	
 	@FindBy(css = "#container > div.layers-tabs > div:nth-child(1)")
 	private WebElement politicalMapTab;
