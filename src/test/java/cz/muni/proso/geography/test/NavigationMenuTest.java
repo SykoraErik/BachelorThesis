@@ -1,79 +1,82 @@
 package cz.muni.proso.geography.test;
 
-import java.util.concurrent.TimeUnit;
-
+import static org.junit.Assert.*;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.jboss.arquillian.drone.api.annotation.Drone;
-import org.openqa.selenium.NoSuchElementException;
-import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.jboss.arquillian.graphene.Graphene;
-import org.jboss.arquillian.graphene.page.InitialPage;
-import org.jboss.arquillian.graphene.page.Page;
 import org.jboss.arquillian.junit.Arquillian;
 
 import cz.muni.proso.geography.fragment.NavigationMenu;
-import cz.muni.proso.geography.page.Home;
 
 @RunWith(Arquillian.class)
-public class NavigationMenuTest {
-	
-    @Drone
-    private WebDriver browser;
+public class NavigationMenuTest extends MyTestClass{
     
     @FindBy(css = "#wrap > div.navbar.navbar-inverse")
     private NavigationMenu navMenu;
     
+	@Before
+	public void openPage(){
+		browser.get(baseUrl);
+	}
+    
     @Test
-    public void testButtons(@InitialPage Home home) throws InterruptedException{
+    public void testButtons(){
+    	
     	navMenu.clickWorldButton();
-    	if(!browser.getCurrentUrl().equals("http://slepemapy.cz/view/world/")){
-    		throw new InterruptedException("User clicked World map button, but did not get on the correct page");
-    	}
+    	waitUntilPageLoaded();
+    	assertTrue((browser.findElement(By.xpath("//*[@id='ng-view']/div[1]/h1")).getText().equals("World")));
     	
     	navMenu.clickHomeButton();
-    	if(!browser.getCurrentUrl().equals("http://slepemapy.cz/")){
-    		throw new InterruptedException("User clicked home button, but did not get on the correct page");
-    	}
+    	assertTrue((browser.findElement(By.xpath("//*[@id='ng-view']/div[1]/h1")).getText().equals("Outline maps")));
     	
-    	navMenu.clickMapOverviewButton();
-    	if(!browser.getCurrentUrl().equals("http://slepemapy.cz/overview/")){
-    		throw new InterruptedException("User clicked map overview button, but did not get on the correct page");
-    	}
+    	navMenu.clickMapOverview();
+    	waitUntilPageLoaded();
+    	assertTrue((browser.findElement(By.xpath("//*[@id='ng-view']/div/h1")).getText().equals("Maps overview")));
     	
     	navMenu.clickLoginButton();
-    	//Graphene.waitGui().until().element(navMenu.getLoginFragment().getLoginSubmitButton()).is().present();
-    	if(!navMenu.getLoginFragment().getLoginRoot().isDisplayed()
-    	){
-    		throw new InterruptedException("User clicked login button, but login form did not open");
+    	assertTrue(navMenu.getLogin().isLoginFormPresent());
+    	navMenu.getLogin().clickCloseLoginButton();
     	}
-    	
-    	/*
-    	for(WebElement e: navMenuFragment.getListOfContinents()){
-    		navMenuFragment.clickContinentButton();
-    		e.click();
-    		if(!browser.getCurrentUrl().contains(e.getAttribute("[href]"))){
-    			throw new InterruptedException("Use clicked on a specific continent, but did not get on the correct page");
-    		}
-    		
-    	for(WebElement e: navMenuFragment.getListOfContinents()){
-    		navMenuFragment.clickStateButton();
-    		e.click();
-    		if(!browser.getCurrentUrl().contains(e.getAttribute("[href]"))){
-    			throw new InterruptedException("Use clicked on a specific continent, but did not get on the correct page");
-    		}	
+    
+    @Test
+    public void testContinents(){
+    	for(WebElement continent: navMenu.getListOfContinents()){
+    		navMenu.clickContinentButton();
+    		String continentName = continent.getText();
+    		continent.click();
+    		waitUntilPageLoaded();
+    		assertEquals(continentName, browser.findElement(By.xpath("//h1")).getText());
     	}
-    	
-    	for(WebElement e: navMenuFragment.getListOfContinents()){
-    		navMenuFragment.clickLanguageButton();
-    		e.click();
-    		if(!browser.getCurrentUrl().contains(e.getAttribute("[href]"))){
-    			throw new InterruptedException("Use clicked on a specific continent, but did not get on the correct page");
+    }
+    
+    @Test
+    public void testStates(){
+    	for(WebElement state: navMenu.getListOfStates()){
+    		navMenu.clickStateButton();
+    		String stateName = state.getText();
+    		state.click();
+    		waitUntilPageLoaded();
+    		if(stateName.equals("United States")||stateName.equals("Spojenďż˝ stďż˝ty americkďż˝")||stateName.equals("Estados Unidos")){
+    			assertEquals("U.S.", browser.findElement(By.xpath("//h1")).getText());
     		}
-    	*/
-    	
-    	
-    }   
+    		else{
+    			assertEquals(stateName, browser.findElement(By.xpath("//h1")).getText());
+    		}
+    	}
+    }
+    
+    @Test
+    public void testLanguages(){
+    	for(WebElement language: navMenu.getListOfLanguages()){
+    		navMenu.clickLanguageButton();
+    		String flagClass = language.findElement(By.xpath("./i")).getAttribute("class");
+    		language.click();
+    		assertEquals(flagClass, browser.findElement(By.xpath("//*[@id='nav-main']/ul[2]/li[3]/a/i")).getAttribute("class"));
+    	}
+    	navMenu.clickLanguageButton();
+    	navMenu.clickSpecificLanguage("English");
+    }
 }
