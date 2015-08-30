@@ -3,73 +3,51 @@ package cz.muni.proso.geography.fragment;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.jboss.arquillian.graphene.Graphene;
-import org.jboss.arquillian.graphene.fragment.Root;
+import org.jboss.arquillian.graphene.GrapheneElement;
 import org.jboss.arquillian.drone.api.annotation.Drone;
 import org.openqa.selenium.WebDriver;
+import static org.jboss.arquillian.graphene.Graphene.guardAjax;
 
 public class Login {
 	
-	@Root
-	private WebElement loginRoot;
-	
 	@Drone
 	private WebDriver browser;
-	
-	//Google sign in fragment 
-	@FindBy(css = "body > div > div.main.content.clearfix")
-	private GoogleAuth google;
-	
-	//Facebook sign in fragment
-	@FindBy(xpath = "/html/body/div/div[2]/div[1]/div/div/div[2]/div")
-	private FacebookAuth facebook;
-	
-	//Sign up fragment	
+		
 	@FindBy(css = "body > div.modal.fade.ng-isolate-scope.in > div > div")
 	private SignUp signUpFragment;
 	
-	//login page fragment elements
+	@FindBy(xpath = "/html/body/div[6]/div/div/div[1]/h3")
+	private GrapheneElement loginTitle;
 	
-	@FindBy(css = "body > div.modal.fade.ng-isolate-scope.in > div > div > div.modal-body.ng-scope > a.btn.btn-danger.btn-lg.btn-block.ng-binding")
+	@FindBy(xpath = "/html/body/div[6]/div/div/div[2]/a[1]")
 	private WebElement loginGoogleButton;
 
-	@FindBy(css = "body > div.modal.fade.ng-isolate-scope.in > div > div > div.modal-body.ng-scope > a.btn.btn-primary.btn-lg.btn-block.ng-binding")
+	@FindBy(xpath = "/html/body/div[6]/div/div/div[2]/a[2]")
 	private WebElement loginFacebookButton;
 	
-	@FindBy(css = "body > div.modal.fade.ng-isolate-scope.in > div > div > div.modal-body.ng-scope > form > div:nth-child(1) > input")
+	@FindBy(xpath = "/html/body/div[6]/div/div/div[2]/form/div[1]/input")
 	private WebElement loginUsername;
 	
-	@FindBy(css = "body > div.modal.fade.ng-isolate-scope.in > div > div > div.modal-body.ng-scope > form > div:nth-child(2) > input")
+	@FindBy(xpath = "/html/body/div[6]/div/div/div[2]/form/div[2]/input")
 	private WebElement loginPassword;
 
-	@FindBy(css = "body > div.modal.fade.ng-isolate-scope.in > div > div > div.modal-body.ng-scope > form > button")
+	@FindBy(xpath = "/html/body/div[6]/div/div/div[2]/form/button")
 	private WebElement loginSubmitButton;
 			
-	@FindBy(css = "body > div.modal.fade.ng-isolate-scope.in > div > div > div.modal-footer.ng-scope > a")
+	@FindBy(xpath = "/html/body/div[6]/div/div/div[3]/a")
 	private WebElement signUpButton;
 	
-	@FindBy(css = "body > div.modal.fade.ng-isolate-scope.in > div > div > div.modal-body.ng-scope > form > div.alert.ng-isolate-scope.alert-danger.alert-dismissable > div > span")
-	private WebElement loginFailMsg;
+	@FindBy(xpath = "/html/body/div[6]/div/div/div[2]/form/div[3]/div/span")
+	private GrapheneElement loginFailMsg;
 	
-	@FindBy(css = "body > div.modal.fade.ng-isolate-scope.in > div > div > div.modal-header.text-center.ng-scope > button")
-	private WebElement closeLoginButton;
-	
-	@FindBy(css = "body > div.modal.fade.ng-isolate-scope.in > div > div > div.modal-body.ng-scope > form > div.alert.ng-isolate-scope.alert-danger.alert-dismissable > button")
-	private WebElement closeLoginFailMsgButton;
-	
-	//getter methods for WebElements
-	
-	public GoogleAuth getGoogleFragment() {
-		return google;
-	}
-
-	public FacebookAuth getFacebookFragment() {
-		return facebook;
-	}
-	
-	public SignUp getSignUpFragment(){
+	public SignUp getSignUpFragment() {
 		return signUpFragment;
 	}
-	
+
+	public GrapheneElement getLoginTitle() {
+		return loginTitle;
+	}
+
 	public WebElement getLoginGoogleButton() {
 		return loginGoogleButton;
 	}
@@ -94,10 +72,10 @@ public class Login {
 		return signUpButton;
 	}
 
-	public WebElement getLoginFailMsg() {
+	public GrapheneElement getLoginFailMsg() {
 		return loginFailMsg;
 	}
-	
+
 	public WebElement getCloseLoginButton() {
 		return closeLoginButton;
 	}
@@ -105,78 +83,77 @@ public class Login {
 	public WebElement getCloseLoginFailMsgButton() {
 		return closeLoginFailMsgButton;
 	}
+
+	@FindBy(xpath = "/html/body/div[6]/div/div/div[1]/button")
+	private WebElement closeLoginButton;
 	
-	public WebElement getLoginRoot(){
-		return loginRoot;
+	@FindBy(xpath = "/html/body/div[6]/div/div/div[2]/form/div[3]/button")
+	private WebElement closeLoginFailMsgButton;
+	
+
+	public String getLoginTitleText(){
+		return loginTitle.getText();
 	}
 	
-	//login page fragment methods
+	public String getErrorMsgText(){
+		return loginFailMsg.getText();
+	}
+	
+	public boolean isLoginFormPresent(){
+		Graphene.waitAjax().until().element(loginUsername).is().present();
+		return loginTitle.isPresent();
+	}
 	
 	public void inputUsername(String username){
+		Graphene.waitAjax().until().element(loginUsername).is().present();
+		loginUsername.clear();
 		loginUsername.sendKeys(username);
 	}
 	
 	public void inputPassword(String password){
+		Graphene.waitAjax().until().element(loginPassword).is().present();
+		loginPassword.clear();
 		loginPassword.sendKeys(password);
 	}
 	
-	public void loginSubmit(){
+	public void clickloginSubmitButton(){
+		Graphene.waitAjax().until().element(loginSubmitButton).is().present();
 		loginSubmitButton.click();
 	}
 	
-	//TO DO - should close the login form and return previous page
-	public void closeLoginWithButton(){
+	public void clickCloseLoginButton(){
+		Graphene.waitAjax().until().element(closeLoginButton).is().present();
 		closeLoginButton.click();
 	}
 	
-	// TO DO - should simulate clicking outside the login form
-	public void closeLoginFormWithClick(){
-		loginRoot.click(); // clicks inside login form, should do opposite
+	public void clickLoginGoogleButton(){
+		Graphene.waitAjax().until().element(loginGoogleButton).is().present();
+		loginGoogleButton.click();
 	}
 	
-	public String getErrorMsg(){
-		return loginFailMsg.getText();
+	public void clickLoginFacebookButton(){
+		Graphene.waitAjax().until().element(loginFacebookButton).is().present();
+		loginFacebookButton.click();
 	}
 	
-	//simulates closing login form by clicking on the close button
-	public void closeLoginFailMsg(){
+	public boolean isErrorMsgPresent(){
+		return loginFailMsg.isPresent();
+	}
+
+	public void clickLoginFailMsgCloseButton(){
 		if(closeLoginFailMsgButton.isDisplayed()){
 		closeLoginFailMsgButton.click();
 		}
 	}
 	
-	// this method tries to log in user with saved Google credentials
-	public void loginWithGoogle(){
-		loginGoogleButton.click();
-	}
-	
-	// this method tries to log in user without saved Google credentials
-	public void loginWithGoogle(String email, String pwd){
-		loginGoogleButton.click();
-		google.login(email, pwd);
-	}
-	
-	// this method tries to log in user with saved Facebook credentials
-	public void loginWithFacebook(){
-		loginFacebookButton.click();
-	}
-	
-	// this method tries to log in user without saved Facebook credentials
-	public void loginWithFacebook(String emailOrPhone, String pwd){
-		loginFacebookButton.click();
-		facebook.login(emailOrPhone, pwd);
-	}
-	
 	public void loginWithEmail(String username, String pwd){
-		loginUsername.click();
 		inputUsername(username);
-		loginPassword.click();
 		inputPassword(pwd);
-		loginSubmitButton.click();
+		guardAjax(loginSubmitButton).click();
 	}
 	
 	public void clickSignUpButton(){
+		Graphene.waitAjax().until().element(signUpButton).is().present();
 		signUpButton.click();
 	}
-	
 }
