@@ -1,63 +1,58 @@
 package cz.muni.proso.geography.test;
 
+import org.junit.Before;
 import org.junit.Test;
-
-import static org.junit.Assert.*;
-
 import org.junit.runner.RunWith;
-import org.jboss.arquillian.drone.api.annotation.Drone;
-import org.openqa.selenium.WebDriver;
+
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.assertFalse;
+
+import org.jboss.arquillian.graphene.Graphene;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.jboss.arquillian.graphene.*;
-import org.jboss.arquillian.graphene.page.InitialPage;
 import org.jboss.arquillian.junit.Arquillian;
 
+import static org.jboss.arquillian.graphene.Graphene.guardAjax;
 import cz.muni.proso.geography.fragment.Feedback;
-import cz.muni.proso.geography.page.Home;
 
 @RunWith(Arquillian.class)
-public class FeedbackTest {
-	
-    @Drone
-    private WebDriver browser;
+public class FeedbackTest extends MyTestClass{
     
     @FindBy(className = "modal-content")
-	private Feedback feedbackFragment;
+	private Feedback feedback;
 	
     @FindBy(id = "feedback-btn")
 	private WebElement feedbackButton;
     
-    @Test
-    public void testSendFeedback(@InitialPage Home home){
-    	Graphene.waitGui().until().element(feedbackButton).is().present();
-    	feedbackButton.click();
-    	Graphene.waitGui().until().element(feedbackFragment.getFeedbackTextBox()).is().present();
-    	feedbackFragment.sendFeedback("graphene-test", "outlinemaps.test@gmail.com");	
+    @Before
+    public void openPage(){
+    	browser.get(baseUrl);
     }
     
     @Test
-    public void testCloseFeedback(@InitialPage Home home){
-    	Graphene.waitGui().until().element(feedbackButton).is().present();
+    public void testSendFeedback(){
+    	Graphene.waitModel().until().element(feedbackButton).is().visible();
     	feedbackButton.click();
-    	Graphene.waitGui().until().element(feedbackFragment.getCloseFeedbackButton()).is().present();
-    	feedbackFragment.clickCloseFeedbackButton();
-    	Graphene.waitGui().until().element(feedbackButton).is().visible();
-    	
-    	assertFalse(feedbackFragment.getFeedbackTextBox().isPresent());
+    	guardAjax(feedback).sendFeedback("graphene-test", email);
+    	assertTrue(feedback.isFeedbackSentMessagePresent());
     }
     
     @Test
-    public void testErrorDisplay(@InitialPage Home home){
-    	Graphene.waitGui().until().element(feedbackButton).is().present();
+    public void testCloseFeedback(){
+    	Graphene.waitModel().until().element(feedbackButton).is().visible();
     	feedbackButton.click();
-    	Graphene.waitGui().until().element(feedbackFragment.getFeedbackTextBox()).is().present();
-    	feedbackFragment.setFeedbackText("");
-    	feedbackFragment.clickSendFeedbackButton();
-    	Graphene.waitGui().until().element(feedbackFragment.getErrorMessage()).is().present();
-    	
-    	assertTrue(feedbackFragment.getErrorMessage().isPresent());
-    	feedbackFragment.clickErrorMessageCloseButton();
-    	assertFalse(feedbackFragment.getErrorMessage().isPresent());    	    	
+    	feedback.clickCloseFeedbackButton();
+    	assertFalse(feedback.isFeedbackFormPresent());
+    }
+    
+    @Test
+    public void testErrorDisplay(){
+    	Graphene.waitModel().until().element(feedbackButton).is().visible();
+    	feedbackButton.click();
+    	feedback.inputOptionalEmail("@");
+    	feedback.clickSendFeedbackButton();
+    	assertTrue(feedback.isErrorMsgPresent());
+    	feedback.clickErrorMessageCloseButton();
+    	assertFalse(feedback.isErrorMsgPresent());    	    	
     }
 }
