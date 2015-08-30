@@ -1,27 +1,22 @@
 package cz.muni.proso.geography.fragment;
 
 import org.openqa.selenium.WebElement;
-import org.jboss.arquillian.drone.api.annotation.Drone;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
 
 public class Footer {
-	
-	@Drone
-	private WebDriver browser;
-    
+  
   @FindBy(xpath = "./div[1]/span[1]/ul/li[1]/a")
   private WebElement feedbackLink;
 	
   @FindBy(xpath = "./div[1]/span[1]/ul/li[2]/a")
   private WebElement googleLink;
-    
+  
   @FindBy(xpath = "./div[1]/span[1]/ul/li[3]/a")
   private WebElement facebookLink;
-    
+  
   @FindBy(xpath = "./div[1]/span[3]/a[1]/img")
   private WebElement adaptiveLearningLink;
-    
+  
   @FindBy(xpath = "./div[1]/span[3]/a[2]/img")
   private WebElement fiMuniLink;
 
