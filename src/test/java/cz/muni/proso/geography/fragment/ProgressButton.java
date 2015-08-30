@@ -1,34 +1,33 @@
 package cz.muni.proso.geography.fragment;
 
-import org.jboss.arquillian.drone.api.annotation.Drone;
-import org.jboss.arquillian.graphene.fragment.Root;
-import org.openqa.selenium.WebDriver;
+import org.jboss.arquillian.graphene.Graphene;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 public class ProgressButton {
 
-	@Root
-	private WebElement root;
-	
-	@Drone
-	private WebDriver browser;
-
 	@FindBy(xpath ="./a")
 	private WebElement button;
 	
 	@FindBy(xpath = "./div")
-	private WebElement progressBar;
+	private ProgressBar progressBar;
 	
-	public WebElement getRoot() {
-		return root;
-	}
-
-	public WebElement getButton() {
-		return button;
-	}
-
-	public WebElement getProgressBar() {
+	public ProgressBar getProgressBar(){
 		return progressBar;
+	}
+	
+	public String getButtonLabel(){
+		Graphene.waitGui().until().element(button).is().present();
+		return button.getText();
+	}
+	
+	public String getButtonLink(){
+		Graphene.waitGui().until().element(button).is().present();
+		return button.getAttribute("href");
+	}
+	
+	public void clickButton(){
+		Graphene.waitGui().until().element(button).is().present();
+		button.click();
 	}
 }
