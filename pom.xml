@@ -11,12 +11,48 @@
     <packaging>jar</packaging>
     <name>Bachelor-thesis</name>
 
+    <properties>
+    	<project.build.sourceEncoding>iso-8859-2</project.build.sourceEncoding>
+    	<webdriver.chrome.driver>C:\Users\Sykor_000\Bachelor-thesis\src\test\resources\chromedriver.exe</webdriver.chrome.driver>
+    	<base.url>http://slepemapy.cz</base.url>
+    	<username>Erik</username>
+    	<email>outlinemaps.test@gmail.com</email>
+    	<password>pwd</password>
+    	<facebook.email>outlinemaps.test@gmail.com</facebook.email>
+    	<facebook.password>slepemapy</facebook.password>
+    	<google.email>outlinemaps.test@gmail.com</google.email>
+    	<google.password>slepemapy</google.password>
+    		
+    </properties>
+
     <build>
-        <plugins>            
-            <plugin>
-                <artifactId>maven-surefire-plugin</artifactId>
-                <version>2.12</version>
-            </plugin>
+        <plugins>
+       		<plugin>
+        		<groupId>org.apache.maven.plugins</groupId>
+        		<artifactId>maven-compiler-plugin</artifactId>
+        		<version>3.3</version>
+        		<configuration>
+         			<source>1.7</source>
+          			<target>1.7</target>
+        		</configuration>
+      		</plugin>
+      		<plugin>
+    			<groupId>org.apache.maven.plugins</groupId>
+    			<artifactId>maven-surefire-plugin</artifactId>
+    			<version>2.18.1</version>
+    			<configuration>
+       				<systemPropertyVariables>
+            			<baseUrl>${base.url}</baseUrl>
+    					<username>${username}</username>
+    					<email>${email}</email>
+    					<password>${password}</password>
+    					<facebookEmail>${facebook.email}</facebookEmail>
+    					<facebookPassword>${facebook.password}</facebookPassword>
+    					<googleUsername>${google.username}</googleUsername>
+    					<googlePassword>${google.password}</googlePassword>
+        			</systemPropertyVariables>
+    			</configuration>
+			</plugin>
         </plugins>      
         <testResources>
         	<testResource>
@@ -38,7 +74,7 @@
 			<dependency>
   				<groupId>org.jboss.arquillian.extension</groupId>
   				<artifactId>arquillian-drone-bom</artifactId>
-  				<version>2.0.0.Alpha3</version>
+  				<version>2.0.0.Alpha5</version>
   				<type>pom</type>
   				<scope>import</scope>
 			</dependency>
@@ -82,6 +118,9 @@
     	</profile>
     	<profile>
       		<id>chrome</id>
+      		<activation>
+            	<activeByDefault>true</activeByDefault>
+        	</activation>
        		<properties>
        			<browser>chrome</browser>
        		</properties>
