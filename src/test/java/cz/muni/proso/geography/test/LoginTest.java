@@ -1,70 +1,84 @@
 package cz.muni.proso.geography.test;
 
+import static org.junit.Assert.*;
+
+import org.junit.After;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.jboss.arquillian.drone.api.annotation.Drone;
-import org.openqa.selenium.NoSuchElementException;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.jboss.arquillian.graphene.Graphene;
-import org.jboss.arquillian.graphene.page.InitialPage;
-import org.jboss.arquillian.graphene.page.Page;
 import org.jboss.arquillian.junit.Arquillian;
 
-import cz.muni.proso.geography.fragment.Feedback;
+import static org.jboss.arquillian.graphene.Graphene.*;
+import cz.muni.proso.geography.fragment.FacebookAuth;
+import cz.muni.proso.geography.fragment.FacebookConfirmAuth;
+import cz.muni.proso.geography.fragment.GoogleAuth;
+import cz.muni.proso.geography.fragment.GoogleConfirmAuth;
 import cz.muni.proso.geography.fragment.Login;
 import cz.muni.proso.geography.fragment.NavigationMenu;
-import cz.muni.proso.geography.page.Home;
 
 @RunWith(Arquillian.class)
-public class LoginTest {
-	
-    @Drone
-    private WebDriver browser;
+public class LoginTest extends MyTestClass{
     
-    @Page
-    private Home home;
-    
-	@FindBy(css = "body > div.modal.fade.ng-isolate-scope.in > div > div")
+	@FindBy(css = "#wrap > div.navbar.navbar-inverse > div > button")
 	private Login login;
-    
-	@FindBy(css = "#nav-main > ul.nav.navbar-nav.pull-right > li:nth-child(1) > a")
-	private WebElement loginButton;
 	
-	@FindBy(css = "#drop1 > span")
-	private WebElement userLoggedIn;
+	@FindBy(id = "platformDialogForm")
+	private FacebookConfirmAuth facebookConfirm;
+    
+	@FindBy(id = "login_form")
+	private FacebookAuth facebook;
+	
+	@FindBy(css = "body > div > div.main.content.clearfix")
+	private GoogleAuth google;
+	
+	@FindBy(id = "approval_container")
+	private GoogleConfirmAuth googleConfirm;
+	
+    @FindBy(css = "#wrap > div.navbar.navbar-inverse")
+    private NavigationMenu navMenu;
+
+	@Before
+	public void openPage(){
+		browser.get(baseUrl);
+	}
+	
+	@After
+	public void logOff() throws InterruptedException{
+    	Thread.sleep(1000);
+    	navMenu.clickLoggedInButton();
+    	navMenu.clickSignOutButton();
+	}
 	
     @Test
-    public void testLoginViaEmail(@InitialPage Home home) throws InterruptedException{
-    	loginButton.click();
-    	Graphene.waitGui().until().element(login.getLoginUsername()).is().present();
-    	login.loginWithEmail("Erik", "pwd");
-    	
-    	try{
-    	Graphene.waitGui().until().element(userLoggedIn).is().visible();
-    	if(userLoggedIn.isDisplayed()){
-    			System.out.println("User was logged in using email. Test passes.");
-    		}
-    	}
-    	catch(NoSuchElementException ex){
-    		throw new InterruptedException("The user is not logged in");
-    	}
+    public void testEmailLogin() throws InterruptedException{
+    	navMenu.clickLoginButton();
+    	login.loginWithEmail(username, password);
+    	browser.get(baseUrl);
+    	assertTrue(navMenu.getLoggedInButton().isDisplayed());
     }
-    /*
+    
     @Test
-    public void testLoginViaFacebookFail(@InitialPage Home home) throws InterruptedException{
-    	
-    	loginButton.click();
-    	login.loginWithFacebook("", "");
-    	if(!login.getFacebookFragment().getErrorMsg().isDisplayed()){
-    		throw new InterruptedException("Login failed but no message is displayed");
+    public void testFacebook() throws InterruptedException {
+    	navMenu.clickLoginButton();
+    	login.clickLoginFacebookButton();
+    	Thread.sleep(500);
+    	if(facebook.isPresent()){
+    		facebook.loginOrSignUp(facebookEmail, facebookPassword);
     	}
-    
+    	if(facebookConfirm.isPresent()){
+    		Graphene.waitAjax().until().element(facebookConfirm.getConfirmButton()).is().present();
+    		guardAjax(facebookConfirm).clickConfirmButton();
+    	}
+    	assertTrue(navMenu.getLoggedInButton().isDisplayed());
     }
-    */
     
-    
-    
-    
+    @Test
+    public void testGoogle() throws InterruptedException{
+    	navMenu.clickLoginButton();
+    	login.clickLoginGoogleButton();
+    	guardAjax(google).login(email, googlePassword);
+    	assertTrue(navMenu.getLoggedInButton().isPresent());
+    }
 }
