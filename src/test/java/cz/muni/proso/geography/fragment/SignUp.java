@@ -2,37 +2,23 @@ package cz.muni.proso.geography.fragment;
 
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.jboss.arquillian.graphene.Graphene;
-import org.jboss.arquillian.graphene.fragment.Root;
-import org.jboss.arquillian.drone.api.annotation.Drone;
-import org.openqa.selenium.WebDriver;
 
 public class SignUp {
-
-	@Root
-	private WebElement signUpRoot;
 	
-	@Drone
-	private WebDriver browser;
-	
-	//Google sign up fragment 
 	@FindBy(id = "gaia_loginform")
 	private GoogleAuth google;
 	
-	//Facebook sign up fragment
 	@FindBy(id = "loginform")
 	private FacebookAuth facebook;
 	
-	//sign up page fragment elements
-	
 	@FindBy(css = "body > div.modal.fade.ng-isolate-scope.in > div > div > div:nth-child(2) > div > a.btn.btn-danger.btn-lg.btn-block.ng-binding")
-	private WebElement signUpGoogleButton;
+	private WebElement googleButton;
 
 	@FindBy(css = "body > div.modal.fade.ng-isolate-scope.in > div > div > div:nth-child(2) > div > a.btn.btn-primary.btn-lg.btn-block.ng-binding")
-	private WebElement signUpFacebookButton;
+	private WebElement facebookButton;
 	
 	@FindBy(css = "body > div.modal.fade.ng-isolate-scope.in > div > div > div:nth-child(2) > div > a.btn.btn-info.btn-lg.btn-block.ng-binding")
-	private WebElement signUpEmailButton;
+	private WebElement emailButton;
 	
 	@FindBy(css = "body > div.modal.fade.ng-isolate-scope.in > div > div > div:nth-child(2) > form > div:nth-child(1) > input")
 	private WebElement signUpEmail;
@@ -44,62 +30,58 @@ public class SignUp {
 	private WebElement signUpPassword;
 	
 	@FindBy(css = "body > div.modal.fade.ng-isolate-scope.in > div > div > div:nth-child(2) > form > div:nth-child(4) > input")
-	private WebElement signUpPasswordAgain;
+	private WebElement passwordAgain;
 	
 	@FindBy(css = "body > div.modal.fade.ng-isolate-scope.in > div > div > div:nth-child(2) > form > button")
 	private WebElement submitButton;
 	
 	@FindBy(css = "body > div.modal.fade.ng-isolate-scope.in > div > div > div.modal-header.text-center.ng-scope > button")
-	private WebElement closeSignUpButton;
+	private WebElement closeButton;
 	
 	//sign up page fragment methods	
 	
-	public WebElement getSignUpRoot() {
-		return signUpRoot;
-	}
-
-	public GoogleAuth getSignUpGoogleFragment() {
+	public GoogleAuth getGoogleFragment() {
 		return google;
 	}
 
-	public FacebookAuth getSignUpFacebookFragment() {
+	public FacebookAuth getFacebookFragment() {
 		return facebook;
 	}
 
-	public WebElement getSignUpGoogleButton() {
-		return signUpGoogleButton;
+	public WebElement getGoogleButton() {
+		return googleButton;
 	}
 
-	public WebElement getSignUpFacebookButton() {
-		return signUpFacebookButton;
+	public WebElement getFacebookButton() {
+		return facebookButton;
 	}
 
-	public WebElement getSignUpEmailButton() {
-		return signUpEmailButton;
+	public WebElement getEmailButton() {
+		return emailButton;
 	}
 
-	public WebElement getSignUpEmail() {
+	public WebElement getEmail() {
 		return signUpEmail;
 	}
 
-	public WebElement getSignUpUsername() {
+	public WebElement getUsername() {
 		return signUpUsername;
 	}
 
-	public WebElement getSignUpPassword() {
+	public WebElement getPassword() {
 		return signUpPassword;
 	}
 
-	public WebElement getSignUpPasswordAgain() {
-		return signUpPasswordAgain;
+	public WebElement getPasswordAgain() {
+		return passwordAgain;
 	}
 
 	public WebElement getSubmitButton() {
 		return submitButton;
 	}
 
-	public WebElement getCloseSignUpButton() {
-		return closeSignUpButton;
+	public WebElement getCloseButton() {
+		return closeButton;
 	}
 	
 	public void inputEmail(String email){
@@ -115,20 +97,15 @@ public class SignUp {
 	}
 	
 	public void inputPasswordAgain(String password){
-		signUpPasswordAgain.sendKeys(password);
+		passwordAgain.sendKeys(password);
 	}
 	
 	public void clickSubmitButton(){
 		submitButton.click();
 	}
 	
-	public void clickCloseSignUpButton(){
-		closeSignUpButton.click();
-	}
-	
-	// TO DO - should simulate clicking outside the login form
-	public void closeLoginWithClick(){
-		signUpRoot.click(); // clicks inside login form, should do the opposite
+	public void clickCloseButton(){
+		closeButton.click();
 	}
 	
 	//tries to log in a user without saved Google credentials
@@ -138,7 +115,7 @@ public class SignUp {
 	
 	//tries to log in a user without saved Google credentials
 	public void signUpWithFacebook(String emailAddressOrPhone, String pwd){
-		facebook.login(emailAddressOrPhone, pwd);
+		facebook.loginOrSignUp(emailAddressOrPhone, pwd);
 	}
 	
 	public void signUpWithEmail(String email, String username, String pwd, String pwdAgain){
@@ -147,6 +124,6 @@ public class SignUp {
 		inputPassword(pwd);
 		inputPasswordAgain(pwdAgain);
 		submitButton.click();
-		clickCloseSignUpButton();
+		clickCloseButton();
 	}
 }
