@@ -1,20 +1,11 @@
 package cz.muni.proso.geography.fragment;
 
-import org.jboss.arquillian.drone.api.annotation.Drone;
 import org.jboss.arquillian.graphene.Graphene;
 import org.jboss.arquillian.graphene.GrapheneElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 public class Feedback {
-	
-	@Drone
-	private WebDriver browser;
-
-	public WebDriver getBrowser() {
-		return browser;
-	}
 	
 	@FindBy(css = "body > div.modal.fade.ng-isolate-scope.in > div > div > div.modal-body.ng-scope > textarea")
 	private GrapheneElement feedbackTextBox;
