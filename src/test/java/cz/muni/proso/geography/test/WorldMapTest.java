@@ -17,15 +17,18 @@ public class WorldMapTest extends MyTestClass{
 	private WorldMap page;
 
 	@Before
-	public void getWebpage(){
-    	browser.get(baseUrl+"/view/world/");
+	public void getWebpage() throws InterruptedException{
+	browser.get(baseUrl+"/view/world/average");
+    	waitUntilPageLoaded();
+    	page.getWorldMap().clickAvgKnowledgeButton();
+    	waitUntilPageLoaded();
 	}
 	
     @Test
     public void testButtons() throws InterruptedException {
-    	page.getWorldMap().clickAvgKnowledgeButton();
-    	waitUntilPageLoaded();
     	page.getWorldMap().clickMyKnowledgeButton();
+    	waitUntilPageLoaded();
+    	page.getWorldMap().clickAvgKnowledgeButton();
     	waitUntilPageLoaded();
     	
     	page.getWorldMap().clickZoomInButton();
@@ -34,45 +37,31 @@ public class WorldMapTest extends MyTestClass{
     
     @Test
     public void testPoliticalMap() throws InterruptedException {
-    	
-    	Thread.sleep(3000);    	
+    	page.getMapControl().clickPoliticalTab();
     	page.getWorldMap().mouseOverSpecificPlace("Tokyo", page.getWorldMap().getListOfCities());
-    	Thread.sleep(2000);
-        assertTrue(page.getWorldMap().getTooltip().getTitle().equals("Tokyo"));
-    	System.out.println(page.getWorldMap().getTooltip().getTitle());
-    	
+    	Thread.sleep(1000);
+        assertTrue(page.getWorldMap().getTooltip().getTitleText().equals("Tokyo"));
     	page.getWorldMap().mouseOverSpecificPlace("Greenland", page.getWorldMap().getListOfStates());
-    	Thread.sleep(2000);
-    	System.out.println(page.getWorldMap().getTooltip().getTitle());
-        assertTrue(page.getWorldMap().getTooltip().getTitle().equals("Greenland"));
+    	Thread.sleep(1000);
+        assertTrue(page.getWorldMap().getTooltip().getTitleText().equals("Greenland"));
     }
      
      @Test
      public void testWater() throws InterruptedException {
-
-    	Thread.sleep(3000);
     	page.getMapControl().clickWaterTab();
-    	Thread.sleep(3000);
     	page.getWorldMap().mouseOverSpecificPlace("Lake Victoria", page.getWorldMap().getListOfLakes());
-    	Thread.sleep(2000);
-    	System.out.println(page.getWorldMap().getTooltip().getTitle());
-        assertTrue(page.getWorldMap().getTooltip().getTitle().equals("Lake Victoria"));
+    	Thread.sleep(1000);
+        assertTrue(page.getWorldMap().getTooltip().getTitleText().equals("Lake Victoria"));
     }
      
      @Test
      public void testSurface() throws InterruptedException {
-    	Thread.sleep(3000);
     	page.getMapControl().clickSurfaceTab();
-    	
-    	Thread.sleep(3000);
     	page.getWorldMap().mouseOverSpecificPlace("Ethiopian Highlands", page.getWorldMap().getListOfMountains());
-    	Thread.sleep(2000);
-    	System.out.println(page.getWorldMap().getTooltip().getTitle());
+    	Thread.sleep(1000);
         assertTrue(page.getWorldMap().getTooltip().getTitleText().equalsIgnoreCase("Ethiopian Highlands"));
-
         page.getWorldMap().mouseOverSpecificPlace("Iceland", page.getWorldMap().getListOfIslands());
-    	Thread.sleep(2000);
-    	System.out.println(page.getWorldMap().getTooltip().getTitle());
-    	assertTrue(page.getWorldMap().getTooltip().getTitleText().equalsIgnoreCase("Iceland"));      
+    	Thread.sleep(1000);
+    	assertTrue(page.getWorldMap().getTooltip().getTitleText().equalsIgnoreCase("Iceland"));     
     }
 }
