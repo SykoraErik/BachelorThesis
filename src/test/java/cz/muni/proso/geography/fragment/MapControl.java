@@ -111,7 +111,7 @@ public class MapControl {
 		return practiceIslandsButton;
 	}
 
-	public void clickPoliticalMapTab() {
+	public void clickPoliticalTab() {
 		politicalMapTab.click();
 	}
 
