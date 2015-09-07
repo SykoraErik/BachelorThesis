@@ -1,129 +1,87 @@
 package cz.muni.proso.geography.fragment;
 
+import org.jboss.arquillian.graphene.Graphene;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 public class SignUp {
-	
-	@FindBy(id = "gaia_loginform")
-	private GoogleAuth google;
-	
-	@FindBy(id = "loginform")
-	private FacebookAuth facebook;
-	
+
+	@FindBy(className = "alert")
+	private AlertMessage alertMsg;
+
 	@FindBy(css = "body > div.modal.fade.ng-isolate-scope.in > div > div > div:nth-child(2) > div > a.btn.btn-danger.btn-lg.btn-block.ng-binding")
 	private WebElement googleButton;
 
 	@FindBy(css = "body > div.modal.fade.ng-isolate-scope.in > div > div > div:nth-child(2) > div > a.btn.btn-primary.btn-lg.btn-block.ng-binding")
 	private WebElement facebookButton;
-	
+
 	@FindBy(css = "body > div.modal.fade.ng-isolate-scope.in > div > div > div:nth-child(2) > div > a.btn.btn-info.btn-lg.btn-block.ng-binding")
 	private WebElement emailButton;
-	
+
 	@FindBy(css = "body > div.modal.fade.ng-isolate-scope.in > div > div > div:nth-child(2) > form > div:nth-child(1) > input")
 	private WebElement signUpEmail;
-	
+
 	@FindBy(css = "body > div.modal.fade.ng-isolate-scope.in > div > div > div:nth-child(2) > form > div:nth-child(2) > input")
 	private WebElement signUpUsername;
-	
+
 	@FindBy(css = "body > div.modal.fade.ng-isolate-scope.in > div > div > div:nth-child(2) > form > div:nth-child(3) > input")
 	private WebElement signUpPassword;
-	
+
 	@FindBy(css = "body > div.modal.fade.ng-isolate-scope.in > div > div > div:nth-child(2) > form > div:nth-child(4) > input")
 	private WebElement passwordAgain;
-	
+
 	@FindBy(css = "body > div.modal.fade.ng-isolate-scope.in > div > div > div:nth-child(2) > form > button")
 	private WebElement submitButton;
-	
+
 	@FindBy(css = "body > div.modal.fade.ng-isolate-scope.in > div > div > div.modal-header.text-center.ng-scope > button")
 	private WebElement closeButton;
-	
-	//sign up page fragment methods	
-	
-	public GoogleAuth getGoogleFragment() {
-		return google;
+
+	public AlertMessage getAlertMsg() {
+		return alertMsg;
 	}
 
-	public FacebookAuth getFacebookFragment() {
-		return facebook;
-	}
-
-	public WebElement getGoogleButton() {
-		return googleButton;
-	}
-
-	public WebElement getFacebookButton() {
-		return facebookButton;
-	}
-
-	public WebElement getEmailButton() {
-		return emailButton;
-	}
-
-	public WebElement getEmail() {
-		return signUpEmail;
-	}
-
-	public WebElement getUsername() {
-		return signUpUsername;
-	}
-
-	public WebElement getPassword() {
-		return signUpPassword;
-	}
-
-	public WebElement getPasswordAgain() {
-		return passwordAgain;
-	}
-
-	public WebElement getSubmitButton() {
-		return submitButton;
-	}
-
-	public WebElement getCloseButton() {
-		return closeButton;
-	}
-	
-	public void inputEmail(String email){
+	public void inputEmail(String email) {
+		signUpEmail.clear();
 		signUpEmail.sendKeys(email);
 	}
-	
-	public void inputUsername(String username){
+
+	public void inputUsername(String username) {
+		signUpUsername.clear();
 		signUpUsername.sendKeys(username);
 	}
-	
-	public void inputPassword(String password){
+
+	public void inputPassword(String password) {
+		signUpPassword.clear();
 		signUpPassword.sendKeys(password);
 	}
-	
-	public void inputPasswordAgain(String password){
+
+	public void inputPasswordAgain(String password) {
+		passwordAgain.clear();
 		passwordAgain.sendKeys(password);
 	}
-	
-	public void clickSubmitButton(){
+
+	public void submitSignUp() {
+		Graphene.waitGui().until().element(submitButton).is().present();
 		submitButton.click();
 	}
-	
-	public void clickCloseButton(){
+
+	public void closeForm() {
+		Graphene.waitGui().until().element(closeButton).is().present();
 		closeButton.click();
 	}
-	
-	//tries to log in a user without saved Google credentials
-	public void signUpWithGoogle(String emailAddress, String pwd){
-		google.login(emailAddress, pwd);
+
+	public void clickEmailButton() {
+		Graphene.waitGui().until().element(emailButton).is().present();
+		emailButton.click();
 	}
-	
-	//tries to log in a user without saved Google credentials
-	public void signUpWithFacebook(String emailAddressOrPhone, String pwd){
-		facebook.loginOrSignUp(emailAddressOrPhone, pwd);
-	}
-	
-	public void signUpWithEmail(String email, String username, String pwd, String pwdAgain){
+
+	public void signUpWithEmail(String email, String username, String pwd,
+			String pwdAgain) {
 		inputEmail(email);
 		inputUsername(username);
 		inputPassword(pwd);
 		inputPasswordAgain(pwdAgain);
-		submitButton.click();
-		clickCloseButton();
+		submitSignUp();
+		closeForm();
 	}
 }
