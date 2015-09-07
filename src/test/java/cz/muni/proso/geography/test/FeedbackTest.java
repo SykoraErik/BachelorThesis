@@ -16,43 +16,43 @@ import static org.jboss.arquillian.graphene.Graphene.guardAjax;
 import cz.muni.proso.geography.fragment.Feedback;
 
 @RunWith(Arquillian.class)
-public class FeedbackTest extends MyTestClass{
-    
-    @FindBy(className = "modal-content")
+public class FeedbackTest extends MyTestClass {
+
+	@FindBy(className = "modal-content")
 	private Feedback feedback;
-	
-    @FindBy(id = "feedback-btn")
+
+	@FindBy(id = "feedback-btn")
 	private WebElement feedbackButton;
-    
-    @Before
-    public void openPage(){
-    	browser.get(baseUrl);
-    }
-    
-    @Test
-    public void testSendFeedback(){
-    	Graphene.waitModel().until().element(feedbackButton).is().visible();
-    	feedbackButton.click();
-    	guardAjax(feedback).sendFeedback("graphene-test", email);
-    	assertTrue(feedback.isFeedbackSentMessagePresent());
-    }
-    
-    @Test
-    public void testCloseFeedback(){
-    	Graphene.waitModel().until().element(feedbackButton).is().visible();
-    	feedbackButton.click();
-    	feedback.clickCloseFeedbackButton();
-    	assertFalse(feedback.isFeedbackFormPresent());
-    }
-    
-    @Test
-    public void testErrorDisplay(){
-    	Graphene.waitModel().until().element(feedbackButton).is().visible();
-    	feedbackButton.click();
-    	feedback.inputOptionalEmail("@");
-    	feedback.clickSendFeedbackButton();
-    	assertTrue(feedback.isErrorMsgPresent());
-    	feedback.clickErrorMessageCloseButton();
-    	assertFalse(feedback.isErrorMsgPresent());    	    	
-    }
+
+	@Before
+	public void openPage() {
+		browser.get(baseUrl);
+	}
+
+	@Test
+	public void testSendFeedback() {
+		Graphene.waitModel().until().element(feedbackButton).is().visible();
+		feedbackButton.click();
+		guardAjax(feedback).sendFeedback("graphene-test", email);
+		assertTrue(feedback.getAlertMsg().isSuccessAlert());
+	}
+
+	@Test
+	public void testCloseFeedback() {
+		Graphene.waitModel().until().element(feedbackButton).is().visible();
+		feedbackButton.click();
+		feedback.clickCloseFeedbackButton();
+		assertFalse(feedback.isFeedbackFormPresent());
+	}
+
+	@Test
+	public void testErrorDisplay() {
+		Graphene.waitModel().until().element(feedbackButton).is().visible();
+		feedbackButton.click();
+		feedback.inputOptionalEmail("@");
+		feedback.clickSendFeedbackButton();
+		assertFalse(feedback.getAlertMsg().isSuccessAlert());
+		feedback.getAlertMsg().closeAlert();
+		assertFalse(feedback.getAlertMsg().isPresent());
+	}
 }
