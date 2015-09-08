@@ -5,170 +5,70 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 public class MapControl {
-	
+
 	@FindBy(css = "#container > div.layers-tabs > div:nth-child(1)")
 	private WebElement politicalMapTab;
 
-	@FindBy(css = "#container > ul:nth-child(4) > div > li:nth-child(1) > div.collapse-control")
-	private WebElement showStatesTab;
-	
-	@FindBy(css = "#container > ul:nth-child(4) > div > li:nth-child(1) > div.collapse-control > a")
-	private WebElement practiceStatesButton;
-	
-	@FindBy(css = "#container > ul:nth-child(4) > div > li:nth-child(2) > div.collapse-control")
-	private WebElement showCitiesTab;
-	
-	@FindBy(css = "#container > ul:nth-child(4) > div > li:nth-child(2) > div.collapse-control > a")
-	private WebElement practiceCitiesButton;
-	
+	@FindBy(xpath = "//*[@id='container']/ul[1]/div/li[1]")
+	private MapControlContext states;
+
+	@FindBy(xpath = "//*[@id='container']/ul[1]/div/li[2]")
+	private MapControlContext cities;
+
 	@FindBy(css = "#container > div.layers-tabs > div:nth-child(2)")
 	private WebElement waterTab;
-	
-	@FindBy(css = "#container > ul:nth-child(5) > div > li:nth-child(1) > div.collapse-control")
-	private WebElement showRiversTab;
-	
-	@FindBy(css = "#container > ul:nth-child(5) > div > li:nth-child(1) > div.collapse-control > a")
-	private WebElement practiceRiversButton;
-	
-	@FindBy(css = "#container > ul:nth-child(5) > div > li:nth-child(2) > div.collapse-control")
-	private WebElement showLakesTab;
-	
-	@FindBy(css = "#container > ul:nth-child(5) > div > li:nth-child(2) > div.collapse-control > a")
-	private WebElement practiceLakesButton;
-	
+
+	@FindBy(xpath = "//*[@id='container']/ul[2]/div/li[1]")
+	private MapControlContext rivers;
+
+	@FindBy(xpath = "//*[@id='container']/ul[2]/div/li[2]")
+	private MapControlContext lakes;
+
 	@FindBy(css = "#container > div.layers-tabs > div:nth-child(3)")
 	private WebElement surfaceTab;
-	
-	@FindBy(css = "#container > ul:nth-child(6) > div > li:nth-child(1) > div.collapse-control")
-	private WebElement showMountainsTab;
-	
-	@FindBy(css = "#container > ul:nth-child(6) > div > li:nth-child(1) > div.collapse-control > a")
-	private WebElement practiceMountainsButton;
-	
-	@FindBy(css = "#container > ul:nth-child(6) > div > li:nth-child(2) > div.collapse-control")
-	private WebElement showIslandsTab;
-	
-	@FindBy(css = "#container > ul:nth-child(6) > div > li:nth-child(2) > div.collapse-control > a")
-	private WebElement practiceIslandsButton;
-	
-	public WebElement getPoliticalMapTab() {
-		return politicalMapTab;
+
+	@FindBy(xpath = "//*[@id='container']/ul[3]/div/li[1]")
+	private MapControlContext mountains;
+
+	@FindBy(xpath = "//*[@id='container']/ul[3]/div/li[2]")
+	private MapControlContext islands;
+
+	public MapControlContext getStates() {
+		return states;
 	}
 
-	public WebElement getShowStatesTab() {
-		return showStatesTab;
+	public MapControlContext getCities() {
+		return cities;
 	}
 
-	public WebElement getPracticeStatesButton() {
-		return practiceStatesButton;
+	public MapControlContext getRivers() {
+		return rivers;
 	}
 
-	public WebElement getShowCitiesTab() {
-		return showCitiesTab;
+	public MapControlContext getLakes() {
+		return lakes;
 	}
 
-	public WebElement getPracticeCitiesButton() {
-		return practiceCitiesButton;
+	public MapControlContext getMountains() {
+		return mountains;
 	}
 
-	public WebElement getWaterTab() {
-		return waterTab;
+	public MapControlContext getIslands() {
+		return islands;
 	}
 
-	public WebElement getShowRiversTab() {
-		return showRiversTab;
-	}
-
-	public WebElement getPracticeRiversButton() {
-		return practiceRiversButton;
-	}
-
-	public WebElement getShowLakesTab() {
-		return showLakesTab;
-	}
-
-	public WebElement getPracticeLakesButton() {
-		return practiceLakesButton;
-	}
-
-	public WebElement getSurfaceTab() {
-		return surfaceTab;
-	}
-
-	public WebElement getShowMountainsTab() {
-		return showMountainsTab;
-	}
-
-	public WebElement getPracticeMountainsButton() {
-		return practiceMountainsButton;
-	}
-
-	public WebElement getShowIslandsTab() {
-		return showIslandsTab;
-	}
-
-	public WebElement getPracticeIslandsButton() {
-		return practiceIslandsButton;
-	}
-
-	public void clickPoliticalTab() {
+	public void showPoliticalTab() {
+		Graphene.waitModel().until().element(politicalMapTab).is().visible();
 		politicalMapTab.click();
 	}
 
-	public void clickShowStatesTab() {
-		showStatesTab.click();
-	}
-
-	public void clickPracticeStatesButton() {
-		practiceStatesButton.click();
-	}
-
-	public void clickShowCitiesTab() {
-		showCitiesTab.click();
-	}
-
-	public void clickPracticeCitiesButton() {
-		practiceCitiesButton.click();
-	}
-
-	public void clickWaterTab() {
+	public void showWaterTab() {
 		Graphene.waitModel().until().element(waterTab).is().visible();
 		waterTab.click();
 	}
 
-	public void clickShowRiversTab() {
-		showRiversTab.click();
-	}
-
-	public void clickPracticeRiversButton() {
-		practiceRiversButton.click();
-	}
-
-	public void clickShowLakesTab() {
-		showLakesTab.click();
-	}
-
-	public void clickPracticeLakesButton() {
-		practiceLakesButton.click();
-	}
-
-	public void clickSurfaceTab() {
+	public void showSurfaceTab() {
+		Graphene.waitModel().until().element(surfaceTab).is().visible();
 		surfaceTab.click();
-	}
-
-	public void clickShowMountainsTab() {
-		showMountainsTab.click();
-	}
-
-	public void clickPracticeMountainsButton() {
-		practiceMountainsButton.click();
-	}
-
-	public void clickShowIslandsTab() {
-		showIslandsTab.click();
-	}
-
-	public void clickPracticeIslandsButton() {
-		practiceIslandsButton.click();
 	}
 }
