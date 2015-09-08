@@ -1,37 +1,46 @@
 package cz.muni.proso.geography.fragment;
 
 import org.jboss.arquillian.graphene.Graphene;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 public class ProgressBarTooltip {
-    
+
 	@FindBy(xpath = "./div[2]/div[1]/span")
 	private WebElement learned;
-	
+
 	@FindBy(xpath = "./div[2]/div[2]/span")
 	private WebElement practiced;
-	
-	public WebElement getLearned() {
-		return learned;
+
+	private int parseTooltip(WebElement item) {
+		int slashPosition = item.getText().indexOf("/");
+		return Integer.parseInt(item.getText().substring(0, slashPosition - 1)
+				.trim());
 	}
 
-	public WebElement getPracticed() {
-		return practiced;
+	public int itemsCount() {
+		int slashPosition = learned.getText().indexOf("/");
+		return Integer.parseInt(learned.getText()
+				.substring(slashPosition + 1, learned.getText().length())
+				.trim());
 	}
 
-	public String getNumberOfItemsLearned(){
+	public int itemsLearnedCount() {
 		Graphene.waitGui().until().element(learned).is().present();
-		return learned.getText();
+		return parseTooltip(learned);
 	}
-	
-	public String getNumberOfItemsPracticed(){
+
+	public int itemsPracticedCount() {
 		Graphene.waitGui().until().element(practiced).is().present();
-		return practiced.getText();
+		return parseTooltip(practiced);
 	}
-	
-	public boolean isDisplayed(){
-		Graphene.waitModel().until().element(learned).is().visible();
-		return learned.isDisplayed();
+
+	public boolean isDisplayed() {
+		try {
+			return learned.isDisplayed();
+		} catch (NoSuchElementException ex) {
+			return false;
+		}
 	}
 }
