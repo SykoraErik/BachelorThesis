@@ -15,9 +15,6 @@ public class Login {
 	@FindBy(className = "alert")
 	private AlertMessage alertMsg;
 
-	@FindBy(xpath = "/html/body/div[6]/div/div/div[1]/h3")
-	private GrapheneElement loginTitle;
-
 	@FindBy(xpath = "/html/body/div[6]/div/div/div[2]/a[1]")
 	private WebElement loginGoogleButton;
 
@@ -25,7 +22,7 @@ public class Login {
 	private WebElement loginFacebookButton;
 
 	@FindBy(xpath = "/html/body/div[6]/div/div/div[2]/form/div[1]/input")
-	private WebElement loginUsername;
+	private GrapheneElement loginUsername;
 
 	@FindBy(xpath = "/html/body/div[6]/div/div/div[2]/form/div[2]/input")
 	private WebElement loginPassword;
@@ -47,15 +44,6 @@ public class Login {
 		return signUpFragment;
 	}
 
-	public String getLoginTitleText() {
-		return loginTitle.getText();
-	}
-
-	public boolean isLoginFormPresent() {
-		Graphene.waitAjax().until().element(loginUsername).is().present();
-		return loginTitle.isPresent();
-	}
-
 	public void inputUsername(String username) {
 		Graphene.waitAjax().until().element(loginUsername).is().present();
 		loginUsername.clear();
@@ -68,22 +56,22 @@ public class Login {
 		loginPassword.sendKeys(password);
 	}
 
-	public void clickloginSubmitButton() {
+	public void loginSubmit() {
 		Graphene.waitAjax().until().element(loginSubmitButton).is().present();
 		loginSubmitButton.click();
 	}
 
-	public void clickCloseLoginButton() {
+	public void closeLoginForm() {
 		Graphene.waitAjax().until().element(closeLoginButton).is().present();
 		closeLoginButton.click();
 	}
 
-	public void clickLoginGoogleButton() {
+	public void clickLoginGoogle() {
 		Graphene.waitAjax().until().element(loginGoogleButton).is().present();
 		loginGoogleButton.click();
 	}
 
-	public void clickLoginFacebookButton() {
+	public void clickLoginFacebook() {
 		Graphene.waitAjax().until().element(loginFacebookButton).is().present();
 		loginFacebookButton.click();
 	}
@@ -94,8 +82,13 @@ public class Login {
 		guardAjax(loginSubmitButton).click();
 	}
 
-	public void clickSignUpButton() {
+	public void clickSignUp() {
 		Graphene.waitAjax().until().element(signUpButton).is().present();
 		signUpButton.click();
+	}
+
+	public boolean isLoginFormPresent() {
+		Graphene.waitAjax().until().element(loginUsername).is().present();
+		return loginUsername.isPresent();
 	}
 }
