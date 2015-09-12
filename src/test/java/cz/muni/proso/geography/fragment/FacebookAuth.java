@@ -13,9 +13,6 @@ public class FacebookAuth implements SocialMediaLogin {
 	@FindBy(id = "pass")
 	private WebElement password;
 
-	@FindBy(id = "persist_box")
-	private WebElement keepLoggedInCheckbox;
-
 	@FindBy(name = "login")
 	private WebElement loginButton;
 
@@ -34,10 +31,6 @@ public class FacebookAuth implements SocialMediaLogin {
 		Graphene.waitGui().until().element(password).is().present();
 		password.clear();
 		password.sendKeys(pwd);
-	}
-
-	public void clickKeepLoggedIn() {
-		keepLoggedInCheckbox.click();
 	}
 
 	@Override
