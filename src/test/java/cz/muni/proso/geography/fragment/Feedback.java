@@ -38,12 +38,12 @@ public class Feedback {
 		optionalEmail.sendKeys(email);
 	}
 
-	public void clickSendFeedbackButton() {
+	public void clickSendFeedback() {
 		Graphene.waitAjax().until().element(sendFeedbackButton).is().present();
 		sendFeedbackButton.click();
 	}
 
-	public void clickCloseFeedbackButton() {
+	public void closeFeedbackForm() {
 		Graphene.waitAjax().until().element(closeFeedbackButton).is().present();
 		closeFeedbackButton.click();
 		Graphene.waitAjax().until().element(feedbackTextBox).is().not()
@@ -57,6 +57,6 @@ public class Feedback {
 	public void sendFeedback(String feedbackText, String email) {
 		inputFeedbackText(feedbackText);
 		inputOptionalEmail(email);
-		clickSendFeedbackButton();
+		clickSendFeedback();
 	}
 }
