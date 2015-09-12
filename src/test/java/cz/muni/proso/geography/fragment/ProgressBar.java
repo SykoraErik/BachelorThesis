@@ -12,47 +12,34 @@ public class ProgressBar {
 
 	@Drone
 	private WebDriver browser;
-	
+
 	@Root
 	private WebElement root;
-	
+
 	@FindBy(xpath = "./div/div[1]")
 	private WebElement learnedBar;
-	
+
 	@FindBy(xpath = "./div/div[2]")
 	private WebElement practicedBar;
-	
-	public WebElement getLearnedBar() {
-		return learnedBar;
+
+	private Double parseStyleAttribute(WebElement elementToParse) {
+		String style = elementToParse.getAttribute("style");
+		style = style.substring(7, style.length() - 2).trim();
+		return Double.parseDouble(style);
 	}
 
-	public WebElement getPracticedBar() {
-		return practicedBar;
-	}
-
-	public WebElement getRoot(){
-		return root;
-	}
-	
-	public double parseStyleAttribute(WebElement elementToParse){
-		String style = elementToParse.getAttribute("style").substring(7);
-		style = style.replace("%", "");
-		Double width = Double.parseDouble(style);
-		return width;
-	}
-	
-	public double getLearnedBarWidth(){
+	public Double getLearnedBarWidth() {
 		return parseStyleAttribute(learnedBar);
 	}
-	
-	public double getPracticedBarWidth(){
+
+	public Double getPracticedBarWidth() {
 		return parseStyleAttribute(practicedBar);
 	}
-	
-	public void mouseOverProgressBar(){
+
+	public void mouseOverProgressBar() {
 		Actions builder = new Actions(browser);
 		Actions mouseOver = builder.moveToElement(root);
 		Graphene.waitAjax().until().element(root).is().visible();
 		mouseOver.perform();
-	}	
+	}
 }
