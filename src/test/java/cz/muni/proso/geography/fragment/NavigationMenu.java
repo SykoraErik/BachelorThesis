@@ -1,19 +1,22 @@
 package cz.muni.proso.geography.fragment;
 
 import java.util.List;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
+
 import org.jboss.arquillian.graphene.Graphene;
 import org.jboss.arquillian.graphene.GrapheneElement;
+import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
 
 public class NavigationMenu {
 
 	@FindBy(css = "#wrap > div.navbar.navbar-inverse > div > button")
 	private Login login;
-	
+
 	@FindBy(css = "#wrap > div.navbar.navbar-inverse > div > a")
 	private WebElement homeButton;
-	
+
 	@FindBy(css = "#nav-main > ul.nav.navbar-nav.pull-left > li:nth-child(1)")
 	private WebElement worldButton;
 
@@ -22,167 +25,144 @@ public class NavigationMenu {
 
 	@FindBy(css = "#drop-states")
 	private WebElement stateButton;
-	
+
 	@FindBy(css = "#nav-main > ul.nav.navbar-nav.pull-left > li:nth-child(4)")
 	private WebElement mapOverviewButton;
-	
+
 	@FindBy(css = "#nav-main > ul.nav.navbar-nav.pull-right > li:nth-child(1) > a")
 	private WebElement signInButton;
-	
+
 	@FindBy(xpath = "//*[@id='nav-main']/ul[2]/li[2]")
 	private GrapheneElement loggedInButton;
-	
+
 	@FindBy(xpath = "//*[@id='nav-main']/ul[2]/li[2]/ul/li[1]/a")
 	private WebElement myProfileButton;
-	
+
 	@FindBy(xpath = "//*[@id='nav-main']/ul[2]/li[2]/ul/li[2]/a")
 	private WebElement signOutButton;
-	
+
 	@FindBy(css = "#nav-main > ul.nav.navbar-nav.pull-right > li:nth-child(3) > a")
 	private WebElement languageButton;
-	
+
 	@FindBy(css = "ul#menu-list-contents > li > a")
 	private List<WebElement> listOfContinents;
-	
+
 	@FindBy(css = "ul#menu-list-states > li > a")
 	private List<WebElement> listOfStates;
-	
+
 	@FindBy(css = "ul#menu-list-languages > li > a")
 	private List<WebElement> listOfLanguages;
 
-	public Login getLogin(){
+	public Login getLogin() {
 		return login;
 	}
-	
-	public GrapheneElement getLoggedInButton(){
-		return loggedInButton;
-	}
-	
-	public WebElement getHomeButton() {
-		return homeButton;
+
+	public List<WebElement> getListOfContinents() {
+		return listOfContinents;
 	}
 
-	public WebElement getWorldButton() {
-		return worldButton;
+	public List<WebElement> getListOfStates() {
+		return listOfStates;
 	}
 
-	public WebElement getContinentButton() {
-		return continentButton;
+	public List<WebElement> getListOfLanguages() {
+		return listOfLanguages;
 	}
 
-	public WebElement getStateButton() {
-		return stateButton;
-	}
-
-	public WebElement getMapOverviewButton() {
-		return mapOverviewButton;
-	}
-
-	public WebElement getSignInButton() {
-		return signInButton;
-	}
-
-	public WebElement getMyProfileButton() {
-		return myProfileButton;
-	}
-
-	public WebElement getSignOutButton() {
-		return signOutButton;
-	}
-
-	public WebElement getLanguageButton() {
-		return languageButton;
-	}
-
-	public void clickHomeButton() {
+	public void clickHome() {
 		Graphene.waitGui().until().element(homeButton).is().present();
 		homeButton.click();
 	}
 
-	public void clickWorldButton() {
+	public void clickWorld() {
 		Graphene.waitGui().until().element(worldButton).is().present();
 		worldButton.click();
 	}
 
-	public void clickContinentButton() {
+	public void clickContinents() {
 		Graphene.waitGui().until().element(continentButton).is().present();
 		continentButton.click();
 	}
-	
-	public void clickStateButton() {
+
+	public void clickStates() {
 		Graphene.waitGui().until().element(stateButton).is().present();
 		stateButton.click();
 	}
-	
+
 	public void clickMapOverview() {
 		Graphene.waitGui().until().element(mapOverviewButton).is().present();
 		mapOverviewButton.click();
 	}
 
-	public void clickLoginButton(){
+	public void clickLogin() {
 		Graphene.waitGui().until().element(signInButton).is().present();
 		signInButton.click();
 	}
-	
-	public void clickLanguageButton(){
+
+	public void clickLanguages() {
 		Graphene.waitGui().until().element(languageButton).is().present();
 		languageButton.click();
 	}
-	
-	public void clickLoggedInButton(){
-		Graphene.waitGui().until().element(languageButton).is().present();
+
+	public void clickLoggedIn() {
+		Graphene.waitGui().until().element(loggedInButton).is().present();
 		loggedInButton.click();
 	}
-	
-	public void clickSignOutButton(){
-		Graphene.waitGui().until().element(languageButton).is().present();
+
+	public void signOut() {
+		clickLoggedIn();
+		Graphene.waitGui().until().element(signOutButton).is().present();
 		signOutButton.click();
 	}
-	
-	public void clickMyProfileButton(){
-		Graphene.waitGui().until().element(languageButton).is().present();
+
+	public void clickMyProfile() {
+		Graphene.waitGui().until().element(myProfileButton).is().present();
 		myProfileButton.click();
 	}
 
-	public List<WebElement> getListOfContinents(){
-		return listOfContinents;
+	public boolean isUserLoggedIn() {
+		return loggedInButton.isDisplayed();
 	}
-	
-	public List<WebElement> getListOfStates(){
-		return listOfStates;
-	}
-	
-	public List<WebElement> getListOfLanguages(){
-		return listOfLanguages;
-	}
-	
-	//this method selects language by its button text	
-	public void clickSpecificLanguage(String language){
-		for(WebElement e: listOfLanguages){
-			if(e.getText().equalsIgnoreCase(language)){
+
+	public void clickSpecificLanguage(String language) {
+		for (WebElement e : listOfLanguages) {
+			if (e.getText().equalsIgnoreCase(language)) {
 				e.click();
 				break;
 			}
 		}
+		throw new NoSuchElementException(
+				"The specified language was not found.");
 	}
-	
-	//this method selects state by its button text	
-	public void clickSpecificState(String state){
-		for(WebElement e: listOfStates){
-			if(e.getText().equalsIgnoreCase(state)){
+
+	public void clickSpecificState(String state) {
+		for (WebElement e : listOfStates) {
+			if (e.getText().equalsIgnoreCase(state)) {
 				e.click();
 				break;
 			}
 		}
+		throw new NoSuchElementException("The specified state was not found.");
 	}
-	
-	//this method selects continents by its button text
-	public void clickSpecificContinent(String continent){
-		for(WebElement e: listOfContinents){
-			if(e.getText().equalsIgnoreCase(continent)){
+
+	public void clickSpecificContinent(String continent) {
+		for (WebElement e : listOfContinents) {
+			if (e.getText().equalsIgnoreCase(continent)) {
 				e.click();
 				break;
 			}
 		}
+		throw new NoSuchElementException(
+				"The specified continent was not found.");
+	}
+
+	/**
+	 * 
+	 * @return Abbreviation of currently active language: English - en, Czech -
+	 *         cs, Spanish - es.
+	 */
+	public String getActiveLanguage() {
+		return languageButton.findElement(By.xpath("./i"))
+				.getAttribute("class").substring(5);
 	}
 }
