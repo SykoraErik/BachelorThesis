@@ -28,7 +28,7 @@ public class SignUp {
 	private WebElement signUpPassword;
 
 	@FindBy(css = "body > div.modal.fade.ng-isolate-scope.in > div > div > div:nth-child(2) > form > div:nth-child(4) > input")
-	private WebElement passwordAgain;
+	private WebElement signUpPasswordAgain;
 
 	@FindBy(css = "body > div.modal.fade.ng-isolate-scope.in > div > div > div:nth-child(2) > form > button")
 	private WebElement submitButton;
@@ -38,6 +38,11 @@ public class SignUp {
 
 	public AlertMessage getAlertMsg() {
 		return alertMsg;
+	}
+
+	public void clickEmailButton() {
+		Graphene.waitGui().until().element(emailButton).is().present();
+		emailButton.click();
 	}
 
 	public void inputEmail(String email) {
@@ -56,8 +61,8 @@ public class SignUp {
 	}
 
 	public void inputPasswordAgain(String password) {
-		passwordAgain.clear();
-		passwordAgain.sendKeys(password);
+		signUpPasswordAgain.clear();
+		signUpPasswordAgain.sendKeys(password);
 	}
 
 	public void submitSignUp() {
@@ -68,11 +73,6 @@ public class SignUp {
 	public void closeForm() {
 		Graphene.waitGui().until().element(closeButton).is().present();
 		closeButton.click();
-	}
-
-	public void clickEmailButton() {
-		Graphene.waitGui().until().element(emailButton).is().present();
-		emailButton.click();
 	}
 
 	public void signUpWithEmail(String email, String username, String pwd,
