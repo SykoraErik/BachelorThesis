@@ -21,9 +21,10 @@ public class ProgressBarTooltip {
 
 	public int itemsCount() {
 		int slashPosition = learned.getText().indexOf("/");
-		return Integer.parseInt(learned.getText()
+		String stringToParse = learned.getText()
 				.substring(slashPosition + 1, learned.getText().length())
-				.trim());
+				.trim();
+		return Integer.parseInt(stringToParse);
 	}
 
 	public int itemsLearnedCount() {
@@ -34,6 +35,14 @@ public class ProgressBarTooltip {
 	public int itemsPracticedCount() {
 		Graphene.waitGui().until().element(practiced).is().present();
 		return parseTooltip(practiced);
+	}
+
+	public double learnedPercentage() {
+		return (itemsLearnedCount() / (double) itemsCount()) * 100;
+	}
+
+	public double practicedPercentage() {
+		return (itemsPracticedCount() / (double) itemsCount()) * 100;
 	}
 
 	public boolean isDisplayed() {
