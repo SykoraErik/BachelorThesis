@@ -5,6 +5,7 @@ import java.util.List;
 import org.jboss.arquillian.drone.api.annotation.Drone;
 import org.jboss.arquillian.graphene.Graphene;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -21,9 +22,6 @@ public abstract class Map {
 	@FindBy(id = "zoom-out")
 	private WebElement zoomOutButton;
 
-	@FindBy(className = "state")
-	private List<WebElement> states;
-
 	public void zoomIn() {
 		zoomInButton.click();
 	}
@@ -37,14 +35,6 @@ public abstract class Map {
 				+ "']"));
 	}
 
-	public void mouseOverPlace(String placeName) {
-		WebElement place = getPlace(placeName);
-		Graphene.waitModel().until().element(place).is().visible();
-		Actions builder = new Actions(browser);
-		Actions mouseOver = builder.moveToElement(place);
-		mouseOver.perform();
-	}
-
 	public String getPlaceColour(String placeName) {
 		WebElement place = getPlace(placeName);
 		if (place.getAttribute("class").equals("river")) {
@@ -52,5 +42,26 @@ public abstract class Map {
 		} else {
 			return place.getAttribute("fill");
 		}
+	}
+
+	public Dimension getPlaceSize(String placeName) {
+		return getPlace(placeName).getSize();
+	}
+
+	/**
+	 * @param place
+	 *            Possible values: state, city, river, lake, mountains, island
+	 * @return A list of Web Elements representing specified places on the map.
+	 */
+	public List<WebElement> getListOf(String place) {
+		return browser.findElements(By.className(place));
+	}
+
+	public void mouseOverPlace(String placeName) {
+		WebElement place = getPlace(placeName);
+		Graphene.waitModel().until().element(place).is().visible();
+		Actions builder = new Actions(browser);
+		Actions mouseOver = builder.moveToElement(place);
+		mouseOver.perform();
 	}
 }
