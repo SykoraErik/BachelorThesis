@@ -14,7 +14,7 @@ import cz.muni.proso.geography.fragment.GoogleConfirmAuth;
 import cz.muni.proso.geography.fragment.Login;
 import cz.muni.proso.geography.fragment.MapControl;
 import cz.muni.proso.geography.fragment.NavigationMenu;
-import cz.muni.proso.geography.fragment.ViewMap;
+import cz.muni.proso.geography.fragment.OverviewMap;
 
 public class WorldMap {
 
@@ -22,40 +22,39 @@ public class WorldMap {
 	private WebDriver browser;
 
 	@FindBy(xpath = "/html/body")
-	private ViewMap worldMap;
-	
+	private OverviewMap worldMap;
+
 	@FindBy(id = "container")
 	private MapControl mapControl;
-	
-    @FindBy(css = "#wrap > div.navbar.navbar-inverse")
-    private NavigationMenu navMenu;
-	
+
+	@FindBy(css = "#wrap > div.navbar.navbar-inverse")
+	private NavigationMenu navMenu;
+
 	@FindBy(css = "#wrap > div.navbar.navbar-inverse > div > button")
 	private Login login;
-	
+
 	@FindBy(id = "platformDialogForm")
 	private FacebookConfirmAuth facebookConfirm;
-    
+
 	@FindBy(id = "login_form")
 	private FacebookAuth facebook;
-	
+
 	@FindBy(css = "body > div > div.main.content.clearfix")
 	private GoogleAuth google;
-	
+
 	@FindBy(id = "approval_container")
 	private GoogleConfirmAuth googleConfirm;
-	
-    @FindBy(className = "modal-content")
+
+	@FindBy(className = "modal-content")
 	private Feedback feedback;
-	
-    @FindBy(id = "feedback-btn")
+
+	@FindBy(id = "feedback-btn")
 	private WebElement feedbackButton;
-	
+
 	@FindBy(id = "footer")
 	private Footer footer;
-	
-	
-	public ViewMap getWorldMap() {
+
+	public OverviewMap getWorldMap() {
 		return worldMap;
 	}
 
@@ -98,8 +97,8 @@ public class WorldMap {
 	public Footer getFooter() {
 		return footer;
 	}
-	
-	public void clickFeedbackButton() {
+
+	public void openFeedback() {
 		feedbackButton.click();
 	}
 }
