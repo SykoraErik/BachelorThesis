@@ -1,12 +1,14 @@
 package cz.muni.proso.geography.fragment;
 
-import java.util.List;
-import java.util.NoSuchElementException;
-
+import org.jboss.arquillian.drone.api.annotation.Drone;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 public class OverviewMap extends Map {
+
+	@Drone
+	private WebDriver browser;
 
 	@FindBy(xpath = "//*[@id='ng-view']/div[1]/div[2]/a[1]")
 	private WebElement myKnowledgeButton;
@@ -14,8 +16,8 @@ public class OverviewMap extends Map {
 	@FindBy(xpath = "//*[@id='ng-view']/div[1]/div[2]/a[2]")
 	private WebElement avgKnowledgeButton;
 
-	@FindBy(className = "qtip-title")
-	private List<MapTooltip> tooltips;
+	@FindBy(xpath = "//div[contains(@class, 'qtip') and contains(@style, 'display: block')]")
+	private MapTooltip tooltip;
 
 
 	public void switchToMyKnowledge() {
@@ -26,21 +28,31 @@ public class OverviewMap extends Map {
 		avgKnowledgeButton.click();
 	}
 
-	public MapTooltip getTooltip() {
-		for (MapTooltip tooltip : tooltips) {
-			if (tooltip.isTooltipDisplayed()) {
-				return tooltip;
-			}
+	public int getKnowledgeEstimate(String place) {
+		return Integer.parseInt(ColourHashMap
+				.getColourMeaning(getPlaceColour(place)));
+	}
+
+	/**
+	 * @param place1
+	 * @param place2
+	 * @return Return the place that has better knowledge estimate.
+	 */
+	public String compareKnowledgeEstimate(String place1, String place2) {
+		if (getKnowledgeEstimate(place1) == getKnowledgeEstimate(place2)) {
+			return place1 + " is as difficult as " + place2 + ".";
 		}
-		throw new NoSuchElementException("There is no tooltip displayed.");
+		if (getKnowledgeEstimate(place1) > getKnowledgeEstimate(place2)) {
+			return place1;
+		} else
+			return place2;
+	}
+
+	public MapTooltip getTooltip() {
+		return tooltip;
 	}
 
 	public boolean isTooltipDisplayed() {
-		for (MapTooltip tooltip : tooltips) {
-			if (tooltip.isTooltipDisplayed()) {
-				return true;
-			}
-		}
-		return false;
+		return tooltip.isTooltipDisplayed();
 	}
 }
