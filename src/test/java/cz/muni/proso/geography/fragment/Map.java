@@ -57,6 +57,10 @@ public abstract class Map {
 		return browser.findElements(By.className(place));
 	}
 
+	public boolean isPlaceDisplayed(String place){
+		return getPlace(place).isDisplayed();
+	}
+	
 	public void mouseOverPlace(String placeName) {
 		WebElement place = getPlace(placeName);
 		Graphene.waitModel().until().element(place).is().visible();
