@@ -2,6 +2,7 @@ package cz.muni.proso.geography.fragment;
 
 import org.jboss.arquillian.drone.api.annotation.Drone;
 import org.jboss.arquillian.graphene.fragment.Root;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -33,8 +34,7 @@ public class MapTooltip {
 		}
 		int slashPosition = knowledgeEstimate.getText().indexOf("/");
 		return Integer.parseInt(knowledgeEstimate.getText()
-				.substring(0, slashPosition - 1)
-				.trim());
+				.substring(0, slashPosition - 1).trim());
 	}
 
 	public int getPopulation() {
@@ -42,6 +42,10 @@ public class MapTooltip {
 	}
 
 	public boolean isTooltipDisplayed() {
-		return root.isDisplayed();
+		try {
+			return root.isDisplayed();
+		} catch (NoSuchElementException ex) {
+			return false;
+		}
 	}
 }
