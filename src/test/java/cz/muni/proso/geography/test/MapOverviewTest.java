@@ -40,6 +40,7 @@ public class MapOverviewTest extends TestUtilityClass {
 
 		for (ProgressButton place : page.getWorld().getProgressButtonList()) {
 			place.getProgressBar().mouseOver();
+			Thread.sleep(3000);
 			assertTrue(page.getTooltip().isDisplayed());
 			assertTrue(Math.abs(page.getTooltip().learnedPercentage()
 					- place.getProgressBar().getLearnedBarWidth()) < 0.001);
