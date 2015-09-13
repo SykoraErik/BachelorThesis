@@ -15,6 +15,8 @@ import cz.muni.proso.geography.fragment.Login;
 import cz.muni.proso.geography.fragment.MapControl;
 import cz.muni.proso.geography.fragment.NavigationMenu;
 import cz.muni.proso.geography.fragment.OverviewMap;
+import cz.muni.proso.geography.fragment.ProgressBarTooltip;
+import cz.muni.proso.geography.fragment.SignUp;
 
 public class WorldMap {
 
@@ -32,6 +34,9 @@ public class WorldMap {
 
 	@FindBy(css = "#wrap > div.navbar.navbar-inverse > div > button")
 	private Login login;
+
+	@FindBy(css = "body > div.modal.fade.ng-isolate-scope.in > div > div")
+	private SignUp signUp;
 
 	@FindBy(id = "platformDialogForm")
 	private FacebookConfirmAuth facebookConfirm;
@@ -54,6 +59,9 @@ public class WorldMap {
 	@FindBy(id = "footer")
 	private Footer footer;
 
+	@FindBy(xpath = "//*[@role='tooltip']")
+	private ProgressBarTooltip progBarTooltip;
+
 	public OverviewMap getWorldMap() {
 		return worldMap;
 	}
@@ -68,6 +76,10 @@ public class WorldMap {
 
 	public Login getLogin() {
 		return login;
+	}
+
+	public SignUp getSignUp() {
+		return signUp;
 	}
 
 	public FacebookConfirmAuth getFacebookConfirm() {
@@ -96,6 +108,10 @@ public class WorldMap {
 
 	public Footer getFooter() {
 		return footer;
+	}
+
+	public ProgressBarTooltip getProgBarTooltip() {
+		return progBarTooltip;
 	}
 
 	public void openFeedback() {
