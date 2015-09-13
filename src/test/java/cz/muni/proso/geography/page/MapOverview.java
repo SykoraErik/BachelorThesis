@@ -4,9 +4,12 @@ import java.util.List;
 import java.util.NoSuchElementException;
 
 import org.jboss.arquillian.drone.api.annotation.Drone;
+import org.jboss.arquillian.graphene.Graphene;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+
+import com.google.common.base.Predicate;
 
 import cz.muni.proso.geography.fragment.Feedback;
 import cz.muni.proso.geography.fragment.Footer;
@@ -25,7 +28,7 @@ public class MapOverview {
 	@FindBy(id = "feedback-btn")
 	private WebElement feedbackButton;
 
-	@FindBy(id = "nav-main")
+	@FindBy(css = "#wrap > div.navbar.navbar-inverse")
 	private NavigationMenu navMenu;
 
 	@FindBy(id = "footer")
@@ -42,10 +45,6 @@ public class MapOverview {
 
 	@FindBy(xpath = "//*[@id='ng-view']/div/div[4]/ul/li")
 	private List<PracticedContext> listOfStates;
-
-	public ProgressBarTooltip getTooltip() {
-		return tooltip;
-	}
 
 	public Feedback getFeedback() {
 		return feedback;
@@ -89,11 +88,17 @@ public class MapOverview {
 		throw new NoSuchElementException("State was not found.");
 	}
 
-	public void openFeedback() {
-		feedbackButton.click();
+	public ProgressBarTooltip getTooltip() {
+		Graphene.waitModel().until(new Predicate<WebDriver>() {
+			@Override
+			public boolean apply(WebDriver browser) {
+				return tooltip.isDisplayed();
+			}
+		});
+		return tooltip;
 	}
 
-	public boolean isTooltipDisplayed() {
-		return tooltip.isDisplayed();
+	public void openFeedback() {
+		feedbackButton.click();
 	}
 }
