@@ -9,9 +9,6 @@ import org.openqa.selenium.support.FindBy;
 
 public class Login {
 
-	@FindBy(css = "body > div.modal.fade.ng-isolate-scope.in > div > div")
-	private SignUp signUpFragment;
-
 	@FindBy(className = "alert")
 	private AlertMessage alertMsg;
 
@@ -40,10 +37,6 @@ public class Login {
 		return alertMsg;
 	}
 
-	public SignUp getSignUpFragment() {
-		return signUpFragment;
-	}
-
 	public void inputUsername(String username) {
 		Graphene.waitAjax().until().element(loginUsername).is().present();
 		loginUsername.clear();
@@ -58,7 +51,7 @@ public class Login {
 
 	public void loginSubmit() {
 		Graphene.waitAjax().until().element(loginSubmitButton).is().present();
-		loginSubmitButton.click();
+		guardAjax(loginSubmitButton).click();
 	}
 
 	public void closeLoginForm() {
@@ -74,12 +67,14 @@ public class Login {
 	public void clickLoginFacebook() {
 		Graphene.waitAjax().until().element(loginFacebookButton).is().present();
 		loginFacebookButton.click();
+		Graphene.waitModel().until().element(loginFacebookButton).is().not()
+				.visible();
 	}
 
 	public void loginWithEmail(String username, String pwd) {
 		inputUsername(username);
 		inputPassword(pwd);
-		guardAjax(loginSubmitButton).click();
+		loginSubmit();
 	}
 
 	public void clickSignUp() {
@@ -88,7 +83,6 @@ public class Login {
 	}
 
 	public boolean isLoginFormPresent() {
-		Graphene.waitAjax().until().element(loginUsername).is().present();
 		return loginUsername.isPresent();
 	}
 }
