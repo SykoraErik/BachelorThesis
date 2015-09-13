@@ -41,7 +41,7 @@ public class FeedbackTest extends MyTestClass {
 	public void testCloseFeedback() {
 		Graphene.waitModel().until().element(feedbackButton).is().visible();
 		feedbackButton.click();
-		feedback.clickCloseFeedbackButton();
+		feedback.closeFeedbackForm();
 		assertFalse(feedback.isFeedbackFormPresent());
 	}
 
@@ -50,7 +50,7 @@ public class FeedbackTest extends MyTestClass {
 		Graphene.waitModel().until().element(feedbackButton).is().visible();
 		feedbackButton.click();
 		feedback.inputOptionalEmail("@");
-		feedback.clickSendFeedbackButton();
+		feedback.clickSendFeedback();
 		assertFalse(feedback.getAlertMsg().isSuccessAlert());
 		feedback.getAlertMsg().closeAlert();
 		assertFalse(feedback.getAlertMsg().isPresent());
