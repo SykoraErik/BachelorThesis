@@ -1,9 +1,12 @@
 package cz.muni.proso.geography.fragment;
 
 import org.jboss.arquillian.drone.api.annotation.Drone;
+import org.jboss.arquillian.graphene.Graphene;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+
+import com.google.common.base.Predicate;
 
 public class OverviewMap extends Map {
 
@@ -18,7 +21,6 @@ public class OverviewMap extends Map {
 
 	@FindBy(xpath = "//div[contains(@class, 'qtip') and contains(@style, 'display: block')]")
 	private MapTooltip tooltip;
-
 
 	public void switchToMyKnowledge() {
 		myKnowledgeButton.click();
@@ -49,10 +51,13 @@ public class OverviewMap extends Map {
 	}
 
 	public MapTooltip getTooltip() {
-		return tooltip;
-	}
+		Graphene.waitGui().until(new Predicate<WebDriver>() {
+			@Override
+			public boolean apply(WebDriver browser) {
+				return tooltip.isTooltipDisplayed();
+			}
+		});
 
-	public boolean isTooltipDisplayed() {
-		return tooltip.isTooltipDisplayed();
+		return tooltip;
 	}
 }
