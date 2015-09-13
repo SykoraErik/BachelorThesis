@@ -2,14 +2,16 @@ package cz.muni.proso.geography.fragment;
 
 import java.util.List;
 
+import org.openqa.selenium.support.Color;
 import org.jboss.arquillian.drone.api.annotation.Drone;
 import org.jboss.arquillian.graphene.Graphene;
 import org.openqa.selenium.By;
-import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
+
+import com.google.common.base.Predicate;
 
 public class MapControlContext {
 
@@ -32,35 +34,31 @@ public class MapControlContext {
 		return progressBar;
 	}
 
-	public void show() {
-		showTab.click();
-	}
-
-	public void practice() {
-		practiceButton.click();
-	}
-
 	private String parseColour(WebElement element) {
-		return element.getAttribute("style").substring(25,
-				element.getAttribute("style").length() - 1);
+		return Color.fromString(element.getCssValue("border-bottom-color"))
+				.asHex();
 	}
 
 	public WebElement getListItem(String itemName) {
-		for (WebElement element : contextList) {
-			if (element.findElement(By.xpath("./i")).getText()
-					.equalsIgnoreCase(itemName)) {
-				return element;
-			}
-		}
-		throw new NoSuchElementException("Specified item was not found.");
+		return browser.findElement(By.xpath(".//span[contains(text(),'"
+				+ itemName + "')]"));
 	}
 
 	public String getListItemColour(String itemName) {
 		return parseColour(getListItem(itemName));
 	}
 
-	public boolean isContextListEmpty() {
-		return contextList.isEmpty();
+	public boolean isContextListDisplayed() {
+		for (WebElement place : contextList) {
+			if (place.isDisplayed()) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	public boolean isListItemDisplayed(String itemName) {
+		return getListItem(itemName).isDisplayed();
 	}
 
 	public int learnedContextCount() {
@@ -75,6 +73,30 @@ public class MapControlContext {
 
 	public int practicedContextCount() {
 		return contextList.size();
+	}
+
+	public void show() {
+		if (isContextListDisplayed()) {
+			showTab.click();
+			Graphene.waitModel().until(new Predicate<WebDriver>() {
+				@Override
+				public boolean apply(WebDriver browser) {
+					return !(isContextListDisplayed());
+				}
+			});
+		} else {
+			showTab.click();
+			Graphene.waitModel().until(new Predicate<WebDriver>() {
+				@Override
+				public boolean apply(WebDriver browser) {
+					return isContextListDisplayed();
+				}
+			});
+		}
+	}
+
+	public void practice() {
+		practiceButton.click();
 	}
 
 	public void mouseOverListItem(String listItem) {
