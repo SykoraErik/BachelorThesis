@@ -13,9 +13,11 @@ import com.google.common.base.Predicate;
 
 import cz.muni.proso.geography.fragment.Feedback;
 import cz.muni.proso.geography.fragment.Footer;
+import cz.muni.proso.geography.fragment.Login;
 import cz.muni.proso.geography.fragment.NavigationMenu;
 import cz.muni.proso.geography.fragment.PracticedContext;
 import cz.muni.proso.geography.fragment.ProgressBarTooltip;
+import cz.muni.proso.geography.fragment.SignUp;
 
 public class MapOverview {
 
@@ -31,6 +33,12 @@ public class MapOverview {
 	@FindBy(css = "#wrap > div.navbar.navbar-inverse")
 	private NavigationMenu navMenu;
 
+	@FindBy(css = "#wrap > div.navbar.navbar-inverse > div > button")
+	private Login login;
+
+	@FindBy(css = "body > div.modal.fade.ng-isolate-scope.in > div > div")
+	private SignUp signUp;
+	
 	@FindBy(id = "footer")
 	private Footer footer;
 
@@ -48,6 +56,14 @@ public class MapOverview {
 
 	public Feedback getFeedback() {
 		return feedback;
+	}
+
+	public Login getLogin() {
+		return login;
+	}
+
+	public SignUp getSignUp() {
+		return signUp;
 	}
 
 	public NavigationMenu getNavMenu() {
