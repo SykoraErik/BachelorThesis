@@ -36,10 +36,10 @@ public class ProgressBar {
 		return parseStyleAttribute(practicedBar);
 	}
 
-	public void mouseOverProgressBar() {
+	public void mouseOver() {
 		Actions builder = new Actions(browser);
 		Actions mouseOver = builder.moveToElement(root);
-		Graphene.waitAjax().until().element(root).is().visible();
+		Graphene.waitModel().until().element(root).is().visible();
 		mouseOver.perform();
 	}
 }
