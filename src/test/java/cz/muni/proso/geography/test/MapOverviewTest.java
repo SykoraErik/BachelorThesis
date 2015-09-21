@@ -1,6 +1,5 @@
 package cz.muni.proso.geography.test;
 
-import static org.jboss.arquillian.graphene.Graphene.guardHttp;
 import static org.junit.Assert.assertTrue;
 
 import org.jboss.arquillian.graphene.page.Page;
@@ -25,8 +24,8 @@ public class MapOverviewTest extends TestUtilityClass {
 		if (!page.getNavMenu().isUserLoggedIn()) {
 			page.getNavMenu().clickLogin();
 			page.getLogin().loginWithEmail(USERNAME, PASSWORD);
-			browser.get(BASE_URL + "/overview/");
 		}
+		browser.get(BASE_URL + "/overview/");
 		waitUntilPageLoaded();
 	}
 
@@ -74,6 +73,7 @@ public class MapOverviewTest extends TestUtilityClass {
 		assertTrue(browser
 				.findElement(By.xpath("//*[@id='ng-view']/div[1]/h1"))
 				.getText().equals(continentTitle));
+
 		browser.get(BASE_URL + "/overview/");
 		waitUntilPageLoaded();
 		page.getListOfContinents().get(0).getProgressButtonList().get(0)
@@ -98,7 +98,8 @@ public class MapOverviewTest extends TestUtilityClass {
 		assertTrue(browser
 				.findElement(By.xpath("//*[@id='ng-view']/div[1]/h1"))
 				.getText().equals(stateTitle));
-		guardHttp(browser).get(BASE_URL + "/overview/");
+
+		browser.get(BASE_URL + "/overview/");
 		waitUntilPageLoaded();
 		page.getListOfStates().get(0).getProgressButtonList().get(0)
 				.clickButton();

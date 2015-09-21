@@ -46,13 +46,12 @@ public class OverviewMap extends Map {
 	}
 
 	public MapTooltip getTooltip() {
-		Graphene.waitGui().until(new Predicate<WebDriver>() {
+		Graphene.waitAjax().until(new Predicate<WebDriver>() {
 			@Override
 			public boolean apply(WebDriver browser) {
 				return tooltip.isTooltipDisplayed();
 			}
 		});
-
 		return tooltip;
 	}
 }
