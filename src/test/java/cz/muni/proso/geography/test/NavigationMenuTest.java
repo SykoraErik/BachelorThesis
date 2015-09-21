@@ -29,6 +29,9 @@ public class NavigationMenuTest extends TestUtilityClass {
 		if (!navMenu.getActiveLanguage().equals("en")) {
 			navMenu.switchLanguage("en");
 		}
+		if(navMenu.isUserLoggedIn()){
+			navMenu.signOut();
+		}
 	}
 
 	@Test

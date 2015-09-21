@@ -90,7 +90,7 @@ public class NavigationMenu {
 	}
 
 	public void clickLogin() {
-		Graphene.waitGui().until().element(signInButton).is().visible();
+		Graphene.waitModel().until().element(signInButton).is().visible();
 		signInButton.click();
 		
 		Graphene.waitModel().until(new Predicate<WebDriver>() {
@@ -113,8 +113,9 @@ public class NavigationMenu {
 
 	public void signOut() {
 		clickLoggedIn();
-		Graphene.waitAjax().until().element(signOutButton).is().visible();
+		Graphene.waitGui().until().element(signOutButton).is().visible();
 		signOutButton.click();
+		Graphene.waitGui().until().element(signInButton).is().visible();
 	}
 
 	public void clickMyProfile() {
@@ -123,7 +124,7 @@ public class NavigationMenu {
 	}
 
 	public boolean isUserLoggedIn() {
-		return loggedInButton.isDisplayed();
+		return loggedInButton.isPresent() && loggedInButton.isDisplayed();
 	}
 
 	public void switchLanguage(String language) {

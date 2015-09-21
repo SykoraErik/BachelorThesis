@@ -77,28 +77,25 @@ public class GoogleAuth implements SocialMediaLogin {
 		return userAccount;
 	}
 
+	private void gaiaFormLogin(String emailAddress, String pwd) {
+		enterEmail(emailAddress);
+		Graphene.waitAjax().until().element(emailNextButton).is().visible();
+		clickNext();
+		Graphene.waitAjax().until().element(password).is().visible();
+		enterPassword(pwd);
+		Graphene.waitAjax().until().element(signInButton).is().visible();
+		submitLogin();
+	}
+
 	@Override
 	public void login(String emailAddress, String pwd) {
 		if (isAccountsFormPresent()) {
 			getAccount(emailAddress).click();
-			Graphene.waitAjax().until().element(email).is().visible();
-			enterEmail(emailAddress);
-			Graphene.waitAjax().until().element(emailNextButton).is().visible();
-			clickNext();
-			Graphene.waitAjax().until().element(password).is().visible();
-			enterPassword(pwd);
-			Graphene.waitAjax().until().element(signInButton).is().visible();
-			submitLogin();
+			gaiaFormLogin(emailAddress, pwd);
 		}
 
 		if (isGaiaFormPresent()) {
-			enterEmail(emailAddress);
-			Graphene.waitAjax().until().element(emailNextButton).is().visible();
-			clickNext();
-			Graphene.waitAjax().until().element(password).is().visible();
-			enterPassword(pwd);
-			Graphene.waitAjax().until().element(signInButton).is().visible();
-			submitLogin();
+			gaiaFormLogin(emailAddress, pwd);
 		} else {
 			throw new NoSuchElementException("No google form present");
 		}

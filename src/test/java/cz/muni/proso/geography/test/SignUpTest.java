@@ -26,6 +26,9 @@ public class SignUpTest extends TestUtilityClass {
 	@Before
 	public void openPage() {
 		browser.get(BASE_URL);
+		if(navMenu.isUserLoggedIn()){
+			navMenu.signOut();
+		}
 	}
 
 	@Test

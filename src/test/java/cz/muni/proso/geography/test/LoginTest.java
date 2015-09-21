@@ -41,6 +41,9 @@ public class LoginTest extends TestUtilityClass {
 	@Before
 	public void openPage() {
 		browser.get(BASE_URL);
+		if (navMenu.isUserLoggedIn()) {
+			navMenu.signOut();
+		}
 	}
 
 	@After
@@ -70,10 +73,15 @@ public class LoginTest extends TestUtilityClass {
 	}
 
 	@Test
-	public void testGoogle() {
+	public void testGoogle() throws InterruptedException {
 		navMenu.clickLogin();
 		login.clickLoginGoogle();
-		guardAjax(google).login(EMAIL, GOOGLE_PASSWORD);
+		if (google.isAccountsFormPresent() || google.isGaiaFormPresent()) {
+			guardAjax(google).login(EMAIL, GOOGLE_PASSWORD);
+		}
+		if(googleConfirm.isPresent()){
+			guardAjax(googleConfirm).approveAccess();
+		}
 		assertTrue(navMenu.isUserLoggedIn());
 	}
 }
