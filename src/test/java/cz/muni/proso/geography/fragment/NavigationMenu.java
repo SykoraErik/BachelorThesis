@@ -2,9 +2,11 @@ package cz.muni.proso.geography.fragment;
 
 import java.util.List;
 
+import org.jboss.arquillian.drone.api.annotation.Drone;
 import org.jboss.arquillian.graphene.Graphene;
 import org.jboss.arquillian.graphene.GrapheneElement;
 import org.openqa.selenium.By;
+import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -13,6 +15,9 @@ import com.google.common.base.Predicate;
 
 public class NavigationMenu {
 
+	@Drone
+	protected WebDriver browser;
+	
 	@FindBy(css = "#wrap > div.navbar.navbar-inverse > div > a")
 	private WebElement homeButton;
 
@@ -124,7 +129,13 @@ public class NavigationMenu {
 	}
 
 	public boolean isUserLoggedIn() {
-		return loggedInButton.isPresent() && loggedInButton.isDisplayed();
+		try{
+			return loggedInButton.isPresent() && loggedInButton.isDisplayed();
+		}
+		catch(StaleElementReferenceException ex){
+			WebElement freshReference = browser.findElement(By.id("drop1"));
+			return freshReference.isDisplayed();
+		}
 	}
 
 	public void switchLanguage(String language) {
