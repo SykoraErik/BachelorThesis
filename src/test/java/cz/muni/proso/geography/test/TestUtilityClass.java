@@ -31,11 +31,9 @@ public abstract class TestUtilityClass {
 	private WebElement loadingIndicator;
 
 	public void waitUntilPageLoaded() {
-		if (loadingIndicator.isDisplayed()) {
 			Graphene.waitModel().withTimeout(15, TimeUnit.SECONDS)
 					.pollingEvery(1, TimeUnit.SECONDS).until()
 					.element(loadingIndicator).is().not().visible();
-		}
 	}
 
 	public String randomizeEmail(String email) {

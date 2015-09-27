@@ -1,5 +1,7 @@
 package cz.muni.proso.geography.fragment;
 
+import java.util.concurrent.TimeUnit;
+
 import org.jboss.arquillian.drone.api.annotation.Drone;
 import org.jboss.arquillian.graphene.Graphene;
 import org.jboss.arquillian.graphene.GrapheneElement;
@@ -46,7 +48,7 @@ public class ProgressBar {
 		Actions builder = new Actions(browser);
 		Actions mouseOver = builder.moveToElement(root);
 		
-		Graphene.waitModel().until(new Predicate<WebDriver>() {
+		Graphene.waitModel().withTimeout(10, TimeUnit.SECONDS).until(new Predicate<WebDriver>() {
 			@Override
 			public boolean apply(WebDriver browser) {
 				return !(getLearnedBarWidth().isNaN()

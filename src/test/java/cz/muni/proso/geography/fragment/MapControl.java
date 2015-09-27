@@ -1,5 +1,7 @@
 package cz.muni.proso.geography.fragment;
 
+import java.util.concurrent.TimeUnit;
+
 import org.jboss.arquillian.graphene.Graphene;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -58,7 +60,7 @@ public class MapControl {
 	}
 
 	public void showPoliticalTab() {
-		Graphene.waitModel().until().element(politicalMapTab).is().visible();
+		Graphene.waitModel().withTimeout(10, TimeUnit.SECONDS).until().element(politicalMapTab).is().visible();
 		politicalMapTab.click();
 	}
 

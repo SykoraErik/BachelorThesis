@@ -32,7 +32,7 @@ public class FeedbackTest extends TestUtilityClass {
 	public void testSendFeedback() {
 		Graphene.waitModel().until().element(feedbackButton).is().visible();
 		feedbackButton.click();
-		guardAjax(feedback).sendFeedback("graphene-test", EMAIL);
+		feedback.sendFeedback("graphene-test", EMAIL);
 		assertTrue(feedback.getAlertMsg().isSuccessAlert());
 	}
 
