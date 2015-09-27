@@ -75,7 +75,7 @@ public class MapControlContext {
 		return contextList.size();
 	}
 
-	public void show() {
+	public void toggleContext() {
 		if (isContextListDisplayed()) {
 			showTab.click();
 			Graphene.waitModel().until(new Predicate<WebDriver>() {

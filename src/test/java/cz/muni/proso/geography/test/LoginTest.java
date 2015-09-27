@@ -73,7 +73,7 @@ public class LoginTest extends TestUtilityClass {
 	}
 
 	@Test
-	public void testGoogle() throws InterruptedException {
+	public void testGoogle(){
 		navMenu.clickLogin();
 		login.clickLoginGoogle();
 		if (google.isAccountsFormPresent() || google.isGaiaFormPresent()) {

@@ -11,7 +11,6 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.jboss.arquillian.junit.Arquillian;
 
-import static org.jboss.arquillian.graphene.Graphene.guardAjax;
 import cz.muni.proso.geography.fragment.Feedback;
 
 @RunWith(Arquillian.class)
@@ -52,6 +51,6 @@ public class FeedbackTest extends TestUtilityClass {
 		feedback.clickSendFeedback();
 		assertFalse(feedback.getAlertMsg().isSuccessAlert());
 		feedback.getAlertMsg().closeAlert();
-		assertFalse(feedback.getAlertMsg().isPresent());
+		assertFalse(feedback.getAlertMsg().isDisplayed());
 	}
 }

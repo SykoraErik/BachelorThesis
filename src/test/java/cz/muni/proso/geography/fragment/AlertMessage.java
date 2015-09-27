@@ -23,13 +23,13 @@ public class AlertMessage {
 	}
 
 	public void closeAlert() {
-		if (root.isDisplayed()) {
+		if (isDisplayed()) {
 			closeButton.click();
 		}
 		Graphene.waitGui().until().element(root).is().not().visible();
 	}
 
-	public boolean isPresent() {
+	public boolean isDisplayed() {
 		try {
 			return root.isDisplayed();
 		} catch (NoSuchElementException ex) {
@@ -40,5 +40,10 @@ public class AlertMessage {
 	public boolean isSuccessAlert() {
 		Graphene.waitAjax().until().element(root).is().visible();
 		return root.getAttribute("type").equals("success");
+	}
+
+	public boolean isDangerAlert() {
+		Graphene.waitAjax().until().element(root).is().visible();
+		return root.getAttribute("type").equals("danger");
 	}
 }

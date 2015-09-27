@@ -2,18 +2,14 @@ package cz.muni.proso.geography.page;
 
 import java.util.List;
 import java.util.NoSuchElementException;
-import java.util.concurrent.TimeUnit;
-
 import org.jboss.arquillian.graphene.Graphene;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
-
 import com.google.common.base.Predicate;
-
 import cz.muni.proso.geography.fragment.PracticedContext;
 import cz.muni.proso.geography.fragment.ProgressBarTooltip;
 
-public class MapOverview extends PageObject{
+public class MapOverview extends CommonPageFragments{
 
 	@FindBy(xpath = "//*[@role='tooltip']")
 	private ProgressBarTooltip tooltip;

@@ -86,12 +86,12 @@ public class WorldMapTest extends TestUtilityClass {
 				- page.getMapControl().getCities().getProgressBar()
 						.getPracticedBarWidth()) < 0.001);
 
-		page.getMapControl().getCities().show();
+		page.getMapControl().getCities().toggleContext();
 		assertFalse(page.getWorldMap().isPlaceDisplayed(placeToTest));
 		assertFalse(page.getMapControl().getCities()
 				.isListItemDisplayed(placeToTest));
 
-		page.getMapControl().getCities().show();
+		page.getMapControl().getCities().toggleContext();
 		assertTrue(page.getWorldMap().isPlaceDisplayed(placeToTest));
 		Graphene.waitAjax().until(new Predicate<WebDriver>() {
 			@Override

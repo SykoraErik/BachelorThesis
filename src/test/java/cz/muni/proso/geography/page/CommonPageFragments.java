@@ -15,7 +15,7 @@ import cz.muni.proso.geography.fragment.Login;
 import cz.muni.proso.geography.fragment.NavigationMenu;
 import cz.muni.proso.geography.fragment.SignUp;
 
-public abstract class PageObject {
+public abstract class CommonPageFragments {
 	
 	@Drone
 	private WebDriver browser;
