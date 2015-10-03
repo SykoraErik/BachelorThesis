@@ -59,16 +59,26 @@ public class MapControl {
 		return islands;
 	}
 
+	/**
+	 * Clicks on political map tab.
+	 */
 	public void showPoliticalTab() {
-		Graphene.waitModel().withTimeout(10, TimeUnit.SECONDS).until().element(politicalMapTab).is().visible();
+		Graphene.waitModel().withTimeout(10, TimeUnit.SECONDS).until()
+				.element(politicalMapTab).is().visible();
 		politicalMapTab.click();
 	}
 
+	/**
+	 * Clicks on water map tab.
+	 */
 	public void showWaterTab() {
 		Graphene.waitModel().until().element(waterTab).is().visible();
 		waterTab.click();
 	}
 
+	/**
+	 * Clicks on surface map tab.
+	 */
 	public void showSurfaceTab() {
 		Graphene.waitModel().until().element(surfaceTab).is().visible();
 		surfaceTab.click();

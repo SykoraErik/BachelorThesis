@@ -34,20 +34,55 @@ public class MapControlContext {
 		return progressBar;
 	}
 
+	/**
+	 * Returns <code>String</code> containing hexadecimal color value of the
+	 * specified <code>WebElement</code>. Used for getting colour of places in
+	 * contextList.
+	 * 
+	 * @param element
+	 *            <code>WebElement</code> to parse colour from
+	 * @return <code>String</code> containing hexadecimal color value of the
+	 *         specified <code>WebElement</code>
+	 */
 	private String parseColour(WebElement element) {
 		return Color.fromString(element.getCssValue("border-bottom-color"))
 				.asHex();
 	}
 
+	/**
+	 * Returns <code>WebElement</code> representing an item in contextList.
+	 * 
+	 * @param itemName
+	 *            name of item in contextList
+	 * @return <code>WebElement</code> representing an item in contextList
+	 */
 	public WebElement getListItem(String itemName) {
 		return browser.findElement(By.xpath(".//span[contains(text(),'"
 				+ itemName + "')]"));
 	}
 
+	/**
+	 * Returns <code>String</code> containing hexadecimal color value of the
+	 * specified contextList item.
+	 * 
+	 * @param itemName
+	 *            name of item in contextList
+	 * @return <code>String</code> containing hexadecimal color value of the
+	 *         specified contextList item
+	 */
 	public String getListItemColour(String itemName) {
 		return parseColour(getListItem(itemName));
 	}
 
+	/**
+	 * Returns <code>true</code> if contextList is displayed. Checks visibility
+	 * of every element in contextList and if any item is displayed, the
+	 * contextList is displayed. If none of the list items is displayed,
+	 * contextList is not displayed.
+	 * 
+	 * @return <code>true</code> if contextList is displayed <code>false</code>
+	 *         otherwise
+	 */
 	public boolean isContextListDisplayed() {
 		for (WebElement place : contextList) {
 			if (place.isDisplayed()) {
@@ -57,10 +92,26 @@ public class MapControlContext {
 		return false;
 	}
 
+	/**
+	 * Returns <code>true</code> if list item from contextList is displayed.
+	 * 
+	 * @param itemName
+	 * @return <code>true</code> if list item from contextList is displayed
+	 *         <code>false</code> otherwise
+	 */
 	public boolean isListItemDisplayed(String itemName) {
 		return getListItem(itemName).isDisplayed();
 	}
 
+	/**
+	 * Returns a number of contextList items which have been learned. This means
+	 * that their knowledge estimate is 10/10 and this method checks if coulour
+	 * of list items corresponds with the colour representing 10/10 knowledge
+	 * estimate.
+	 * 
+	 * @return <code>int</code> number of contextList items which have been
+	 *         learned
+	 */
 	public int learnedContextCount() {
 		int learned = 0;
 		for (WebElement element : contextList) {
@@ -71,10 +122,23 @@ public class MapControlContext {
 		return learned;
 	}
 
+	/**
+	 * Return <code>int</code> number of contextList items which have been
+	 * practiced. The method checks the size of contextList, since it contains
+	 * any item that has been practiced at least once. Learned items count as
+	 * practiced.
+	 * 
+	 * @return <code>int</code> number of contextList items which have been
+	 *         practiced
+	 */
 	public int practicedContextCount() {
 		return contextList.size();
 	}
 
+	/**
+	 * Shows/hides all items associated with this context(e.g. all states) from
+	 * both the contextList and map.
+	 */
 	public void toggleContext() {
 		if (isContextListDisplayed()) {
 			showTab.click();
@@ -95,10 +159,19 @@ public class MapControlContext {
 		}
 	}
 
+	/**
+	 * Clicks on practice button.
+	 */
 	public void practice() {
 		practiceButton.click();
 	}
 
+	/**
+	 * Gets specified list item, waits until it is visible and performs a 'mouse
+	 * over' action.
+	 * 
+	 * @param listItem
+	 */
 	public void mouseOverListItem(String listItem) {
 		WebElement item = getListItem(listItem);
 		Actions builder = new Actions(browser);

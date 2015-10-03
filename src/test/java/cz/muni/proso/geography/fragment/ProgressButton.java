@@ -16,16 +16,27 @@ public class ProgressButton {
 		return progressBar;
 	}
 
+	/**
+	 * 
+	 * @return text on this button
+	 */
 	public String getButtonLabel() {
 		Graphene.waitGui().until().element(button).is().present();
 		return button.getText();
 	}
 
+	/**
+	 * 
+	 * @return link on this button
+	 */
 	public String getButtonLink() {
 		Graphene.waitGui().until().element(button).is().present();
 		return button.getAttribute("href");
 	}
 
+	/**
+	 * Clicks the progress button. Waits until it is present.
+	 */
 	public void clickButton() {
 		Graphene.waitGui().until().element(button).is().present();
 		button.click();

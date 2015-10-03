@@ -37,33 +37,62 @@ public class Login {
 		return alertMsg;
 	}
 
+	/**
+	 * Writes the specified username into the username field. Clears the field
+	 * first.
+	 * 
+	 * @param username
+	 *            username to be written
+	 */
 	public void inputUsername(String username) {
 		Graphene.waitAjax().until().element(loginUsername).is().present();
 		loginUsername.clear();
 		loginUsername.sendKeys(username);
 	}
 
+	/**
+	 * Writes the specified password into the password field. Clears the field
+	 * first.
+	 * 
+	 * @param password
+	 *            password to be written
+	 */
 	public void inputPassword(String password) {
 		Graphene.waitAjax().until().element(loginPassword).is().present();
 		loginPassword.clear();
 		loginPassword.sendKeys(password);
 	}
 
+	/**
+	 * Clicks the submit login button. Used after filling in the email and
+	 * password.
+	 */
 	public void loginSubmit() {
 		Graphene.waitAjax().until().element(loginSubmitButton).is().present();
 		guardAjax(loginSubmitButton).click();
 	}
 
+	/**
+	 * Closes login form by clicking on the login form close button.
+	 */
 	public void closeLoginForm() {
 		Graphene.waitAjax().until().element(closeLoginButton).is().present();
 		closeLoginButton.click();
 	}
 
+	/**
+	 * Clicks on the google login button. The google login is handled by
+	 * {@link GoogleAuth} and {@link GoogleConfirmAuth} fragments.
+	 */
 	public void clickLoginGoogle() {
 		Graphene.waitAjax().until().element(loginGoogleButton).is().present();
 		loginGoogleButton.click();
 	}
 
+	/**
+	 * Clicks on the facebook login button. The facebook login is handled by
+	 * {@link FacebookAuth} and {@link FacebookConfirmAuth} fragments.
+	 */
 	public void clickLoginFacebook() {
 		Graphene.waitAjax().until().element(loginFacebookButton).is().present();
 		loginFacebookButton.click();
@@ -71,17 +100,33 @@ public class Login {
 				.visible();
 	}
 
+	/**
+	 * Writes the username and password into their fields and confirms email
+	 * login by clicking the login submit button.
+	 * 
+	 * @param username
+	 * @param pwd
+	 */
 	public void loginWithEmail(String username, String pwd) {
 		inputUsername(username);
 		inputPassword(pwd);
 		loginSubmit();
 	}
 
+	/**
+	 * Clicks the sign up button. Sign up process is handled by {@link SignUp} fragment.
+	 */
 	public void clickSignUp() {
 		Graphene.waitAjax().until().element(signUpButton).is().present();
 		signUpButton.click();
 	}
 
+	/**
+	 * Returns <code>true</code> if login form is present.
+	 * 
+	 * @return <code>true</code> if login form is present
+	 *         <code>false</code> otherwise
+	 */
 	public boolean isLoginFormPresent() {
 		return loginUsername.isPresent();
 	}

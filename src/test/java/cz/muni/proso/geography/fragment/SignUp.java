@@ -44,41 +44,79 @@ public class SignUp {
 		return alertMsg;
 	}
 
+	/**
+	 * Clicks email button. Waits until the button is visible.
+	 */
 	public void clickEmailButton() {
 		Graphene.waitGui().until().element(emailButton).is().visible();
 		emailButton.click();
 	}
-	
+
+	/**
+	 * Clicks facebook sign up button. Waits until the button is visible.
+	 */
 	public void clickFacebookButton() {
 		Graphene.waitGui().until().element(emailButton).is().visible();
 		facebookButton.click();
 	}
-	
+
+	/**
+	 * Clicks google sign up button. Waits until the button is visible.
+	 */
 	public void clickGoogleButton() {
 		Graphene.waitGui().until().element(emailButton).is().visible();
 		googleButton.click();
 	}
 
+	/**
+	 * Inputs the specified email into its corresponding text field. Clears the
+	 * field first.
+	 * 
+	 * @param email
+	 */
 	public void inputEmail(String email) {
 		signUpEmail.clear();
 		signUpEmail.sendKeys(email);
 	}
 
+	/**
+	 * Inputs the specified username into its corresponding text field. Clears
+	 * the field first.
+	 * 
+	 * @param username
+	 */
 	public void inputUsername(String username) {
 		signUpUsername.clear();
 		signUpUsername.sendKeys(username);
 	}
 
+	/**
+	 * Inputs the specified password into its corresponding text field. Clears
+	 * the field first.
+	 * 
+	 * @param password
+	 */
 	public void inputPassword(String password) {
 		signUpPassword.clear();
 		signUpPassword.sendKeys(password);
 	}
 
+	/**
+	 * Inputs the specified password into its corresponding text field. Clears
+	 * the field first. This method is used to provide a different password than
+	 * for the first time. This allows testing of handling of incorrect
+	 * password.
+	 * 
+	 * @param password
+	 */
 	public void inputPasswordAgain(String password) {
 		signUpPasswordAgain.clear();
 		signUpPasswordAgain.sendKeys(password);
 	}
 
+	/**
+	 * Waits until the sign up button is visible and clicks it.
+	 */
 	public void submitSignUp() {
 		Graphene.waitGui().until().element(submitButton).is().visible();
 		submitButton.click();
@@ -89,13 +127,26 @@ public class SignUp {
 			}
 		});
 	}
-	
+
+	/**
+	 * Closes the form by clicking on the close form button. Waits until the
+	 * form is not visible.
+	 */
 	public void closeForm() {
 		Graphene.waitGui().until().element(closeButton).is().visible();
 		closeButton.click();
-		Graphene.waitAjax().until().element(By.className("modal-content")).is().not().visible();
+		Graphene.waitAjax().until().element(By.className("modal-content")).is()
+				.not().visible();
 	}
 
+	/**
+	 * Performs a complete sign up process with the attributes provided.
+	 * 
+	 * @param email
+	 * @param username
+	 * @param pwd
+	 * @param pwdAgain
+	 */
 	public void signUpWithEmail(String email, String username, String pwd,
 			String pwdAgain) {
 		inputEmail(email);

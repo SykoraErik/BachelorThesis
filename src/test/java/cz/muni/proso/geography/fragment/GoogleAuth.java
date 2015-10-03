@@ -34,6 +34,13 @@ public class GoogleAuth implements SocialMediaLogin {
 	@FindBy(name = "Email")
 	private List<WebElement> userAccounts;
 
+	/**
+	 * Writes the specified email address into the email field. Clears the field
+	 * first.
+	 * 
+	 * @param emailAddress
+	 *            email address to be written
+	 */
 	@Override
 	public void enterEmail(String emailAddress) {
 		Graphene.waitModel().until().element(email).is().present();
@@ -41,11 +48,22 @@ public class GoogleAuth implements SocialMediaLogin {
 		email.sendKeys(emailAddress);
 	}
 
+	/**
+	 * Clicks the next button. Used after entering email and before entering
+	 * password.
+	 */
 	public void clickNext() {
 		Graphene.waitAjax().until().element(emailNextButton).is().present();
 		emailNextButton.click();
 	}
 
+	/**
+	 * Writes the specified password into the password field. Clears the field
+	 * first.
+	 * 
+	 * @param pwd
+	 *            password to be written
+	 */
 	@Override
 	public void enterPassword(String pwd) {
 		Graphene.waitAjax().until().element(password).is().present();
@@ -53,21 +71,47 @@ public class GoogleAuth implements SocialMediaLogin {
 		password.sendKeys(pwd);
 	}
 
+	/**
+	 * Clicks the submit login button. Used after filling in the email and
+	 * password.
+	 */
 	@Override
 	public void submitLogin() {
 		Graphene.waitAjax().until().element(signInButton).is().present();
 		signInButton.click();
 	}
 
+	/**
+	 * Returns <code>true</code> if gaia login form is present. This login form
+	 * requires user to fill in email, click next to fill in password and then
+	 * submit the login.
+	 * 
+	 * @return <code>true</code> if gaia login form is present
+	 *         <code>false</code> otherwise
+	 */
 	public boolean isGaiaFormPresent() {
 		return gaiaForm.isPresent();
 	}
 
+	/**
+	 * Returns <code>true</code> if accounts login form is present. This login
+	 * form requires user to choose email used for login or sign up from a list.
+	 * 
+	 * @return <code>true</code> if accounts login form is present
+	 *         <code>false</code> otherwise
+	 */
 	public boolean isAccountsFormPresent() {
 		return accountsForm.isPresent();
 	}
 
-	public WebElement getAccount(String email) {
+	/**
+	 * Returns <code>WebElement</code> representing the specified email.
+	 * 
+	 * @param email
+	 *            email to choose from the list
+	 * @return <code>WebElement</code> representing the specified email
+	 */
+	private WebElement getAccount(String email) {
 		WebElement userAccount = null;
 		for (WebElement e : userAccounts) {
 			if (e.getAttribute("value").equals(email)) {
@@ -77,16 +121,27 @@ public class GoogleAuth implements SocialMediaLogin {
 		return userAccount;
 	}
 
+	/**
+	 * Handles login of gaia login form.
+	 * 
+	 * @param emailAddress
+	 *            email to login with
+	 * @param pwd
+	 *            password to login with
+	 */
 	private void gaiaFormLogin(String emailAddress, String pwd) {
 		enterEmail(emailAddress);
-		Graphene.waitAjax().until().element(emailNextButton).is().visible();
 		clickNext();
-		Graphene.waitAjax().until().element(password).is().visible();
 		enterPassword(pwd);
-		Graphene.waitAjax().until().element(signInButton).is().visible();
 		submitLogin();
 	}
 
+	/**
+	 * Login or sign up a user with email address and password.
+	 * 
+	 * @param emailAddress the email or phone number to be used for login or sign up
+	 * @param pwd the password to be used for login or sign up
+	 */
 	@Override
 	public void login(String emailAddress, String pwd) {
 		if (isAccountsFormPresent()) {

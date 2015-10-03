@@ -22,29 +22,53 @@ public class OverviewMap extends Map {
 	@FindBy(xpath = "//div[contains(@class, 'qtip') and contains(@style, 'display: block')]")
 	private MapTooltip tooltip;
 
+	/**
+	 * Clicks My knowledge button.
+	 */
 	public void switchToMyKnowledge() {
 		myKnowledgeButton.click();
 	}
 
+	/**
+	 * Clicks Average new user button.
+	 */
 	public void switchToAvgKnowledge() {
 		avgKnowledgeButton.click();
 	}
 
+	/**
+	 * Returns number representing the knowledge estimate of specified place.
+	 * Finds the corresponding knowledge estimate from {@link ColourHashMap},
+	 * based on place colour.
+	 * 
+	 * @param place
+	 * @return <code>int</code> number representing the knowledge estimate of
+	 *         specified place. Possible values are in range of 0-10. 0 means
+	 *         that the place has not been practiced yet.
+	 */
 	public int getKnowledgeEstimate(String place) {
 		return Integer.parseInt(ColourHashMap
 				.getColourMeaning(getPlaceColour(place)));
 	}
 
 	/**
+	 * Compares two places and returns which has better knowledge estimate.
+	 * 
 	 * @param place1
 	 * @param place2
-	 * @return Returns 1 if the first place is easier, 0 if both places have same difficulty¨
-	 * 			and -1 if the second place is easier.   
+	 * @return Returns 1 if the first place is easier, 0 if both places have
+	 *         same difficulty¨ and -1 if the second place is easier.
 	 */
 	public int compareKnowledgeEstimate(String place1, String place2) {
-		return Integer.compare(getKnowledgeEstimate(place1), getKnowledgeEstimate(place2));
+		return Integer.compare(getKnowledgeEstimate(place1),
+				getKnowledgeEstimate(place2));
 	}
 
+	/**
+	 * Returns currently displayed map tooltip.
+	 * 
+	 * @return currently displayed map tooltip
+	 */
 	public MapTooltip getTooltip() {
 		Graphene.waitAjax().until(new Predicate<WebDriver>() {
 			@Override

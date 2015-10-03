@@ -29,6 +29,13 @@ public class MapTooltip {
 		return title.getText();
 	}
 
+	/**
+	 * Returns <code>int</code> number representing knowledge estimate. Possible
+	 * values are in range of 0-10. 0 means that the place was not yet
+	 * practiced.
+	 * 
+	 * @return <code>int</code> number representing knowledge estimate
+	 */
 	public int getKnowledgeEstimate() {
 		if (root.getText().equals("Unpracticed")) {
 			return 0;
@@ -38,10 +45,22 @@ public class MapTooltip {
 				.substring(0, slashPosition - 1).trim());
 	}
 
+	/**
+	 * 
+	 * @return <code>int</code> number representing population
+	 */
 	public int getPopulation() {
 		return Integer.parseInt(population.getText());
 	}
 
+	/**
+	 * Return <code>true</code> if map tooltip is displayed. Catches
+	 * <code>NoSuchElementException</code> to determine if the tooltip is
+	 * displayed or not.
+	 * 
+	 * @return <code>true</code> if the map tooltip is displayed
+	 *         <code>false</code> otherwise
+	 */
 	public boolean isTooltipDisplayed() {
 		try {
 			return root.isDisplayed();

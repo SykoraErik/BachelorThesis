@@ -27,35 +27,57 @@ public class ProgressBar {
 	@FindBy(xpath = "./div/div[2]")
 	private GrapheneElement practicedBar;
 
+	/**
+	 * Takes a <code>WebElement</code> and returns its width style attribute.
+	 * 
+	 * @param elementToParse
+	 * @return <code>Double</code> number representing width of specified
+	 *         <code>WebElement</code>. If specified element has empty style
+	 *         attribute, returns <code>NaN</code>.
+	 */
 	private Double parseStyleAttribute(WebElement elementToParse) {
 		String style = elementToParse.getAttribute("style");
-		if(style.isEmpty()){
+		if (style.isEmpty()) {
 			return Double.NaN;
 		}
 		style = style.substring(7, style.length() - 2).trim();
 		return Double.parseDouble(style);
 	}
 
+	/**
+	 * Returns width of progress bar representing number of learned items.
+	 * 
+	 * @return width of progress bar representing number of learned items
+	 */
 	public Double getLearnedBarWidth() {
 		return parseStyleAttribute(learnedBar);
 	}
 
+	/**
+	 * Returns width of progress bar representing number of practiced items.
+	 * 
+	 * @return width of progress bar representing number of practiced items
+	 */
 	public Double getPracticedBarWidth() {
 		return parseStyleAttribute(practicedBar);
 	}
-	
+
+	/**
+	 * Waits until progress bar is visible and performs a 'mouse over' action.
+	 */
 	public void mouseOver() {
 		Actions builder = new Actions(browser);
 		Actions mouseOver = builder.moveToElement(root);
-		
-		Graphene.waitModel().withTimeout(10, TimeUnit.SECONDS).until(new Predicate<WebDriver>() {
-			@Override
-			public boolean apply(WebDriver browser) {
-				return !(getLearnedBarWidth().isNaN()
-						|| getPracticedBarWidth().isNaN());
-			}
-		});
-		
+
+		Graphene.waitModel().withTimeout(10, TimeUnit.SECONDS)
+				.until(new Predicate<WebDriver>() {
+					@Override
+					public boolean apply(WebDriver browser) {
+						return !(getLearnedBarWidth().isNaN() || getPracticedBarWidth()
+								.isNaN());
+					}
+				});
+
 		mouseOver.perform();
 	}
 }

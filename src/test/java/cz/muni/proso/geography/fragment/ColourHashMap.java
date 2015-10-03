@@ -26,6 +26,12 @@ public abstract class ColourHashMap {
 		COLOUR_MAP = Collections.unmodifiableMap(tempMap);
 	}
 
+	/**
+	 * Reads from a hash map containing mapping of colours and their meanings.
+	 * 
+	 * @param colour a hexadecimal value representing colour
+	 * @return <code>String</code> containing meaning of specified colour
+	 */
 	public static String getColourMeaning(String colour) {
 		return COLOUR_MAP.get(colour);
 	}

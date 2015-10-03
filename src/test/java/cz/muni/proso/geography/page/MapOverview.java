@@ -9,7 +9,7 @@ import com.google.common.base.Predicate;
 import cz.muni.proso.geography.fragment.PracticedContext;
 import cz.muni.proso.geography.fragment.ProgressBarTooltip;
 
-public class MapOverview extends CommonPageFragments{
+public class MapOverview extends CommonPageFragments {
 
 	@FindBy(xpath = "//*[@role='tooltip']")
 	private ProgressBarTooltip tooltip;
@@ -35,6 +35,14 @@ public class MapOverview extends CommonPageFragments{
 		return listOfStates;
 	}
 
+	/**
+	 * Return page fragment containing specified continent.
+	 * 
+	 * @param continentToGet
+	 * @return page fragment containing specified continent. Throws
+	 *         <code>NoSuchElementException</code> if the continent was not
+	 *         found.
+	 */
 	public PracticedContext getContinent(String continentToGet) {
 		for (PracticedContext continent : listOfContinents) {
 			if (continent.getPlaceTitle().equals(continentToGet)) {
@@ -44,6 +52,14 @@ public class MapOverview extends CommonPageFragments{
 		throw new NoSuchElementException("Continent was not found.");
 	}
 
+	/**
+	 * Return page fragment containing specified state.
+	 * 
+	 * @param stateToGet
+	 * @return page fragment containing specified state. Throws
+	 *         <code>NoSuchElementException</code> if the state was not
+	 *         found.
+	 */
 	public PracticedContext getState(String stateToGet) {
 		for (PracticedContext state : listOfStates) {
 			if (state.getPlaceTitle().equals(stateToGet)) {
