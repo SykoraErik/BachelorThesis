@@ -12,6 +12,9 @@ public class Practice {
 	@Drone
 	private WebDriver browser;
 
+	@FindBy(xpath = "//*[@id='container']/div[3]/div[11]")
+	private PracticeSummary summary;
+	
 	@FindBy(xpath = "//*[@id='container']/div[3]/div/div[1]/span[2]")
 	private WebElement practiceItemName;
 
@@ -30,6 +33,10 @@ public class Practice {
 	@FindBy(xpath = "//*[@id='container']/div[3]/div[2]/span[1]/span/button")
 	private List<WebElement> answerOptions;
 
+	public PracticeSummary getPracticeSummary(){
+		return summary;
+	}
+	
 	/**
 	 * Returns name of item that is currently practiced.
 	 * 
