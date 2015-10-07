@@ -1,7 +1,10 @@
 package cz.muni.proso.geography.fragment;
 
+import java.util.List;
+
 import org.jboss.arquillian.drone.api.annotation.Drone;
 import org.jboss.arquillian.graphene.Graphene;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -51,6 +54,17 @@ public class OverviewMap extends Map {
 				.getColourMeaning(getPlaceColour(place)));
 	}
 
+	/**
+	 * Return a list of <code>WebElement</code> representing specified places on the map.
+	 * 
+	 * @param place
+	 *            Possible values: state, city, river, lake, mountains, island
+	 * @return A list of <code>WebElement</code> representing specified places on the map
+	 */
+	public List<WebElement> getListOf(String place) {
+		return browser.findElements(By.className(place));
+	}
+	
 	/**
 	 * Compares two places and returns which has better knowledge estimate.
 	 * 

@@ -1,7 +1,5 @@
 package cz.muni.proso.geography.page;
 
-import org.jboss.arquillian.drone.api.annotation.Drone;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
@@ -16,9 +14,6 @@ import cz.muni.proso.geography.fragment.NavigationMenu;
 import cz.muni.proso.geography.fragment.SignUp;
 
 public abstract class CommonPageFragments {
-	
-	@Drone
-	private WebDriver browser;
 	
 	@FindBy(css = "body > div.modal.fade.ng-isolate-scope.in > div > div")
 	private Feedback feedback;

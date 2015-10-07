@@ -1,7 +1,5 @@
 package cz.muni.proso.geography.fragment;
 
-import java.util.List;
-
 import org.jboss.arquillian.drone.api.annotation.Drone;
 import org.jboss.arquillian.graphene.Graphene;
 import org.openqa.selenium.By;
@@ -75,17 +73,6 @@ public abstract class Map {
 	 */
 	public Dimension getPlaceSize(String placeName) {
 		return getPlace(placeName).getSize();
-	}
-
-	/**
-	 * Return a list of <code>WebElement</code> representing specified places on the map.
-	 * 
-	 * @param place
-	 *            Possible values: state, city, river, lake, mountains, island
-	 * @return A list of <code>WebElement</code> representing specified places on the map
-	 */
-	public List<WebElement> getListOf(String place) {
-		return browser.findElements(By.className(place));
 	}
 
 	/**
