@@ -1,52 +1,56 @@
 package cz.muni.proso.geography.test;
 
+import java.util.concurrent.TimeUnit;
+
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.assertFalse;
+
 import org.jboss.arquillian.graphene.Graphene;
+import org.openqa.selenium.By;
+import org.openqa.selenium.Dimension;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.jboss.arquillian.junit.Arquillian;
+
+import com.google.common.base.Predicate;
 
 import cz.muni.proso.geography.fragment.Feedback;
 
 @RunWith(Arquillian.class)
 public class FeedbackTest extends TestUtilityClass {
 
-	@FindBy(className = "modal-content")
+	@FindBy(css = "body > div.modal.fade.ng-isolate-scope.in > div > div")
 	private Feedback feedback;
 
-	@FindBy(id = "feedback-btn")
+	@FindBy(css = "#feedback-btn > a")
 	private WebElement feedbackButton;
 
 	@Before
-	public void openPage() {
+	public void openPage() throws InterruptedException{
 		browser.get(BASE_URL);
+		Graphene.waitModel().until().element(feedbackButton).is().visible();
+		feedbackButton.click();
 	}
 
 	@Test
-	public void testSendFeedback() {
-		Graphene.waitModel().until().element(feedbackButton).is().visible();
-		feedbackButton.click();
+	public void testSendFeedback(){
 		feedback.sendFeedback("graphene-test", EMAIL);
 		assertTrue(feedback.getAlertMsg().isSuccessAlert());
 	}
 
 	@Test
-	public void testCloseFeedback() {
-		Graphene.waitModel().until().element(feedbackButton).is().visible();
-		feedbackButton.click();
+	public void testCloseFeedback(){
 		feedback.closeFeedbackForm();
 		assertFalse(feedback.isFeedbackFormPresent());
 	}
 
 	@Test
 	public void testErrorDisplay() {
-		Graphene.waitModel().until().element(feedbackButton).is().visible();
-		feedbackButton.click();
 		feedback.inputOptionalEmail("@");
 		feedback.clickSendFeedback();
 		assertFalse(feedback.getAlertMsg().isSuccessAlert());

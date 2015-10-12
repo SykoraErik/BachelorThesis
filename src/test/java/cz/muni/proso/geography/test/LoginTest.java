@@ -3,11 +3,13 @@ package cz.muni.proso.geography.test;
 import static org.jboss.arquillian.graphene.Graphene.guardAjax;
 import static org.junit.Assert.assertTrue;
 
+import org.jboss.arquillian.graphene.Graphene;
 import org.jboss.arquillian.junit.Arquillian;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.openqa.selenium.Dimension;
 import org.openqa.selenium.support.FindBy;
 
 import cz.muni.proso.geography.fragment.FacebookAuth;
@@ -73,13 +75,13 @@ public class LoginTest extends TestUtilityClass {
 	}
 
 	@Test
-	public void testGoogle(){
+	public void testGoogle() {
 		navMenu.clickLogin();
 		login.clickLoginGoogle();
 		if (google.isAccountsFormPresent() || google.isGaiaFormPresent()) {
-			guardAjax(google).login(EMAIL, GOOGLE_PASSWORD);
+			google.login(EMAIL, GOOGLE_PASSWORD);
 		}
-		if(googleConfirm.isPresent()){
+		if (googleConfirm.isPresent()) {
 			guardAjax(googleConfirm).approveAccess();
 		}
 		assertTrue(navMenu.isUserLoggedIn());

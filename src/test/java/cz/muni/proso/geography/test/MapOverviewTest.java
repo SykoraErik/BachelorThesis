@@ -25,6 +25,9 @@ public class MapOverviewTest extends TestUtilityClass {
 			page.getNavMenu().clickLogin();
 			page.getLogin().loginWithEmail(USERNAME, PASSWORD);
 		}
+		if (!page.getNavMenu().getActiveLanguage().equals("en")) {
+			page.getNavMenu().switchLanguage("en");
+		}
 		browser.get(BASE_URL + "/overview/");
 		waitUntilPageLoaded();
 	}

@@ -35,17 +35,13 @@ public class WorldMapTest extends TestUtilityClass {
 		String placeToTest = "Australia";
 		int heightBefore = page.getWorldMap().getPlaceSize(placeToTest)
 				.getHeight();
-		for (int i = 0; i < 5; i++) {
-			page.getWorldMap().zoomIn();
-		}
+		page.getWorldMap().zoomIn();
 		int heightAfter = page.getWorldMap().getPlaceSize(placeToTest)
 				.getHeight();
 		assertTrue(heightBefore < heightAfter);
 
 		heightBefore = heightAfter;
-		for (int i = 0; i < 5; i++) {
-			page.getWorldMap().zoomOut();
-		}
+		page.getWorldMap().zoomOut();
 		heightAfter = page.getWorldMap().getPlaceSize(placeToTest).getHeight();
 		assertTrue(heightAfter < heightBefore);
 	}
@@ -86,6 +82,10 @@ public class WorldMapTest extends TestUtilityClass {
 				- page.getMapControl().getCities().getProgressBar()
 						.getPracticedBarWidth()) < 0.001);
 
+		page.getMapControl().getCities().practice();
+		waitUntilPageLoaded();
+		assertTrue(browser.findElement(By.className("practice")).isDisplayed());
+		
 		page.getMapControl().getCities().toggleContext();
 		assertFalse(page.getWorldMap().isPlaceDisplayed(placeToTest));
 		assertFalse(page.getMapControl().getCities()
@@ -93,29 +93,18 @@ public class WorldMapTest extends TestUtilityClass {
 
 		page.getMapControl().getCities().toggleContext();
 		assertTrue(page.getWorldMap().isPlaceDisplayed(placeToTest));
-		Graphene.waitAjax().until(new Predicate<WebDriver>() {
-			@Override
-			public boolean apply(WebDriver browser) {
-				return page.getMapControl().getCities()
-						.isListItemDisplayed(placeToTest);
-			}
-		});
-
-		page.getMapControl().getCities().practice();
-		waitUntilPageLoaded();
-		assertTrue(browser.findElement(By.className("practice")).isDisplayed());
 	}
 
 	@Test
 	public void testTabSwitching() {
-		String placeToTest = "St. Lawrence";
+		String placeToTest = "Lake Victoria";
 
 		page.getMapControl().showWaterTab();
 		page.getWorldMap().mouseOverPlace(placeToTest);
 		assertTrue(page.getWorldMap().isPlaceDisplayed(placeToTest));
 		assertTrue(page.getWorldMap().getTooltip().getTitle()
 				.equalsIgnoreCase(placeToTest));
-		assertTrue(page.getMapControl().getRivers()
+		assertTrue(page.getMapControl().getLakes()
 				.isListItemDisplayed(placeToTest));
 
 		placeToTest = "ICELAND";

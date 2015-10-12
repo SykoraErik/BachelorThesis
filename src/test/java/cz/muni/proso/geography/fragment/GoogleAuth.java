@@ -53,7 +53,7 @@ public class GoogleAuth implements SocialMediaLogin {
 	 * password.
 	 */
 	public void clickNext() {
-		Graphene.waitAjax().until().element(emailNextButton).is().present();
+		Graphene.waitAjax().until().element(emailNextButton).is().visible();
 		emailNextButton.click();
 	}
 
@@ -66,7 +66,7 @@ public class GoogleAuth implements SocialMediaLogin {
 	 */
 	@Override
 	public void enterPassword(String pwd) {
-		Graphene.waitAjax().until().element(password).is().present();
+		Graphene.waitAjax().until().element(password).is().visible();
 		password.clear();
 		password.sendKeys(pwd);
 	}
@@ -128,8 +128,9 @@ public class GoogleAuth implements SocialMediaLogin {
 	 *            email to login with
 	 * @param pwd
 	 *            password to login with
+	 * @throws InterruptedException 
 	 */
-	private void gaiaFormLogin(String emailAddress, String pwd) {
+	private void gaiaFormLogin(String emailAddress, String pwd){
 		enterEmail(emailAddress);
 		clickNext();
 		enterPassword(pwd);
@@ -141,9 +142,10 @@ public class GoogleAuth implements SocialMediaLogin {
 	 * 
 	 * @param emailAddress the email or phone number to be used for login or sign up
 	 * @param pwd the password to be used for login or sign up
+	 * @throws InterruptedException 
 	 */
 	@Override
-	public void login(String emailAddress, String pwd) {
+	public void login(String emailAddress, String pwd){
 		if (isAccountsFormPresent()) {
 			getAccount(emailAddress).click();
 			gaiaFormLogin(emailAddress, pwd);

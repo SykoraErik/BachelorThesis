@@ -40,7 +40,8 @@ public class ProgressBar {
 		if (style.isEmpty()) {
 			return Double.NaN;
 		}
-		style = style.substring(7, style.length() - 2).trim();
+		int percentPosition = style.lastIndexOf("%");
+		style = style.substring(7, percentPosition);
 		return Double.parseDouble(style);
 	}
 

@@ -28,6 +28,7 @@ public interface SocialMediaLogin {
 	 * 
 	 * @param email
 	 * @param password
+	 * @throws InterruptedException 
 	 */
-	void login(String email, String password);
+	void login(String email, String password) throws InterruptedException;
 }

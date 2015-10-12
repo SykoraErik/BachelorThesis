@@ -13,12 +13,15 @@ import cz.muni.proso.geography.page.PracticePage;
 @RunWith(Arquillian.class)
 public class PracticeTest extends TestUtilityClass {
 
-	@FindBy(xpath = "//*[@id='ng-view']")
+	@FindBy(xpath = "/html/body")
 	private PracticePage page;
-
+	
 	@Before
 	public void openPage() throws InterruptedException {
 		browser.get(BASE_URL + "/practice/us/state");
+		if (!page.getNavMenu().getActiveLanguage().equals("en")) {
+			page.getNavMenu().switchLanguage("en");
+		}
 		waitUntilPageLoaded();
 		Thread.sleep(3000);
 	}
@@ -28,18 +31,18 @@ public class PracticeTest extends TestUtilityClass {
 
 		while (page.getPractice().getProgressBarWidthPercentage() < 100)
 		{
-			System.out.println(page.getPractice().getQuestionCounter());
+//			System.out.println(page.getPractice().getQuestionCounter());
 			if (page.getMap().getQuestionType()
 					.equals("choose one highlighted")) {
-				System.out.println(page.getPractice()
-						.getAnswerOptions());
+//				System.out.println(page.getPractice()
+//						.getAnswerOptions());
 				page.getPractice().clickAnswerOption(
 						page.getMap().getHighlightedAnswers().get(0));
 			}
 			else {
 				String currentPracticeItem = page.getPractice().getPracticeItemName();
-				System.out.println(currentPracticeItem);
-				System.out.println(page.getMap().getListOfAnswers());
+//				System.out.println(currentPracticeItem);
+//				System.out.println(page.getMap().getListOfAnswers());
 				page.getMap().clickPlace(currentPracticeItem);
 			}
 			

@@ -1,6 +1,7 @@
 package cz.muni.proso.geography.fragment;
 
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 import org.jboss.arquillian.drone.api.annotation.Drone;
 import org.jboss.arquillian.graphene.Graphene;
@@ -22,7 +23,7 @@ public class OverviewMap extends Map {
 	@FindBy(xpath = "//*[@id='ng-view']/div[1]/div[2]/a[2]")
 	private WebElement avgKnowledgeButton;
 
-	@FindBy(xpath = "//div[contains(@class, 'qtip') and contains(@style, 'display: block')]")
+	@FindBy(xpath = "//div[contains(@class, 'qtip-focus') and contains(@style, 'display: block')]")
 	private MapTooltip tooltip;
 
 	/**
@@ -84,7 +85,7 @@ public class OverviewMap extends Map {
 	 * @return currently displayed map tooltip
 	 */
 	public MapTooltip getTooltip() {
-		Graphene.waitAjax().until(new Predicate<WebDriver>() {
+		Graphene.waitModel().until(new Predicate<WebDriver>() {
 			@Override
 			public boolean apply(WebDriver browser) {
 				return tooltip.isTooltipDisplayed();

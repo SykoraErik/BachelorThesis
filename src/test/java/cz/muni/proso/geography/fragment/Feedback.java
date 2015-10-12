@@ -1,9 +1,14 @@
 package cz.muni.proso.geography.fragment;
 
+import java.util.concurrent.TimeUnit;
+
 import org.jboss.arquillian.graphene.Graphene;
 import org.jboss.arquillian.graphene.GrapheneElement;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+
+import com.google.common.base.Predicate;
 
 public class Feedback {
 
@@ -34,7 +39,7 @@ public class Feedback {
 	 *            text to be written into feedback text box
 	 */
 	public void inputFeedbackText(String feedback) {
-		Graphene.waitAjax().until().element(feedbackTextBox).is().present();
+		Graphene.waitAjax().until().element(feedbackTextBox).is().visible();
 		feedbackTextBox.clear();
 		feedbackTextBox.sendKeys(feedback);
 	}
@@ -46,7 +51,7 @@ public class Feedback {
 	 *            email to be written into email field
 	 */
 	public void inputOptionalEmail(String email) {
-		Graphene.waitAjax().until().element(optionalEmail).is().present();
+		Graphene.waitAjax().until().element(optionalEmail).is().visible();
 		optionalEmail.clear();
 		optionalEmail.sendKeys(email);
 	}
@@ -56,7 +61,7 @@ public class Feedback {
 	 * optional email.
 	 */
 	public void clickSendFeedback() {
-		Graphene.waitAjax().until().element(sendFeedbackButton).is().present();
+		Graphene.waitAjax().until().element(sendFeedbackButton).is().visible();
 		sendFeedbackButton.click();
 	}
 
@@ -65,10 +70,10 @@ public class Feedback {
 	 * until the feedback form is not present.
 	 */
 	public void closeFeedbackForm() {
-		Graphene.waitAjax().until().element(closeFeedbackButton).is().present();
+		Graphene.waitAjax().until().element(closeFeedbackButton).is().visible();
 		closeFeedbackButton.click();
-		Graphene.waitAjax().until().element(feedbackTextBox).is().not()
-				.present();
+		Graphene.waitAjax().until().element(closeFeedbackButton).is().not().visible();
+		
 	}
 
 	/**

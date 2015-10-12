@@ -35,7 +35,7 @@ public class NavigationMenuTest extends TestUtilityClass {
 	}
 
 	@Test
-	public void testButtons() {
+	public void testButtons(){
 
 		navMenu.clickWorld();
 		waitUntilPageLoaded();
@@ -44,6 +44,7 @@ public class NavigationMenuTest extends TestUtilityClass {
 				.equals("World")));
 
 		navMenu.clickHome();
+		waitUntilPageLoaded();
 		assertTrue((browser.findElement(
 				By.xpath("//*[@id='ng-view']/div[1]/h1")).getText()
 				.equals("Outline maps")));

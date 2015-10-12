@@ -1,6 +1,7 @@
 package cz.muni.proso.geography.fragment;
 
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 import org.jboss.arquillian.drone.api.annotation.Drone;
 import org.jboss.arquillian.graphene.Graphene;
@@ -16,24 +17,24 @@ import com.google.common.base.Predicate;
 public class NavigationMenu {
 
 	@Drone
-	protected WebDriver browser;
+	private WebDriver browser;
 
-	@FindBy(css = "#wrap > div.navbar.navbar-inverse > div > a")
+	@FindBy(xpath = "//*[@id='wrap']/div[1]/div/a")
 	private WebElement homeButton;
 
-	@FindBy(css = "#nav-main > ul.nav.navbar-nav.pull-left > li:nth-child(1)")
+	@FindBy(xpath = "//*[@id='nav-main']/ul[1]/li[1]/a")
 	private WebElement worldButton;
 
-	@FindBy(css = "#drop-continents")
+	@FindBy(xpath = "//*[@id='drop-continents']")
 	private WebElement continentButton;
 
-	@FindBy(css = "#drop-states")
+	@FindBy(xpath = "//*[@id='drop-states']")
 	private WebElement stateButton;
 
-	@FindBy(css = "#nav-main > ul.nav.navbar-nav.pull-left > li:nth-child(4)")
+	@FindBy(xpath = "//*[@id='nav-main']/ul[1]/li[4]/a")
 	private WebElement mapOverviewButton;
 
-	@FindBy(css = "#nav-main > ul.nav.navbar-nav.pull-right > li:nth-child(1) > a")
+	@FindBy(xpath = "//*[@id='nav-main']/ul[2]/li[1]/a")
 	private WebElement signInButton;
 
 	@FindBy(id = "drop1")
@@ -85,6 +86,15 @@ public class NavigationMenu {
 	public void clickWorld() {
 		Graphene.waitModel().until().element(worldButton).is().present();
 		worldButton.click();
+		
+		Graphene.waitModel().withTimeout(10, TimeUnit.SECONDS)
+		.until(new Predicate<WebDriver>() {
+			@Override
+			public boolean apply(WebDriver browser) {
+				return browser.findElement(
+						By.xpath("//*[@id='ng-view']/div[1]/h1")).getText().equals("World");
+			}
+		});
 	}
 
 	/**
@@ -175,7 +185,7 @@ public class NavigationMenu {
 
 	/**
 	 * Returns <code>true</code> if user is logged in. This method is often used
-	 * after the page refreshes, so it catches
+	 * after a user logs in and the page refreshes, so it catches
 	 * <code>StaleElementReferenceException</code> and finds new reference for
 	 * the logged in button if necessary.
 	 * 

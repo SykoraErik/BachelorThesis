@@ -163,6 +163,7 @@ public class MapControlContext {
 	 * Clicks on practice button.
 	 */
 	public void practice() {
+		Graphene.waitAjax().until().element(practiceButton).is().visible();
 		practiceButton.click();
 	}
 
