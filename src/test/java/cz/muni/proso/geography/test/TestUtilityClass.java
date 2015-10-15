@@ -31,7 +31,7 @@ public abstract class TestUtilityClass {
 	private WebElement loadingIndicator;
 
 	public void waitUntilPageLoaded() {
-			Graphene.waitModel().withTimeout(15, TimeUnit.SECONDS)
+			Graphene.waitModel().withTimeout(30, TimeUnit.SECONDS)
 					.pollingEvery(1, TimeUnit.SECONDS).until()
 					.element(loadingIndicator).is().not().visible();
 	}

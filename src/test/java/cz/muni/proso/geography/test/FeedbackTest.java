@@ -1,7 +1,5 @@
 package cz.muni.proso.geography.test;
 
-import java.util.concurrent.TimeUnit;
-
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -10,14 +8,9 @@ import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.assertFalse;
 
 import org.jboss.arquillian.graphene.Graphene;
-import org.openqa.selenium.By;
-import org.openqa.selenium.Dimension;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.jboss.arquillian.junit.Arquillian;
-
-import com.google.common.base.Predicate;
 
 import cz.muni.proso.geography.fragment.Feedback;
 

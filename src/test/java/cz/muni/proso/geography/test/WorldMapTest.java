@@ -2,16 +2,13 @@ package cz.muni.proso.geography.test;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
-import org.jboss.arquillian.graphene.Graphene;
 import org.jboss.arquillian.graphene.page.Page;
 import org.jboss.arquillian.junit.Arquillian;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import com.google.common.base.Predicate;
 
 import cz.muni.proso.geography.page.WorldMap;
 
@@ -35,13 +32,17 @@ public class WorldMapTest extends TestUtilityClass {
 		String placeToTest = "Australia";
 		int heightBefore = page.getWorldMap().getPlaceSize(placeToTest)
 				.getHeight();
-		page.getWorldMap().zoomIn();
+		for (int i = 0; i < 5; i++) {
+			page.getWorldMap().zoomIn();
+		}
 		int heightAfter = page.getWorldMap().getPlaceSize(placeToTest)
 				.getHeight();
 		assertTrue(heightBefore < heightAfter);
 
 		heightBefore = heightAfter;
-		page.getWorldMap().zoomOut();
+		for (int i = 0; i < 5; i++) {
+			page.getWorldMap().zoomOut();
+		}
 		heightAfter = page.getWorldMap().getPlaceSize(placeToTest).getHeight();
 		assertTrue(heightAfter < heightBefore);
 	}
@@ -82,10 +83,9 @@ public class WorldMapTest extends TestUtilityClass {
 				- page.getMapControl().getCities().getProgressBar()
 						.getPracticedBarWidth()) < 0.001);
 
-		page.getMapControl().getCities().practice();
+		browser.get(BASE_URL + "/view/world/average");
 		waitUntilPageLoaded();
-		assertTrue(browser.findElement(By.className("practice")).isDisplayed());
-		
+
 		page.getMapControl().getCities().toggleContext();
 		assertFalse(page.getWorldMap().isPlaceDisplayed(placeToTest));
 		assertFalse(page.getMapControl().getCities()
@@ -93,6 +93,10 @@ public class WorldMapTest extends TestUtilityClass {
 
 		page.getMapControl().getCities().toggleContext();
 		assertTrue(page.getWorldMap().isPlaceDisplayed(placeToTest));
+		
+		page.getMapControl().getCities().practice();
+		waitUntilPageLoaded();
+		assertTrue(browser.findElement(By.className("practice")).isDisplayed());
 	}
 
 	@Test

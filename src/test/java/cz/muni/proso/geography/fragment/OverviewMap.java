@@ -1,7 +1,6 @@
 package cz.muni.proso.geography.fragment;
 
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 
 import org.jboss.arquillian.drone.api.annotation.Drone;
 import org.jboss.arquillian.graphene.Graphene;

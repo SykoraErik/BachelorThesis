@@ -1,14 +1,9 @@
 package cz.muni.proso.geography.fragment;
 
-import java.util.concurrent.TimeUnit;
-
 import org.jboss.arquillian.graphene.Graphene;
 import org.jboss.arquillian.graphene.GrapheneElement;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-
-import com.google.common.base.Predicate;
 
 public class Feedback {
 

@@ -1,10 +1,7 @@
 package cz.muni.proso.geography.page;
 
 import org.jboss.arquillian.drone.api.annotation.Drone;
-import org.jboss.arquillian.graphene.Graphene;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 import cz.muni.proso.geography.fragment.Practice;

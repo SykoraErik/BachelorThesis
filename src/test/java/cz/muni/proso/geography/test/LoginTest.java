@@ -3,13 +3,11 @@ package cz.muni.proso.geography.test;
 import static org.jboss.arquillian.graphene.Graphene.guardAjax;
 import static org.junit.Assert.assertTrue;
 
-import org.jboss.arquillian.graphene.Graphene;
 import org.jboss.arquillian.junit.Arquillian;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.openqa.selenium.Dimension;
 import org.openqa.selenium.support.FindBy;
 
 import cz.muni.proso.geography.fragment.FacebookAuth;
