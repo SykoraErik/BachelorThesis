@@ -123,7 +123,7 @@ public class Practice {
 		Graphene.waitModel().until().element(progressBar).is().present();
 		String styleAttribute = progressBar.getAttribute("style");
 		return Integer.parseInt(styleAttribute.substring(7,
-				styleAttribute.length() - 2));
+				styleAttribute.length()).replace("%", "").replace(";", "").trim());
 	}
 
 	/**

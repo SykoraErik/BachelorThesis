@@ -28,7 +28,7 @@ public class PracticeMap extends Map {
 			}
 		});
 		getPlace(place).click();
-		Practice.setQuestionCounter(Practice.getQuestionCounter()+1);
+		Practice.setQuestionCounter(Practice.getQuestionCounter() + 1);
 	}
 
 	/**
@@ -96,21 +96,21 @@ public class PracticeMap extends Map {
 		}
 		return answerList;
 	}
-	
+
 	/**
 	 * 
 	 * @return <code>String</code> representation of question. 3 possible
-	 *         values: "choose from unhighlighted", "choose one highlighted",
-	 *         "choose from multiple highlighted"
+	 *         values, depending on the number of highlighted places on the map:
+	 *         "no highlighted", "one highlighted", "multiple highlighted"
 	 */
 	public String getQuestionType() {
 		switch (getHighlightedAnswers().size()) {
 		case 0:
-			return "choose from unhighlighted";
+			return "no highlighted";
 		case 1:
-			return "choose one highlighted";
+			return "one highlighted";
 		default:
-			return "choose from multiple highlighted";
+			return "multiple highlighted";
 		}
 	}
 }
