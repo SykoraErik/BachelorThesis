@@ -1,8 +1,10 @@
 package cz.muni.proso.geography.fragment;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
 
+import org.jboss.arquillian.graphene.Graphene;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
@@ -23,6 +25,15 @@ public class PracticeSummary {
 	@FindBy(xpath = "./div/div/span")
 	private List<WebElement> summaryFlashcards;
 
+	public List<String> getFlashcardList() {
+		List<String> flashcardList = new ArrayList<String>();
+		Graphene.waitAjax().until().element(successBar).is().visible();
+		for (WebElement flashcard : summaryFlashcards) {
+			flashcardList.add(flashcard.getText());
+		}
+		return flashcardList;
+	}
+	
 	private int getProgressBarWidthPercentage(WebElement progressBar) {
 		String styleAttribute = progressBar.getAttribute("style");
 		return Integer.parseInt(styleAttribute.substring(7,

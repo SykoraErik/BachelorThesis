@@ -2,6 +2,7 @@ package cz.muni.proso.geography.fragment;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 import org.jboss.arquillian.graphene.Graphene;
 import org.openqa.selenium.WebDriver;
@@ -13,7 +14,7 @@ import com.google.common.base.Predicate;
 public class PracticeMap extends Map {
 
 	@FindBy(xpath = "//*[not(contains(@style, 'none')) and (contains(@class, 'mountains') or contains(@class, 'river') or contains(@class, 'state') or contains(@class, 'city') or contains(@class, 'island') or contains(@class, 'lake'))]")
-	private List<WebElement> listOfAnswers;
+	private List<WebElement> listOfAllMapPlaces;
 
 	/**
 	 * Finds the specified place on the map and clicks it.
@@ -36,47 +37,49 @@ public class PracticeMap extends Map {
 	 * 
 	 * @return a list of names of all places visible on the map
 	 */
-	public List<String> getListOfAnswers() {
+	public List<String> getAllMapPlaces() {
 		List<String> answerList = new ArrayList<String>();
-		for (WebElement answer : listOfAnswers) {
+		for (WebElement answer : listOfAllMapPlaces) {
 			answerList.add(answer.getAttribute("data-name"));
 		}
 		return answerList;
 	}
 
 	/**
-	 * Returns <code>String</code> name of the wrongly selected place.
+	 * Returns List of <code>String</code> names of the wrongly selected place.
 	 * 
-	 * @return <code>String</code> name of the wrongly selected place. Returns
-	 *         empty string if there is no wrongly selected place on the map.
+	 * @return List of <code>String</code> names of the wrongly selected place.
 	 */
-	public String getWrongAnswer() {
-		for (WebElement answer : listOfAnswers) {
+	public List<String> getWrongAnswers() {
+		List<String> answerList = new ArrayList<String>();
+		for (WebElement answer : listOfAllMapPlaces) {
+			Graphene.waitAjax().until().element(answer).is().visible();
 			String answerName = answer.getAttribute("data-name");
 			if (ColourHashMap.getColourMeaning(getPlaceColour(answerName))
 					.equals("wrong")) {
-				return answer.getAttribute("data-name");
+				answerList.add(answerName);
 			}
 		}
-		return "";
+		return answerList;
 	}
 
 	/**
 	 * Returns <code>String</code> name of the selected place.
 	 * 
 	 * @return <code>String</code> name of the place that is the correct answer
-	 *         to asked question. Returns empty string if there is no wrongly
-	 *         selected place on the map.
+	 *         to asked question.
 	 */
-	public String getCorrectAnswer() {
-		for (WebElement answer : listOfAnswers) {
+	public List<String> getCorrectAnswers() {
+		List<String> answerList = new ArrayList<String>();
+		for (WebElement answer : listOfAllMapPlaces) {
+			Graphene.waitAjax().until().element(answer).is().visible();
 			String answerName = answer.getAttribute("data-name");
 			if (ColourHashMap.getColourMeaning(getPlaceColour(answerName))
 					.equals("10")) {
-				return answer.getAttribute("data-name");
+				answerList.add(answerName);
 			}
 		}
-		return "";
+		return answerList;
 	}
 
 	/**
@@ -87,7 +90,8 @@ public class PracticeMap extends Map {
 	 */
 	public List<String> getHighlightedAnswers() {
 		List<String> answerList = new ArrayList<String>();
-		for (WebElement answer : listOfAnswers) {
+		for (WebElement answer : listOfAllMapPlaces) {
+			Graphene.waitAjax().until().element(answer).is().visible();
 			String answerName = answer.getAttribute("data-name");
 			if (ColourHashMap.getColourMeaning(getPlaceColour(answerName))
 					.equals("highlight")) {
