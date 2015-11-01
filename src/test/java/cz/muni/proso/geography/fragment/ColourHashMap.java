@@ -6,6 +6,11 @@ import java.util.Map;
 
 public abstract class ColourHashMap {
 
+	public static final String WRONG = "#ee2233";
+	public static final String SELECTION = "#dddddd";
+	public static final String HIGHLIGHT = "#bbbbbb";
+	public static final String CORRECT = "#00dd00";
+	
 	private static final Map<String, String> COLOUR_MAP;
 	static {
 		Map<String, String> tempMap = new HashMap<String, String>();
