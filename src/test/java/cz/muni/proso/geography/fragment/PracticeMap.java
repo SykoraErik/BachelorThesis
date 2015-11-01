@@ -4,7 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
+import org.jboss.arquillian.drone.api.annotation.Drone;
 import org.jboss.arquillian.graphene.Graphene;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -12,6 +14,9 @@ import org.openqa.selenium.support.FindBy;
 import com.google.common.base.Predicate;
 
 public class PracticeMap extends Map {
+
+	@Drone
+	private WebDriver browser;
 
 	@FindBy(xpath = "//*[not(contains(@style, 'none')) and (contains(@class, 'mountains') or contains(@class, 'river') or contains(@class, 'state') or contains(@class, 'city') or contains(@class, 'island') or contains(@class, 'lake'))]")
 	private List<WebElement> listOfAllMapPlaces;
@@ -22,14 +27,9 @@ public class PracticeMap extends Map {
 	 * @param place
 	 */
 	public void clickPlace(final String place) {
-		Graphene.waitModel().until(new Predicate<WebDriver>() {
-			@Override
-			public boolean apply(WebDriver browser) {
-				return isPlaceDisplayed(place);
-			}
-		});
-		getPlace(place).click();
-		Practice.setQuestionCounter(Practice.getQuestionCounter() + 1);
+		WebElement placeToClick = getPlace(place);
+		Graphene.waitModel().until().element(placeToClick).is().visible();
+		placeToClick.click();
 	}
 
 	/**
@@ -52,13 +52,11 @@ public class PracticeMap extends Map {
 	 */
 	public List<String> getWrongAnswers() {
 		List<String> answerList = new ArrayList<String>();
-		for (WebElement answer : listOfAllMapPlaces) {
-			Graphene.waitAjax().until().element(answer).is().visible();
-			String answerName = answer.getAttribute("data-name");
-			if (ColourHashMap.getColourMeaning(getPlaceColour(answerName))
-					.equals("wrong")) {
-				answerList.add(answerName);
-			}
+		List<WebElement> elementList = browser.findElements(By
+				.xpath("//*[contains(@fill, '" + ColourHashMap.WRONG
+						+ "')]"));
+		for (WebElement answer : elementList) {
+			answerList.add(answer.getAttribute("data-name"));
 		}
 		return answerList;
 	}
@@ -71,13 +69,11 @@ public class PracticeMap extends Map {
 	 */
 	public List<String> getCorrectAnswers() {
 		List<String> answerList = new ArrayList<String>();
-		for (WebElement answer : listOfAllMapPlaces) {
-			Graphene.waitAjax().until().element(answer).is().visible();
-			String answerName = answer.getAttribute("data-name");
-			if (ColourHashMap.getColourMeaning(getPlaceColour(answerName))
-					.equals("10")) {
-				answerList.add(answerName);
-			}
+		List<WebElement> elementList = browser.findElements(By
+				.xpath("//*[contains(@fill, '" + ColourHashMap.CORRECT
+						+ "')]"));
+		for (WebElement answer : elementList) {
+			answerList.add(answer.getAttribute("data-name"));
 		}
 		return answerList;
 	}
@@ -90,13 +86,11 @@ public class PracticeMap extends Map {
 	 */
 	public List<String> getHighlightedAnswers() {
 		List<String> answerList = new ArrayList<String>();
-		for (WebElement answer : listOfAllMapPlaces) {
-			Graphene.waitAjax().until().element(answer).is().visible();
-			String answerName = answer.getAttribute("data-name");
-			if (ColourHashMap.getColourMeaning(getPlaceColour(answerName))
-					.equals("highlight")) {
-				answerList.add(answer.getAttribute("data-name"));
-			}
+		List<WebElement> elementList = browser.findElements(By
+				.xpath("//*[contains(@fill, '" + ColourHashMap.HIGHLIGHT
+						+ "')]"));
+		for (WebElement answer : elementList) {
+			answerList.add(answer.getAttribute("data-name"));
 		}
 		return answerList;
 	}
@@ -116,5 +110,23 @@ public class PracticeMap extends Map {
 		default:
 			return "multiple highlighted";
 		}
+	}
+	
+	public void waitForCorrectAnswers(){
+		Graphene.waitAjax().pollingEvery(100, TimeUnit.MILLISECONDS).until(new Predicate<WebDriver>() {
+			@Override
+			public boolean apply(WebDriver browser) {
+				return !(getCorrectAnswers().isEmpty());
+			}
+		});
+	}
+	
+	public void waitForHighlightedAnswers(){
+		Graphene.waitModel().until(new Predicate<WebDriver>() {
+			@Override
+			public boolean apply(WebDriver browser) {
+				return !(getHighlightedAnswers().isEmpty());
+			}
+		});
 	}
 }
