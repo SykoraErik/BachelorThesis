@@ -10,4 +10,3 @@ deploy:
     tags: true
     all_branches: true
     condition: "$TRAVIS_TAG =~ ^tag.*"
-  skip_cleanup: true
