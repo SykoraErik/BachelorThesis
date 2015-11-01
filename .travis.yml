@@ -3,3 +3,9 @@ script: "mvn -Pphantomjs clean verify"
 notifications:
   email:
     - sykora.erik@gmail.com
+ 
+deploy:    
+	on:
+	tags: true
+	all_branches: true
+	condition: "$TRAVIS_TAG =~ ^tag"
