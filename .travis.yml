@@ -1,5 +1,5 @@
 language: java
-script: "mvn -Pphantomjs clean verify"
+script: "mvn -Pphantomjs -DskipTests=false clean verify"
 notifications:
   email:
     - sykora.erik@gmail.com
