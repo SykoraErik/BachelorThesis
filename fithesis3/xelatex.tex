@@ -1,0 +1,72 @@
+\documentclass[
+    color,   % Enables colorful typesetting. Replace with
+             % `monochrome`, if you are going to print the
+             % thesis on a monochromatic printer.
+	table,   % Causes the coloring of tables. Replace with
+             % `notable` to restore plain tables.
+    twoside, % Enables double-sided typesetting. Replace
+             % with `oneside`, if you are going to print
+             % your thesis on only one side of the paper.
+    % More options are listed in the class documentation
+    % available at <https://www.ctan.org/pkg/fithesis>.
+]{fithesis/fithesis3}
+\usepackage{polyglossia}
+\setmainlanguage{czech} % By using `czech` or `slovak`
+% instead of `english`, you can typeset the entire thesis
+% in either Czech or Slovak, respectively. Changing the
+% language requires a clean compilation; click `recompile
+% from scratch`, when Overleaf raises an error.
+\thesissetup{
+	university    = mu,
+	faculty       = fi,
+    type          = bc,
+    author        = Erik Sýkora,
+    gender        = f,
+    advisor       = John Smith,
+    title         = The Proof of P = NP,
+    TeXtitle      = {The Proof of $\mathsf{P}=\mathsf{NP}$},
+    keywords      = {keyword1, keyword2, ...},
+    TeXkeywords   = {keyword1, keyword2, \ldots},
+}
+\thesislong{abstract}{
+	This is the abstract of my thesis, which can
+    
+    span multiple paragraphs.
+}
+\thesislong{thanks}{
+	This is the acknowledgement for my thesis, which can
+    
+    span multiple paragraphs.
+}
+
+% The beginning of an example document
+\usepackage{amsmath}
+\usepackage{tabularx}
+\usepackage{booktabs}
+\begin{document}
+  \chapter{An example}
+  Hello world!
+  \begin{equation}
+    \tag{Mass--energy equivalence} e=mc^2
+  \end{equation}
+  \begin{table}[!h]
+    \begin{tabularx}{\textwidth}{lllX}
+      \toprule
+      Day & Min Temp & Max Temp & Summary \\
+      \midrule
+      Monday & $11^{\circ}\mathrm{C}$ & $22^\circ\mathrm{C}$
+      & A clear day with lots of sunshine. However, the
+      strong breeze will bring down the temperatures. \\
+      Tuesday & $9^{\circ}\mathrm{C}$ & $19^\circ\mathrm{C}$
+      & Cloudy with rain, across many northern regions. Clear
+      spells across most of Scotland and Northern Ireland,
+      but rain reaching the far northwest. \\
+      Wednesday & $10^{\circ}\mathrm{C}$ &
+      $21^\circ\mathrm{C}$ & Rain will still linger for the
+      morning. Conditions will improve by early afternoon
+      and continue throughout the evening.\\
+      \bottomrule
+    \end{tabularx}
+    \caption{A weather forecast}
+  \end{table}
+\end{document}

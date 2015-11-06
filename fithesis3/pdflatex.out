@@ -1,0 +1,23 @@
+\BOOKMARK [0][-]{chapter.1}{\332vod}{}% 1
+\BOOKMARK [0][-]{chapter.2}{Testov\341n\355 webov\351 aplikace a pou\236it\351 pr\355stupy}{}% 2
+\BOOKMARK [1][-]{section.2.1}{ Typy testov\341n\355}{chapter.2}% 3
+\BOOKMARK [2][-]{subsection.2.1.1}{ Funkcn\355 testov\341n\355}{section.2.1}% 4
+\BOOKMARK [2][-]{subsection.2.1.2}{ Unit testing}{section.2.1}% 5
+\BOOKMARK [2][-]{subsection.2.1.3}{ Statick\351 a dynamick\351 testov\341n\355}{section.2.1}% 6
+\BOOKMARK [2][-]{subsection.2.1.4}{ Regresn\355 testov\341n\355}{section.2.1}% 7
+\BOOKMARK [1][-]{section.2.2}{ Pou\236it\351 metody a postupy}{chapter.2}% 8
+\BOOKMARK [2][-]{subsection.2.2.1}{ Testov\341n\355 cern\351, \235ed\351 a b\355l\351 skr\355nky}{section.2.2}% 9
+\BOOKMARK [2][-]{subsection.2.2.2}{ Validace a verifikace}{section.2.2}% 10
+\BOOKMARK [2][-]{subsection.2.2.3}{ Automatizace testov\341n\355}{section.2.2}% 11
+\BOOKMARK [0][-]{chapter.3}{Aplikace Slep\351 Mapy a jej\355 anal\375za}{}% 12
+\BOOKMARK [0][-]{chapter.4}{Pou\236it\351 technologie}{}% 13
+\BOOKMARK [1][-]{section.4.1}{ Selenium}{chapter.4}% 14
+\BOOKMARK [2][-]{subsection.4.1.1}{ Selenium WebDriver}{section.4.1}% 15
+\BOOKMARK [1][-]{section.4.2}{ Arquillian}{chapter.4}% 16
+\BOOKMARK [2][-]{subsection.4.2.1}{ Arquillian Graphene}{section.4.2}% 17
+\BOOKMARK [2][-]{subsection.4.2.2}{ Arquillian Drone}{section.4.2}% 18
+\BOOKMARK [1][-]{section.4.3}{ Travis CI}{chapter.4}% 19
+\BOOKMARK [1][-]{section.4.4}{ Ostatn\355 n\341stroje}{chapter.4}% 20
+\BOOKMARK [0][-]{chapter.5}{Tvorba testu}{}% 21
+\BOOKMARK [0][-]{chapter.6}{Syst\351m automatizovan\351ho testov\341n\355}{}% 22
+\BOOKMARK [0][-]{chapter.7}{Z\341ver}{}% 23
