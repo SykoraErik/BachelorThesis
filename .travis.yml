@@ -2,7 +2,7 @@ language: java
 
 script:
   - set -e
-  - if [ "${TRAVIS_TAG}" == "^tag.*" ]; then mvn -Pphantomjs -Dbase.url=http://staging-new.slepemapy.cz/ clean verify; fi
+  - if [ "${TRAVIS_TAG}" == "tag" ]; then mvn -Pphantomjs -Dbase.url=http://staging-new.slepemapy.cz/ clean verify; fi
 
 notifications:
   email:
