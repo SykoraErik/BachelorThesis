@@ -1,12 +1,8 @@
 language: java
-script: "mvn -Pphantomjs -DskipTests=false clean verify"
+
+script:
+   - if[[ "${TRAVIS_TAG}" == "^tag.*" ]]; then "mvn -Pphantomjs -Dbase.url=http://staging-new.slepemapy.cz/ clean verify"; fi
+
 notifications:
   email:
     - sykora.erik@gmail.com
- 
-deploy: 
-  provider: releases   
-  on:
-    tags: true
-    all_branches: true
-    condition: "$TRAVIS_TAG =~ ^tag.*"
