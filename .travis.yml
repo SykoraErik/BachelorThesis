@@ -2,6 +2,7 @@ language: java
 
 script:
   - set -e
+  - git fetch --tags
   - if [ "${TRAVIS_TAG}" == "tag" ]; then mvn -Pphantomjs -Dbase.url=http://staging-new.slepemapy.cz/ clean verify; fi
 
 notifications:
