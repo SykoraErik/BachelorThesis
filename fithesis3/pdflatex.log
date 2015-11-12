@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (MiKTeX 2.9) (preloaded format=pdflatex 2015.10.15)  6 NOV 2015 16:02
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (MiKTeX 2.9) (preloaded format=pdflatex 2015.10.15)  12 NOV 2015 17:30
 entering extended mode
 **pdflatex.tex
 (pdflatex.tex
@@ -727,7 +727,7 @@ LaTeX Info: Redefining \nameref on input line 41.
 (pdflatex.out) (pdflatex.out)
 \@outlinefile=\write3
 
-<fithesis/logo/mu/fithesis-fi-color.pdf, id=96, 291.0875pt x 292.09125pt>
+<fithesis/logo/mu/fithesis-fi-color.pdf, id=116, 291.0875pt x 292.09125pt>
 File: fithesis/logo/mu/fithesis-fi-color.pdf Graphic file (type pdf)
 
 <use fithesis/logo/mu/fithesis-fi-color.pdf>
@@ -830,64 +830,55 @@ vání apli-
  []
 
 
-Overfull \hbox (5.42972pt too wide) in paragraph at lines 47--48
-\T1/qpl/m/n/12 práce ana-lýza apli-kace, £e-muº bude v¥-no-vána t°etí ka-pi-tol
-a. Tato práce
- []
-
-
 Overfull \hbox (0.95374pt too wide) in paragraph at lines 52--53
 []\T1/qpl/m/n/12 Hotové testy bu-dou spou²-t¥ny au-to-ma-ticky p°i ak-tu-a-li-z
 o-vání apli-
  []
 
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
 pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has 
 been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.55   \chapter
-               {TestovÃ¡nÃ­ webovÃ© aplikace a pouÅ¾itÃ© pÅ™Ã­stupy} [1
+l.55 
+      [1
 
 
 ]pdfTeX warning (ext4): destination with the same identifier (name{page.2}) has
  been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.55   \chapter
+l.56   \chapter
                {TestovÃ¡nÃ­ webovÃ© aplikace a pouÅ¾itÃ© pÅ™Ã­stupy} [2]
 Kapitola 2.
 
 Package hyperref Warning: Composite letter `\textasciicaron+r'
 (hyperref)                not defined in PD1 encoding,
-(hyperref)                removing `\textasciicaron' on input line 55.
+(hyperref)                removing `\textasciicaron' on input line 56.
 
 
-Overfull \hbox (4.62294pt too wide) in paragraph at lines 55--55
+Overfull \hbox (4.62294pt too wide) in paragraph at lines 56--56
 []\T1/qpl/b/n/17.28 2  Tes-to-vání webové apli-kace a po-u-ºité p°í-stupy 
  []
 
 
 Package hyperref Warning: Composite letter `\textasciicaron+c'
 (hyperref)                not defined in PD1 encoding,
-(hyperref)                removing `\textasciicaron' on input line 59.
+(hyperref)                removing `\textasciicaron' on input line 60.
 
 
-Overfull \hbox (5.1177pt too wide) in paragraph at lines 60--61
+Overfull \hbox (5.1177pt too wide) in paragraph at lines 61--62
 \T1/qpl/m/n/12 Cílem funk£-ního tes-to-vání je otes-to-vání správ-ného cho-vání
  funkcí £ásti
  []
 
 
-Overfull \hbox (7.14584pt too wide) in paragraph at lines 60--61
+Overfull \hbox (7.14584pt too wide) in paragraph at lines 61--62
 \T1/qpl/m/n/12 mezi jed-not-li-vými strán-kami apli-kace, o²et-°ení zá-pisu ne-
 plat-ných hod-
  []
 
 
-Overfull \hbox (9.44962pt too wide) in paragraph at lines 63--64
+Overfull \hbox (9.44962pt too wide) in paragraph at lines 64--65
 \T1/qpl/m/n/12 Tento typ tes-to-vání vy-u-ºívá ma-lých, tes-to-va-tel-ných £ást
 í apli-kace. Touto
  []
@@ -899,20 +890,20 @@ Overfull \hbox (9.44962pt too wide) in paragraph at lines 63--64
 
 Package hyperref Warning: Composite letter `\textasciicaron+c'
 (hyperref)                not defined in PD1 encoding,
-(hyperref)                removing `\textasciicaron' on input line 72.
+(hyperref)                removing `\textasciicaron' on input line 73.
 
 
 Package hyperref Warning: Composite letter `\textasciicaron+r'
 (hyperref)                not defined in PD1 encoding,
-(hyperref)                removing `\textasciicaron' on input line 72.
+(hyperref)                removing `\textasciicaron' on input line 73.
 
 
 Package hyperref Warning: Composite letter `\textasciicaron+n'
 (hyperref)                not defined in PD1 encoding,
-(hyperref)                removing `\textasciicaron' on input line 72.
+(hyperref)                removing `\textasciicaron' on input line 73.
 
 [4]
-Overfull \hbox (5.09372pt too wide) in paragraph at lines 79--80
+Overfull \hbox (5.09372pt too wide) in paragraph at lines 80--81
 \T1/qpl/m/n/12 cího pro-cesu jsou vhod-ným °e-²e-ním pro tyto si-tu-ace. Mezi j
 e-jich hlavní
  []
@@ -927,17 +918,46 @@ Kapitola 3.
 
 ]
 Kapitola 4.
-[9] [10
+
+Package hyperref Warning: Composite letter `\textasciicaron+c'
+(hyperref)                not defined in PD1 encoding,
+(hyperref)                removing `\textasciicaron' on input line 84.
 
 
-]
+Overfull \hbox (5.6937pt too wide) in paragraph at lines 85--86
+\T1/qpl/m/n/12 byly po-u-ºity £i s po-u-ºi-tým °e-²e-ním n¥-ja-kým zp·-so-bem s
+ou-visí. Hlavní
+ []
+
+
+Overfull \hbox (14.34567pt too wide) in paragraph at lines 88--89
+\T1/qpl/m/n/12 tic-kému tes-to-vání webo-vých apli-kací. Jedná se o open source
+ fra-mework,
+ []
+
+
+Overfull \hbox (9.96574pt too wide) in paragraph at lines 88--89
+\T1/qpl/m/n/12 vých pro-hlí-ºe£· a ope-ra£-ních sys-tém·. Ve své pod-stat¥ Se-l
+e-nium umoº-
+ []
+
+
+Overfull \hbox (8.56165pt too wide) in paragraph at lines 88--89
+\T1/qpl/m/n/12 s uºi-va-te-lem. Touto in-ter-akcí mo-hou být r·zné b¥ºn¥ pro-vá
+-d¥né úkony,
+ []
+
+[9] [10]
 Kapitola 5.
 
 Package hyperref Warning: Composite letter `\textring+u'
 (hyperref)                not defined in PD1 encoding,
-(hyperref)                removing `\textring' on input line 92.
+(hyperref)                removing `\textring' on input line 109.
 
-[11] [12
+[11
+
+
+] [12
 
 
 ]
@@ -950,88 +970,92 @@ Kapitola 7.
 
 Package hyperref Warning: Composite letter `\textasciicaron+e'
 (hyperref)                not defined in PD1 encoding,
-(hyperref)                removing `\textasciicaron' on input line 94.
+(hyperref)                removing `\textasciicaron' on input line 111.
 
 [15] [16
 
 
 ]
-Underfull \hbox (badness 1838) in paragraph at lines 100--101
-[]\T1/qpl/m/n/12 3. What is Functi-o-nal tes-ting (Tes-ting of functi-ons) in s
-oft-
+Underfull \hbox (badness 7326) in paragraph at lines 117--118
+[]\T1/qpl/m/n/12 3. \T1/qpl/m/it/12 What is Functi-o-nal tes-ting (Tes-ting of 
+functi-ons) in soft-
  []
 
 
-Underfull \hbox (badness 5374) in paragraph at lines 100--101
-\T1/qpl/m/n/12 ware?. IS-TQB Exam Cer-ti-fi-cation [on-line]. 2015 [cit. 2015-
+Underfull \hbox (badness 8000) in paragraph at lines 117--118
+\T1/qpl/m/it/12 ware? \T1/qpl/m/n/12 IS-TQB Exam Cer-ti-fi-cation [on-line]. 20
+15 [cit. 2015-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 100--101
+Underfull \hbox (badness 10000) in paragraph at lines 117--118
 \T1/qpl/m/n/12 04-12]. Do-stupné z: []$\T1/lmtt/m/n/12 http : / / istqbexamcert
 ification . com /
  []
 
 
-Overfull \hbox (33.1422pt too wide) in paragraph at lines 100--101
+Overfull \hbox (33.1422pt too wide) in paragraph at lines 117--118
 \T1/lmtt/m/n/12 what-[]is-[]functional-[]testing-[]testing-[]of-[]functions-[]i
 n-[]software/$[] 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 101--102
-[]\T1/qpl/m/n/12 4. What is Soft-ware Tes-ting?. IS-TQB Exam Cer-ti-fi-cation
+Underfull \hbox (badness 10000) in paragraph at lines 118--119
+[]\T1/qpl/m/n/12 4. \T1/qpl/m/it/12 What is Soft-ware Tes-ting? \T1/qpl/m/n/12 
+IS-TQB Exam Cer-ti-fi-cation
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 101--102
+Underfull \hbox (badness 10000) in paragraph at lines 118--119
 \T1/qpl/m/n/12 [on-line]. 2015 [cit. 2015-04-12]. Do-stupné z: []$\T1/lmtt/m/n/
 12 http : / /
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 103--104
-[]\T1/qpl/m/n/12 6. What is Re-gres-sion tes-ting in soft-ware? IS-TQB
+Underfull \hbox (badness 10000) in paragraph at lines 120--121
+[]\T1/qpl/m/n/12 6. \T1/qpl/m/it/12 What is Re-gres-sion tes-ting in soft-ware?
+ \T1/qpl/m/n/12 IS-TQB
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 103--104
+Underfull \hbox (badness 10000) in paragraph at lines 120--121
 \T1/qpl/m/n/12 Exam Cer-ti-fi-cation [on-line]. [cit. 2015-11-06]. Do-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 103--104
+Underfull \hbox (badness 10000) in paragraph at lines 120--121
 \T1/qpl/m/n/12 stupné z: []$\T1/lmtt/m/n/12 http : / / istqbexamcertification .
  com /
  []
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 105.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 124.
 [17]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 105.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 124.
  (pdflatex.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 105.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 105.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 124.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 124.
 Package rerunfilecheck Info: File `pdflatex.out' has not changed.
-(rerunfilecheck)             Checksum: 7482F67D0A6527B84E2EA5DE685F321B;1674.
+(rerunfilecheck)             Checksum: BF8CB80564FE0642B73538DC45C17EE1;2051.
  ) 
 Here is how much of TeX's memory you used:
- 12088 strings out of 493673
- 168652 string characters out of 3141517
- 247290 words of memory out of 3000000
- 15134 multiletter control sequences out of 15000+200000
- 51625 words of font info for 44 fonts, out of 3000000 for 9000
+ 12138 strings out of 493673
+ 169463 string characters out of 3141517
+ 248292 words of memory out of 3000000
+ 15158 multiletter control sequences out of 15000+200000
+ 60570 words of font info for 61 fonts, out of 3000000 for 9000
  1025 hyphenation exceptions out of 8191
  51i,7n,38p,1029b,4011s stack positions out of 5000i,500n,10000p,200000b,50000s
 {C:/Program Files (x86)/MiKTeX 2.9/fonts/enc/dvips/lm/lm-ec.enc}{C:/Program F
 iles (x86)/MiKTeX 2.9/fonts/enc/dvips/tex-gyre/q-ec.enc}{C:/Program Files (x86)
 /MiKTeX 2.9/fonts/enc/dvips/tex-gyre/q-ec-sc.enc}<C:/Program Files (x86)/MiKTeX
- 2.9/fonts/type1/public/lm/lmtt12.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/
-type1/public/tex-gyre/qplb.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/p
-ublic/tex-gyre/qplr.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/t
-ex-gyre/qplri.pfb>
-Output written on pdflatex.pdf (33 pages, 182419 bytes).
+ 2.9/fonts/type1/public/lm/lmtt10.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/
+type1/public/lm/lmtt12.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/publi
+c/tex-gyre/qplb.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/tex-g
+yre/qplr.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/tex-gyre/qpl
+ri.pfb>
+Output written on pdflatex.pdf (33 pages, 213276 bytes).
 PDF statistics:
- 330 PDF objects out of 1000 (max. 8388607)
- 68 named destinations out of 1000 (max. 500000)
- 210 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 368 PDF objects out of 1000 (max. 8388607)
+ 76 named destinations out of 1000 (max. 500000)
+ 250 words of extra memory for PDF output out of 10000 (max. 10000000)
 

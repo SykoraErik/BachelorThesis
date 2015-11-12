@@ -44,7 +44,7 @@ Vývoj softwaru je komplexní proces sestávající z mnoha kroků. Tento proces
 
 Webové aplikace jsou dnes velice rozšířeným druhem softwaru. Testování webové aplikace zahrnuje spoustu oblastí, jmenovitě například funkční testování, testování kompatibility či validace a verifikace. Tyto způsoby testování se běžně používají pro testování softwaru obecně, nicméně testování webových aplikací má svá specifika. Metodami testování použitými pro testování konkrétní webové aplikace se bude zabývat druhá kapitola.
 
-Představené postupy budou následně aplikovány při testování aplikace pro výuku zeměpisu – Slepé mapy (\url{http://slepemapy.cz/}). Jelikož tato aplikace postrádá specifikaci softwaru, bude důležitou částí práce analýza aplikace, čemuž bude věnována třetí kapitola. Tato práce je zaměřena na funkční testování, proto zde bude také popsáno chování a funkčnost aplikace, jež bude následně otestována.
+Představené postupy budou následně aplikovány při testování aplikace pro výuku zeměpisu – Slepé mapy\footnote{\url{http://slepemapy.cz/}}. Jelikož tato aplikace postrádá specifikaci softwaru, bude důležitou částí práce analýza aplikace, čemuž bude věnována třetí kapitola. Tato práce je zaměřena na funkční testování, proto zde bude také popsáno chování a funkčnost aplikace, jež bude následně otestována.
 
 Pro tvorbu samotných testů je možno vybrat ze široké škály nástrojů. Pro testování aplikace Slepé mapy byla vybrána testovací platforma Arquillian a rozšiřující plugin Graphene. Tato platforma si zaslouží podrobnější popis, proto se čtvrtá kapitola bude zabývat představením tohoto a dalších použitých nástrojů.
 Na získaných znalostech o použitých technologiích bude stavět pátá kapitola, ve které bude vysvětlen postup při tvorbě testů. Vysvětlen bude kompletní postup použitý při testování webové aplikace Slepé mapy, a to od počáteční tvorby testového plánu, rozdělení aplikace na testovatelné části, návrh jednotlivých testových případů a následně jejich realizace pomocí výše zmíněných technologií.
@@ -52,6 +52,7 @@ Na získaných znalostech o použitých technologiích bude stavět pátá kapit
 Hotové testy budou spouštěny automaticky při aktualizování aplikace. Jelikož by bylo  nepraktické po každé aktualizaci testy spouštěn manuálně, bude součástí práce automatizace testové sady. Způsob realizace automatického testování bude popsán v šesté kapitole.
 
 Závěrem budou vyhodnoceny výsledky testování. Součástí výstupů této práce bude také zhodnocení současného stavu aplikace na základě pokrytí testovými sadami. Vytvořená dokumentace společně s testovou sadou je dostupná v příloze. 
+
   \chapter{Testování webové aplikace a použité přístupy}
   Testování softwaru je komplexní proces, jehož cílem je v programu či aplikaci nalézt softwarové chyby a ověřit, zda splňuje požadavky na něj kladené. Chybu lze definovat jako neočekávané chování programu, lišící se od specifikace softwaru \cite{SoftwareISTQB}. Jelikož je téměř nemožné v rozumném čase kompletně otestovat i jednoduchý program, je třeba se při testování zaměřit na určité části aplikace a použít vhodné postupy. V této kapitole budou představena specifika testování webové aplikace a přístupy použité při jejich testování. Všechny zde uvedené postupy a metody byly využity při testování konkrétní aplikace –  Slepé mapy.
   
@@ -59,8 +60,8 @@ Závěrem budou vyhodnoceny výsledky testování. Součástí výstupů této p
   \subsection{Funkční testování}
   Cílem funkčního testování je otestování správného chování funkcí části aplikace či aplikace jako celku. Chování softwaru může být popsáno ve specifikaci. Pokud není specifikace k dispozici, tak je testováno předpokládané chování aplikace \cite{FunctionalISTQB}. Během funkčního testování tester nahlíží na aplikaci očima uživatele a jeho úkolem je ověřit, zda aplikace funguje správně. Testovány mohou být například přechody mezi jednotlivými stránkami aplikace, ošetření zápisu neplatných hodnot do formulářů nebo ošetření chybových stavů aplikace.
   
-  \subsection{Unit testing}
-  Tento typ testování využívá malých, testovatelných částí aplikace. Touto takzvanou jednotkou mohou být například funkce, třídy, procedury či rozhraní. Cílem jednotkového testování je izolovat části programu a otestovat, zda splňují svou funkci a je možné je použít v celku, jehož jsou součástí. Výhodou tohoto přístupu je jednodušší objevení případných chyb v aplikaci. Jednotkové testování navíc bývá prováděno v ranných fázých vývoje softwaru, proto je také objevení chyb v programu výrazně levnější.
+  \subsection{Unit testování}
+  Tento typ testování využívá malých, testovatelných částí aplikace. Touto takzvanou jednotkou mohou být například funkce, třídy, procedury či rozhraní. Cílem jednotkového testování je izolovat části programu a otestovat, zda splňují svou funkci a je možné je použít v celku, jehož jsou součástí. Výhodou tohoto přístupu je jednodušší objevení případných chyb v aplikaci. Jednotkové testování navíc bývá prováděno v ranných fázých vývoje softwaru, proto je také objevení chyb v programu výrazně levnější \cite{UnitISTQB}.
   
   \subsection{Statické a dynamické testování}
   Těmito pojmy lze rozlišit dvě základní možnosti, jakými můžeme k testování softwaru přistupovat. Statickým testováním je myšleno testování nespustitelné části programu, jde převážně o zkoumání dokumentace a specifikace softwaru. Tento přístup lze aplikovat ještě dříve, než je vytvořena spustitelná verze softwaru. Dynamické testování naopak vyžaduje spustitelný kód, na základě jehož chování je software testován. \cite{Patton} Jako typ dynamického testování bychom mohli označit i funkční testování či jednotkové testování.
@@ -80,15 +81,31 @@ Závěrem budou vyhodnoceny výsledky testování. Součástí výstupů této p
   
   \chapter{Aplikace Slepé Mapy a její analýza}
  
-  \chapter{Použité technologie}
+  \chapter{Technologie pro funkční testování webové aplikace}
+V dnešní době existuje pro testování webových aplikací spousta aplikací. Tyto technologie se liší jak v podpoře různých webových prohlížečů, skriptovacích jazyků nebo cenou. Hlavním cílem této kapitoly není představit velké množství těchto nástrojů, ale pouze ty, které byly použity či s použitým řešením nějakým způsobem souvisí. Hlavní technologií, která byla při vytváření testů použita, je testovací platforma Arquillian a její rozšíření. Velmi populární alternativou je testovací nástroj Selenium, jehož komponenta WebDriver byla využita i v této práci. Tvorba testů samozřejmě není to jediné, k čemu je nutné použít specializované nástroje, proto zde budou představeny i další nástroje nutné pro automatizaci testování.
 
   \section{Selenium}
+ Selenium je jeden z nejpopulárnějších nástrojů sloužících k automatickému testování webových aplikací.   Jedná se o open source framework, jehož součástí je několik komponent(Selenium RC, Selenium IDE, Selenium WebDriver, Selenium Grid), které jako celek nabízejí velice flexibilní platformu umožňující tvorbu testů pro širokou škálu webových prohlížečů a operačních systémů. Ve své podstatě Selenium umožňuje ovládat instance webového prohlížeče a emulovat jeho interakci s uživatelem. Touto interakcí mohou být různé běžně prováděné úkony, jako například pohyb myší, vyplnění textového pole nebo kliknutí na tlačítka či odkazy. 
+
+Jedním z principů projektu Selenium je také jednotné rozhraní pro všechny běžné prohlížeče, což umožňuje jeden test spouštět na různých webových prohlížečích bez úprav \cite{SeleniumGithub}. Podstatnou výhodou Selenium frameworku je také jednoduché využití jako součásti v jiných aplikacích, příkladem budiž testovací platforma Arquillian.
+   \subsection{Selenium RC}
+    Placeholder.
+  \subsection{Selenium IDE}
+  Placeholder.
   \subsection{Selenium WebDriver}
+    Placeholder.
+  \subsection{Selenium Grid}
+    Placeholder.
   \section{Arquillian}
+    Placeholder.
   \subsection{Arquillian Graphene}
+    Placeholder.
   \subsection{Arquillian Drone}
-  \section{Travis CI}
+    Placeholder.
   \section{Ostatní nástroje}
+   \subsection{JUnit}
+  \subsection{Maven}
+   \subsection{Travis CI}
   \chapter{Tvorba testů}
   \chapter{Systém automatizovaného testování}
   \chapter{Závěr}
@@ -97,9 +114,11 @@ Závěrem budou vyhodnoceny výsledky testování. Součástí výstupů této p
   \begin{thebibliography}{9}
   \bibitem{Page}1. PAGE, Alan – JOHNSTON, Ken – ROLLISON, Bj. \emph{Jak testuje software Microsoft.} Vyd. 1. Brno: Computer Press, 2009, 384 s. ISBN 978-80-251-2869-5.
   \bibitem{Patton}2. PATTON, Ron. \emph{Testování softwaru.} Vyd. 1. Praha: Computer Press, 2002, xiv, 313 s. Programování. ISBN 80-7226-636-5. 
-  \bibitem{FunctionalISTQB}3. What is Functional testing (Testing of functions) in software?. ISTQB Exam Certification [online]. 2015 [cit. 2015-04-12]. Dostupné z: \url{http://istqbexamcertification.com/what-is-functional-testing-testing-of-functions-in-software/}
-  \bibitem{SoftwareISTQB}4. What is Software Testing?. ISTQB Exam Certification [online]. 2015 [cit. 2015-04-12]. Dostupné z: \url{http://istqbexamcertification.com/what-is-a-software-testing/}
-  \bibitem{UnitISTQB}5. What is Unit testing? ISTQB Exam Certification [online]. [cit. 2015-11-06]. Dostupné z: \url{http://istqbexamcertification.com/what-is-unit-testing/}
-  \bibitem{RegresISTQB}6. What is Regression testing in software? ISTQB Exam Certification [online]. [cit. 2015-11-06]. Dostupné z: \url{http://istqbexamcertification.com/what-is-regression-testing-in-software/}
+  \bibitem{FunctionalISTQB}3. \emph{What is Functional testing (Testing of functions) in software?} ISTQB Exam Certification [online]. 2015 [cit. 2015-04-12]. Dostupné z: \url{http://istqbexamcertification.com/what-is-functional-testing-testing-of-functions-in-software/}
+  \bibitem{SoftwareISTQB}4. \emph{What is Software Testing?} ISTQB Exam Certification [online]. 2015 [cit. 2015-04-12]. Dostupné z: \url{http://istqbexamcertification.com/what-is-a-software-testing/}
+  \bibitem{UnitISTQB}5. \emph{What is Unit testing?} ISTQB Exam Certification [online]. [cit. 2015-11-06]. Dostupné z: \url{http://istqbexamcertification.com/what-is-unit-testing/}
+  \bibitem{RegresISTQB}6. \emph{What is Regression testing in software?} ISTQB Exam Certification [online]. [cit. 2015-11-06]. Dostupné z: \url{http://istqbexamcertification.com/what-is-regression-testing-in-software/}
+  \bibitem{Selenium}7. \emph{Selenium documentation.} [online]. 12.11.2015 [cit. 2015-11-12]. Dostupné z: http://docs.seleniumhq.org/docs/index.jsp
+  \bibitem{SeleniumGithub}8. \emph{Selenium documentation} [online]. 12.11.2015 [cit. 2015-11-12]. Dostupné z: https://seleniumhq.github.io/docs/index.html
   \end{thebibliography}
 \end{document}
