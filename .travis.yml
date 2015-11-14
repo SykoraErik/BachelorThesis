@@ -3,7 +3,7 @@ language: java
 script:
   - set -e
   - git fetch --tags
-  - if "git tag --contains ${TRAVIS_COMMIT}" == ./*"release"*; then mvn -Pphantomjs -Dbase.url=http://staging-new.slepemapy.cz/ clean verify; fi
+  - if git tag --contains ${TRAVIS_COMMIT} == ./*"release"*; then mvn -Pphantomjs -Dbase.url=http://staging-new.slepemapy.cz/ clean verify; fi
 
 notifications:
   email:
