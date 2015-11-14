@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (MiKTeX 2.9) (preloaded format=pdflatex 2015.10.15)  12 NOV 2015 17:30
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (MiKTeX 2.9) (preloaded format=pdflatex 2015.10.15)  13 NOV 2015 21:27
 entering extended mode
 **pdflatex.tex
 (pdflatex.tex
@@ -727,7 +727,7 @@ LaTeX Info: Redefining \nameref on input line 41.
 (pdflatex.out) (pdflatex.out)
 \@outlinefile=\write3
 
-<fithesis/logo/mu/fithesis-fi-color.pdf, id=116, 291.0875pt x 292.09125pt>
+<fithesis/logo/mu/fithesis-fi-color.pdf, id=108, 291.0875pt x 292.09125pt>
 File: fithesis/logo/mu/fithesis-fi-color.pdf Graphic file (type pdf)
 
 <use fithesis/logo/mu/fithesis-fi-color.pdf>
@@ -936,23 +936,21 @@ Overfull \hbox (14.34567pt too wide) in paragraph at lines 88--89
  []
 
 
-Overfull \hbox (9.96574pt too wide) in paragraph at lines 88--89
-\T1/qpl/m/n/12 vých pro-hlí-ºe£· a ope-ra£-ních sys-tém·. Ve své pod-stat¥ Se-l
-e-nium umoº-
+Overfull \hbox (1.0257pt too wide) in paragraph at lines 90--91
+\T1/qpl/m/n/12 mo-hou být r·zné b¥ºn¥ pro-vá-d¥né úkony, jako na-p°í-klad po-hy
+b my²í,
  []
 
 
-Overfull \hbox (8.56165pt too wide) in paragraph at lines 88--89
-\T1/qpl/m/n/12 s uºi-va-te-lem. Touto in-ter-akcí mo-hou být r·zné b¥ºn¥ pro-vá
--d¥né úkony,
- []
+Underfull \vbox (badness 4072) has occurred while \output is active []
 
-[9] [10]
+ [9]
+[10]
 Kapitola 5.
 
 Package hyperref Warning: Composite letter `\textring+u'
 (hyperref)                not defined in PD1 encoding,
-(hyperref)                removing `\textring' on input line 109.
+(hyperref)                removing `\textring' on input line 108.
 
 [11
 
@@ -970,78 +968,78 @@ Kapitola 7.
 
 Package hyperref Warning: Composite letter `\textasciicaron+e'
 (hyperref)                not defined in PD1 encoding,
-(hyperref)                removing `\textasciicaron' on input line 111.
+(hyperref)                removing `\textasciicaron' on input line 110.
 
 [15] [16
 
 
 ]
-Underfull \hbox (badness 7326) in paragraph at lines 117--118
+Underfull \hbox (badness 7326) in paragraph at lines 116--117
 []\T1/qpl/m/n/12 3. \T1/qpl/m/it/12 What is Functi-o-nal tes-ting (Tes-ting of 
 functi-ons) in soft-
  []
 
 
-Underfull \hbox (badness 8000) in paragraph at lines 117--118
+Underfull \hbox (badness 8000) in paragraph at lines 116--117
 \T1/qpl/m/it/12 ware? \T1/qpl/m/n/12 IS-TQB Exam Cer-ti-fi-cation [on-line]. 20
 15 [cit. 2015-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 117--118
+Underfull \hbox (badness 10000) in paragraph at lines 116--117
 \T1/qpl/m/n/12 04-12]. Do-stupné z: []$\T1/lmtt/m/n/12 http : / / istqbexamcert
 ification . com /
  []
 
 
-Overfull \hbox (33.1422pt too wide) in paragraph at lines 117--118
+Overfull \hbox (33.1422pt too wide) in paragraph at lines 116--117
 \T1/lmtt/m/n/12 what-[]is-[]functional-[]testing-[]testing-[]of-[]functions-[]i
 n-[]software/$[] 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 118--119
+Underfull \hbox (badness 10000) in paragraph at lines 117--118
 []\T1/qpl/m/n/12 4. \T1/qpl/m/it/12 What is Soft-ware Tes-ting? \T1/qpl/m/n/12 
 IS-TQB Exam Cer-ti-fi-cation
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 118--119
+Underfull \hbox (badness 10000) in paragraph at lines 117--118
 \T1/qpl/m/n/12 [on-line]. 2015 [cit. 2015-04-12]. Do-stupné z: []$\T1/lmtt/m/n/
 12 http : / /
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 120--121
+Underfull \hbox (badness 10000) in paragraph at lines 119--120
 []\T1/qpl/m/n/12 6. \T1/qpl/m/it/12 What is Re-gres-sion tes-ting in soft-ware?
  \T1/qpl/m/n/12 IS-TQB
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 120--121
+Underfull \hbox (badness 10000) in paragraph at lines 119--120
 \T1/qpl/m/n/12 Exam Cer-ti-fi-cation [on-line]. [cit. 2015-11-06]. Do-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 120--121
+Underfull \hbox (badness 10000) in paragraph at lines 119--120
 \T1/qpl/m/n/12 stupné z: []$\T1/lmtt/m/n/12 http : / / istqbexamcertification .
  com /
  []
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 124.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 123.
 [17]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 124.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 123.
  (pdflatex.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 124.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 124.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 123.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 123.
 Package rerunfilecheck Info: File `pdflatex.out' has not changed.
-(rerunfilecheck)             Checksum: BF8CB80564FE0642B73538DC45C17EE1;2051.
+(rerunfilecheck)             Checksum: 6530016BD1391221D04B010E358CEE9E;1915.
  ) 
 Here is how much of TeX's memory you used:
- 12138 strings out of 493673
- 169463 string characters out of 3141517
- 248292 words of memory out of 3000000
- 15158 multiletter control sequences out of 15000+200000
+ 12134 strings out of 493673
+ 169395 string characters out of 3141517
+ 247292 words of memory out of 3000000
+ 15156 multiletter control sequences out of 15000+200000
  60570 words of font info for 61 fonts, out of 3000000 for 9000
  1025 hyphenation exceptions out of 8191
  51i,7n,38p,1029b,4011s stack positions out of 5000i,500n,10000p,200000b,50000s
@@ -1053,9 +1051,9 @@ type1/public/lm/lmtt12.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/publi
 c/tex-gyre/qplb.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/tex-g
 yre/qplr.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/tex-gyre/qpl
 ri.pfb>
-Output written on pdflatex.pdf (33 pages, 213276 bytes).
+Output written on pdflatex.pdf (33 pages, 212827 bytes).
 PDF statistics:
- 368 PDF objects out of 1000 (max. 8388607)
- 76 named destinations out of 1000 (max. 500000)
- 250 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 358 PDF objects out of 1000 (max. 8388607)
+ 74 named destinations out of 1000 (max. 500000)
+ 234 words of extra memory for PDF output out of 10000 (max. 10000000)
 

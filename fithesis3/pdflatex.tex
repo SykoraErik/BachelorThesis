@@ -85,17 +85,16 @@ Závěrem budou vyhodnoceny výsledky testování. Součástí výstupů této p
 V dnešní době existuje pro testování webových aplikací spousta aplikací. Tyto technologie se liší jak v podpoře různých webových prohlížečů, skriptovacích jazyků nebo cenou. Hlavním cílem této kapitoly není představit velké množství těchto nástrojů, ale pouze ty, které byly použity či s použitým řešením nějakým způsobem souvisí. Hlavní technologií, která byla při vytváření testů použita, je testovací platforma Arquillian a její rozšíření. Velmi populární alternativou je testovací nástroj Selenium, jehož komponenta WebDriver byla využita i v této práci. Tvorba testů samozřejmě není to jediné, k čemu je nutné použít specializované nástroje, proto zde budou představeny i další nástroje nutné pro automatizaci testování.
 
   \section{Selenium}
- Selenium je jeden z nejpopulárnějších nástrojů sloužících k automatickému testování webových aplikací.   Jedná se o open source framework, jehož součástí je několik komponent(Selenium RC, Selenium IDE, Selenium WebDriver, Selenium Grid), které jako celek nabízejí velice flexibilní platformu umožňující tvorbu testů pro širokou škálu webových prohlížečů a operačních systémů. Ve své podstatě Selenium umožňuje ovládat instance webového prohlížeče a emulovat jeho interakci s uživatelem. Touto interakcí mohou být různé běžně prováděné úkony, jako například pohyb myší, vyplnění textového pole nebo kliknutí na tlačítka či odkazy. 
-
-Jedním z principů projektu Selenium je také jednotné rozhraní pro všechny běžné prohlížeče, což umožňuje jeden test spouštět na různých webových prohlížečích bez úprav \cite{SeleniumGithub}. Podstatnou výhodou Selenium frameworku je také jednoduché využití jako součásti v jiných aplikacích, příkladem budiž testovací platforma Arquillian.
-   \subsection{Selenium RC}
-    Placeholder.
+ Selenium je jeden z nejpopulárnějších nástrojů sloužících k automatickému testování webových aplikací.   Jedná se o open source framework, jehož součástí je několik komponent, momentálně hlavně Selenium IDE a Selenium WebDriver, které budou dále představeny. Původní část projektu Selenium Remote Control je již zastaralá a jejím nástupcem je Selenium Webdriver, který také obsahuje schopnosti původně samostatné části Selenium Grid. Tento celek nabízí velice flexibilní platformu umožňující tvorbu testů pro širokou škálu webových prohlížečů a operačních systémů.
+ 
+ Ve své podstatě Selenium umožňuje ovládat instance webového prohlížeče a emulovat jeho interakci s uživatelem. Touto interakcí mohou být různé běžně prováděné úkony, jako například pohyb myší, vyplnění textového pole nebo kliknutí na tlačítka či odkazy. Jedním z principů projektu Selenium je také jednotné rozhraní pro všechny běžné prohlížeče, což umožňuje jeden test spouštět na různých webových prohlížečích bez úprav \cite{SeleniumGithub}. Podstatnou výhodou Selenium frameworku je také jednoduché využití jako součásti v jiných aplikacích, příkladem budiž testovací platforma Arquillian.
+ 
+  \subsection{Selenium WebDriver}
+   Po dlouhou dobu byl hlavním modulem Selenium projektu Selenium Remote Control (nazývaný také Selenium RC či Selenium 1.0), ten měl ale značné nedostatky. Tím hlavním je samotný princip fungování Selenium RC, a to vkládání funkcí psaných pomocí JavaScriptu do webového prohlížeče po jeho načtení. Tento princip činil práci s dynamickými webovými stránkami náročnou. Další nevýhodou bylo rozdílné chování JavaScriptu v různých webových prohlížečích, což mohlo způsobit neočekávané chování testů.
+  
+Přirozenou evolucí projektu Selenium RC se stal Selenium WebDriver (nazývaný také Selenium 2.0).
   \subsection{Selenium IDE}
   Placeholder.
-  \subsection{Selenium WebDriver}
-    Placeholder.
-  \subsection{Selenium Grid}
-    Placeholder.
   \section{Arquillian}
     Placeholder.
   \subsection{Arquillian Graphene}
