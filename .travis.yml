@@ -2,9 +2,8 @@ language: java
 
 script:
   - set -e
-  - git fetch --tags
   - COMMIT_TAG=$(git tag --contains "${TRAVIS_COMMIT}")
-  - if [[ COMMIT_TAG == ./*"release"* ]]; then mvn -Pphantomjs -Dbase.url=http://staging-new.slepemapy.cz/ clean verify; fi
+  - if [[ $COMMIT_TAG =~ release.* ]]; then mvn -Pphantomjs -Dbase.url=http://staging-new.slepemapy.cz/ clean verify; fi
 
 notifications:
   email:
