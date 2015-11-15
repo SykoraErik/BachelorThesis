@@ -92,7 +92,8 @@ V dnešní době existuje pro testování webových aplikací spousta aplikací.
   \subsection{Selenium WebDriver}
    Po dlouhou dobu byl hlavním modulem Selenium projektu Selenium Remote Control (nazývaný také Selenium RC či Selenium 1.0), ten měl ale značné nedostatky. Tím hlavním je samotný princip fungování Selenium RC, a to vkládání funkcí psaných pomocí JavaScriptu do webového prohlížeče po jeho načtení. Tento princip činil práci s dynamickými webovými stránkami náročnou. Další nevýhodou bylo rozdílné chování JavaScriptu v různých webových prohlížečích, což mohlo způsobit neočekávané chování testů.
   
-Přirozenou evolucí projektu Selenium RC se stal Selenium WebDriver (nazývaný také Selenium 2.0).
+Přirozenou evolucí projektu Selenium RC se stal Selenium WebDriver (nazývaný také Selenium 2.0). Ten vznikl sloučením projektu WebDriver a původního Selenium 1.0 a oproti starší verzi nabízí mnohá vylepšení. Tím hlavním je využití tzv. WebDriver API\footnote{Application Programming Interface}, které využívá nativní podpory komunikovat přímo s webovým prohlížečem. Každý podporovaný webový prohlížeč má svůj vlastní WebDriver, který zajišťuje specifika práce s tímto prohlížečem. Uživatel pak už jen využívá WebDriver rozhraní, aniž by musel řešit rozdílné chování webových prohlížečů. Podporováný jsou následující prohlížeče: Internet Explorer, Mozilla Firefox, Google Chrome, Safari, Opera, HtmlUnit a PhantomJS. Selenium WebDriver také podporuje několik programovacích jazyků, mezi ty hlavní patří Java, C\#, Ruby, Python a JavaScript.
+
   \subsection{Selenium IDE}
   Placeholder.
   \section{Arquillian}

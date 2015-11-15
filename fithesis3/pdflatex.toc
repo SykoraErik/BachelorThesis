@@ -17,11 +17,11 @@
 \contentsline {subsection}{\numberline {4.1.2}\rmfamily Selenium IDE}{10}{subsection.4.1.2}
 \contentsline {section}{\numberline {4.2}\slshape Arquillian}{10}{section.4.2}
 \contentsline {subsection}{\numberline {4.2.1}\rmfamily Arquillian Graphene}{10}{subsection.4.2.1}
-\contentsline {subsection}{\numberline {4.2.2}\rmfamily Arquillian Drone}{10}{subsection.4.2.2}
-\contentsline {section}{\numberline {4.3}\slshape Ostatn\IeC {\'\i } n\IeC {\'a}stroje}{10}{section.4.3}
-\contentsline {subsection}{\numberline {4.3.1}\rmfamily JUnit}{10}{subsection.4.3.1}
-\contentsline {subsection}{\numberline {4.3.2}\rmfamily Maven}{10}{subsection.4.3.2}
-\contentsline {subsection}{\numberline {4.3.3}\rmfamily Travis CI}{10}{subsection.4.3.3}
-\contentsline {chapter}{\numberline {5}\bfseries Tvorba test\IeC {\r u}}{11}{chapter.5}
-\contentsline {chapter}{\numberline {6}\bfseries Syst\IeC {\'e}m automatizovan\IeC {\'e}ho testov\IeC {\'a}n\IeC {\'\i }}{13}{chapter.6}
-\contentsline {chapter}{\numberline {7}\bfseries Z\IeC {\'a}v\IeC {\v e}r}{15}{chapter.7}
+\contentsline {subsection}{\numberline {4.2.2}\rmfamily Arquillian Drone}{11}{subsection.4.2.2}
+\contentsline {section}{\numberline {4.3}\slshape Ostatn\IeC {\'\i } n\IeC {\'a}stroje}{11}{section.4.3}
+\contentsline {subsection}{\numberline {4.3.1}\rmfamily JUnit}{11}{subsection.4.3.1}
+\contentsline {subsection}{\numberline {4.3.2}\rmfamily Maven}{11}{subsection.4.3.2}
+\contentsline {subsection}{\numberline {4.3.3}\rmfamily Travis CI}{11}{subsection.4.3.3}
+\contentsline {chapter}{\numberline {5}\bfseries Tvorba test\IeC {\r u}}{13}{chapter.5}
+\contentsline {chapter}{\numberline {6}\bfseries Syst\IeC {\'e}m automatizovan\IeC {\'e}ho testov\IeC {\'a}n\IeC {\'\i }}{15}{chapter.6}
+\contentsline {chapter}{\numberline {7}\bfseries Z\IeC {\'a}v\IeC {\v e}r}{17}{chapter.7}
