@@ -1,7 +1,7 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (MiKTeX 2.9) (preloaded format=pdflatex 2015.10.15)  15 NOV 2015 17:34
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (MiKTeX 2.9) (preloaded format=pdflatex 2015.10.15)  22 NOV 2015 16:57
 entering extended mode
-**pdflatex.tex
-(pdflatex.tex
+**PDFLATEX.tex
+(PDFLATEX.tex
 LaTeX2e <2015/01/01> patch level 2
 Babel <3.9m> and hyphenation patterns for 69 languages loaded.
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\fithesis\fithesis3.cls"
@@ -282,103 +282,128 @@ Package babel Info: Making " an active character on input line 172.
 \cs@wordlen=\count92
 Package babel Info: Making - an active character on input line 226.
 ))
-("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\amsmath\amsmath.sty"
-Package: amsmath 2013/01/14 v2.14 AMS math features
-\@mathmargin=\skip43
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\hyperref\hyperref.sty"
+Package: hyperref 2012/11/06 v6.83m Hypertext links for LaTeX
 
-For additional information on amsmath, use the `?' option.
-("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\amsmath\amstext.sty"
-Package: amstext 2000/06/29 v2.01
+("C:\Program Files (x86)\MiKTeX 2.9\tex\generic\oberdiek\hobsub-hyperref.sty"
+Package: hobsub-hyperref 2012/04/25 v1.12 Bundle oberdiek, subset hyperref (HO)
 
-("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\amsmath\amsgen.sty"
-File: amsgen.sty 1999/11/30 v2.0
-\@emptytoks=\toks17
-\ex@=\dimen106
-))
-("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\amsmath\amsbsy.sty"
-Package: amsbsy 1999/11/29 v1.2d
-\pmbraise@=\dimen107
-)
-("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\amsmath\amsopn.sty"
-Package: amsopn 1999/12/14 v2.01 operator names
-)
-\inf@bad=\count93
-LaTeX Info: Redefining \frac on input line 210.
-\uproot@=\count94
-\leftroot@=\count95
-LaTeX Info: Redefining \overline on input line 306.
-\classnum@=\count96
-\DOTSCASE@=\count97
-LaTeX Info: Redefining \ldots on input line 378.
-LaTeX Info: Redefining \dots on input line 381.
-LaTeX Info: Redefining \cdots on input line 466.
-\Mathstrutbox@=\box26
-\strutbox@=\box27
-\big@size=\dimen108
-LaTeX Font Info:    Redeclaring font encoding OML on input line 566.
-LaTeX Font Info:    Redeclaring font encoding OMS on input line 567.
-\macc@depth=\count98
-\c@MaxMatrixCols=\count99
-\dotsspace@=\muskip10
-\c@parentequation=\count100
-\dspbrk@lvl=\count101
-\tag@help=\toks18
-\row@=\count102
-\column@=\count103
-\maxfields@=\count104
-\andhelp@=\toks19
-\eqnshift@=\dimen109
-\alignsep@=\dimen110
-\tagshift@=\dimen111
-\tagwidth@=\dimen112
-\totwidth@=\dimen113
-\lineht@=\dimen114
-\@envbody=\toks20
-\multlinegap=\skip44
-\multlinetaggap=\skip45
-\mathdisplay@stack=\toks21
-LaTeX Info: Redefining \[ on input line 2665.
-LaTeX Info: Redefining \] on input line 2666.
-)
-("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\tools\tabularx.sty"
-Package: tabularx 2014/10/28 v2.10 `tabularx' package (DPC)
 
-("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\tools\array.sty"
-Package: array 2014/10/28 v2.4c Tabular extension package (FMi)
-\col@sep=\dimen115
-\extrarowheight=\dimen116
-\NC@list=\toks22
-\extratabsurround=\skip46
-\backup@length=\skip47
+("C:\Program Files (x86)\MiKTeX 2.9\tex\generic\oberdiek\hobsub-generic.sty"
+Package: hobsub-generic 2012/04/25 v1.12 Bundle oberdiek, subset generic (HO)
+Package: hobsub 2012/04/25 v1.12 Construct package bundles (HO)
+Package: infwarerr 2010/04/08 v1.3 Providing info/warning/error messages (HO)
+Package: ltxcmds 2011/11/09 v1.22 LaTeX kernel commands for general use (HO)
+Package hobsub Info: Skipping package `ifluatex' (already loaded).
+Package: ifvtex 2010/03/01 v1.5 Detect VTeX and its facilities (HO)
+Package ifvtex Info: VTeX not detected.
+Package: intcalc 2007/09/27 v1.1 Expandable calculations with integers (HO)
+Package: ifpdf 2011/01/30 v2.3 Provides the ifpdf switch (HO)
+Package ifpdf Info: pdfTeX in PDF mode is detected.
+Package: etexcmds 2011/02/16 v1.5 Avoid name clashes with e-TeX commands (HO)
+Package etexcmds Info: Could not find \expanded.
+(etexcmds)             That can mean that you are not using pdfTeX 1.50 or
+(etexcmds)             that some package has redefined \expanded.
+(etexcmds)             In the latter case, load this package earlier.
+Package: kvsetkeys 2012/04/25 v1.16 Key value parser (HO)
+Package: kvdefinekeys 2011/04/07 v1.3 Define keys (HO)
+Package: pdftexcmds 2011/11/29 v0.20 Utility functions of pdfTeX for LuaTeX (HO
 )
-\TX@col@width=\dimen117
-\TX@old@table=\dimen118
-\TX@old@col=\dimen119
-\TX@target=\dimen120
-\TX@delta=\dimen121
-\TX@cols=\count105
-\TX@ftn=\toks23
+Package pdftexcmds Info: LuaTeX not detected.
+Package pdftexcmds Info: \pdf@primitive is available.
+Package pdftexcmds Info: \pdf@ifprimitive is available.
+Package pdftexcmds Info: \pdfdraftmode found.
+Package: pdfescape 2011/11/25 v1.13 Implements pdfTeX's escape features (HO)
+Package: bigintcalc 2012/04/08 v1.3 Expandable calculations on big integers (HO
 )
-(C:\Users\Sykor_000\AppData\Roaming\MiKTeX\2.9\tex\latex\booktabs\booktabs.sty
-Package: booktabs 2005/04/14 v1.61803 publication quality tables
-\heavyrulewidth=\dimen122
-\lightrulewidth=\dimen123
-\cmidrulewidth=\dimen124
-\belowrulesep=\dimen125
-\belowbottomsep=\dimen126
-\aboverulesep=\dimen127
-\abovetopsep=\dimen128
-\cmidrulesep=\dimen129
-\cmidrulekern=\dimen130
-\defaultaddspace=\dimen131
-\@cmidla=\count106
-\@cmidlb=\count107
-\@aboverulesep=\dimen132
-\@belowrulesep=\dimen133
-\@thisruleclass=\count108
-\@lastruleclass=\count109
-\@thisrulewidth=\dimen134
-) (fithesis/locale/fithesis-czech.def
+Package: bitset 2011/01/30 v1.1 Handle bit-vector datatype (HO)
+Package: uniquecounter 2011/01/30 v1.2 Provide unlimited unique counter (HO)
+)
+Package hobsub Info: Skipping package `hobsub' (already loaded).
+Package: letltxmacro 2010/09/02 v1.4 Let assignment for LaTeX macros (HO)
+Package: hopatch 2011/06/24 v1.1 Wrapper for package hooks (HO)
+Package: xcolor-patch 2011/01/30 xcolor patch
+Package: atveryend 2011/06/30 v1.8 Hooks at the very end of document (HO)
+Package: atbegshi 2011/10/05 v1.16 At begin shipout hook (HO)
+Package: refcount 2011/10/16 v3.4 Data extraction from label references (HO)
+Package: hycolor 2011/01/30 v1.7 Color options for hyperref/bookmark (HO)
+)
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\oberdiek\auxhook.sty"
+Package: auxhook 2011/03/04 v1.3 Hooks for auxiliary files (HO)
+)
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\oberdiek\kvoptions.sty"
+Package: kvoptions 2011/06/30 v3.11 Key value format for package options (HO)
+)
+\@linkdim=\dimen106
+\Hy@linkcounter=\count93
+\Hy@pagecounter=\count94
+
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\hyperref\pd1enc.def"
+File: pd1enc.def 2012/11/06 v6.83m Hyperref: PDFDocEncoding definition (HO)
+Now handling font encoding PD1 ...
+... no UTF-8 mapping file for font encoding PD1
+)
+\Hy@SavedSpaceFactor=\count95
+
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\00miktex\hyperref.cfg"
+File: hyperref.cfg 2002/06/06 v1.2 hyperref configuration of TeXLive
+)
+Package hyperref Info: Option `unicode' set `true' on input line 4319.
+
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\hyperref\puenc.def"
+File: puenc.def 2012/11/06 v6.83m Hyperref: PDF Unicode definition (HO)
+Now handling font encoding PU ...
+... no UTF-8 mapping file for font encoding PU
+)
+Package hyperref Info: Hyper figures OFF on input line 4443.
+Package hyperref Info: Link nesting OFF on input line 4448.
+Package hyperref Info: Hyper index ON on input line 4451.
+Package hyperref Info: Plain pages OFF on input line 4458.
+Package hyperref Info: Backreferencing OFF on input line 4463.
+Package hyperref Info: Implicit mode ON; LaTeX internals redefined.
+Package hyperref Info: Bookmarks ON on input line 4688.
+\c@Hy@tempcnt=\count96
+
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\url\url.sty"
+\Urlmuskip=\muskip10
+Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
+)
+LaTeX Info: Redefining \url on input line 5041.
+\XeTeXLinkMargin=\dimen107
+\Fld@menulength=\count97
+\Field@Width=\dimen108
+\Fld@charsize=\dimen109
+Package hyperref Info: Hyper figures OFF on input line 6295.
+Package hyperref Info: Link nesting OFF on input line 6300.
+Package hyperref Info: Hyper index ON on input line 6303.
+Package hyperref Info: backreferencing OFF on input line 6310.
+Package hyperref Info: Link coloring OFF on input line 6315.
+Package hyperref Info: Link coloring with OCG OFF on input line 6320.
+Package hyperref Info: PDF/A mode OFF on input line 6325.
+LaTeX Info: Redefining \ref on input line 6365.
+LaTeX Info: Redefining \pageref on input line 6369.
+\Hy@abspage=\count98
+\c@Item=\count99
+\c@Hfootnote=\count100
+)
+
+Package hyperref Message: Driver (autodetected): hpdftex.
+
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\hyperref\hpdftex.def"
+File: hpdftex.def 2012/11/06 v6.83m Hyperref driver for pdfTeX
+\Fld@listcount=\count101
+\c@bookmark@seq@number=\count102
+
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\oberdiek\rerunfilecheck.sty"
+Package: rerunfilecheck 2011/04/15 v1.7 Rerun checks for auxiliary files (HO)
+Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 2
+82.
+)
+\Hy@SectionHShift=\skip43
+)
+Package hyperref Info: Option `pageanchor' set `false' on input line 40.
+
+(fithesis/locale/fithesis-czech.def
 File: fithesis/locale/fithesis-czech.def 2015/06/26
 ) (fithesis/locale/mu/fithesis-czech.def
 File: fithesis/locale/mu/fithesis-czech.def 2015/06/26
@@ -401,21 +426,23 @@ Package xcolor Info: Driver file: pdftex.def on input line 225.
 
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\pdftex-def\pdftex.def"
 File: pdftex.def 2011/05/27 v0.06d Graphics/color for pdfTeX
-
-("C:\Program Files (x86)\MiKTeX 2.9\tex\generic\oberdiek\infwarerr.sty"
-Package: infwarerr 2010/04/08 v1.3 Providing info/warning/error messages (HO)
-)
-("C:\Program Files (x86)\MiKTeX 2.9\tex\generic\oberdiek\ltxcmds.sty"
-Package: ltxcmds 2011/11/09 v1.22 LaTeX kernel commands for general use (HO)
-)
-\Gread@gobject=\count110
+\Gread@gobject=\count103
 )
 (C:\Users\Sykor_000\AppData\Roaming\MiKTeX\2.9\tex\latex\colortbl\colortbl.sty
 Package: colortbl 2012/02/13 v1.0a Color table columns (DPC)
-\everycr=\toks24
-\minrowclearance=\skip48
+
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\tools\array.sty"
+Package: array 2014/10/28 v2.4c Tabular extension package (FMi)
+\col@sep=\dimen110
+\extrarowheight=\dimen111
+\NC@list=\toks17
+\extratabsurround=\skip44
+\backup@length=\skip45
 )
-\rownum=\count111
+\everycr=\toks18
+\minrowclearance=\skip46
+)
+\rownum=\count104
 Package xcolor Info: Model `cmy' substituted by `cmy0' on input line 1337.
 Package xcolor Info: Model `hsb' substituted by `rgb' on input line 1341.
 Package xcolor Info: Model `RGB' extended on input line 1353.
@@ -425,7 +452,8 @@ Package xcolor Info: Model `tHsb' substituted by `hsb' on input line 1357.
 Package xcolor Info: Model `HSB' substituted by `hsb' on input line 1358.
 Package xcolor Info: Model `Gray' substituted by `gray' on input line 1359.
 Package xcolor Info: Model `wave' substituted by `hsb' on input line 1360.
-) ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\graphics\graphicx.sty"
+)
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\graphics\graphicx.sty"
 Package: graphicx 2014/10/28 v1.0g Enhanced LaTeX Graphics (DPC,SPQR)
 
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\graphics\graphics.sty"
@@ -439,8 +467,8 @@ File: graphics.cfg 2007/01/18 v1.5 graphics configuration of teTeX/TeXLive
 )
 Package graphics Info: Driver file: pdftex.def on input line 94.
 )
-\Gin@req@height=\dimen135
-\Gin@req@width=\dimen136
+\Gin@req@height=\dimen112
+\Gin@req@width=\dimen113
 )
 (C:\Users\Sykor_000\AppData\Roaming\MiKTeX\2.9\tex\latex\pdfpages\pdfpages.sty
 Package: pdfpages 2015/09/18 v0.5d Insert pages of external PDF documents (AM)
@@ -450,37 +478,30 @@ Package: ifthen 2014/09/29 v1.1c Standard LaTeX ifthen package (DPC)
 )
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\tools\calc.sty"
 Package: calc 2014/10/28 v4.3 Infix arithmetic (KKT,FJ)
-\calc@Acount=\count112
-\calc@Bcount=\count113
-\calc@Adimen=\dimen137
-\calc@Bdimen=\dimen138
-\calc@Askip=\skip49
-\calc@Bskip=\skip50
+\calc@Acount=\count105
+\calc@Bcount=\count106
+\calc@Adimen=\dimen114
+\calc@Bdimen=\dimen115
+\calc@Askip=\skip47
+\calc@Bskip=\skip48
 LaTeX Info: Redefining \setlength on input line 80.
 LaTeX Info: Redefining \addtolength on input line 81.
-\calc@Ccount=\count114
-\calc@Cskip=\skip51
+\calc@Ccount=\count107
+\calc@Cskip=\skip49
 )
 (C:\Users\Sykor_000\AppData\Roaming\MiKTeX\2.9\tex\latex\eso-pic\eso-pic.sty
 Package: eso-pic 2015/07/21 v2.0g eso-pic (RN)
-
-("C:\Program Files (x86)\MiKTeX 2.9\tex\generic\oberdiek\atbegshi.sty"
-Package: atbegshi 2011/10/05 v1.16 At begin shipout hook (HO)
-
-("C:\Program Files (x86)\MiKTeX 2.9\tex\generic\oberdiek\ifpdf.sty"
-Package: ifpdf 2011/01/30 v2.3 Provides the ifpdf switch (HO)
-Package ifpdf Info: pdfTeX in PDF mode is detected.
-)))
-\AM@pagewidth=\dimen139
-\AM@pageheight=\dimen140
+)
+\AM@pagewidth=\dimen116
+\AM@pageheight=\dimen117
 
 (C:\Users\Sykor_000\AppData\Roaming\MiKTeX\2.9\tex\latex\pdfpages\pppdftex.def
 File: pppdftex.def 2015/09/18 v0.5d Pdfpages driver for pdfTeX (AM)
 )
-\AM@pagebox=\box28
-\AM@toc@title=\toks25
-\c@AM@survey=\count115
-\AM@templatesizebox=\box29
+\AM@pagebox=\box26
+\AM@toc@title=\toks19
+\c@AM@survey=\count108
+\AM@templatesizebox=\box27
 ) ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\cmap\cmap.sty"
 Package: cmap 2008/03/06 v1.0h CMap support: searchable PDF
 )
@@ -525,20 +546,7 @@ Package: mathpazo 2005/04/12 PSNFSS-v9.2a Palatino w/ Pazo Math (D.Puga, WaS)
 )
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\tex-gyre\tgpagella.sty"
 Package: tgpagella 2009/09/27 v1.2 TeX Gyre Pagella as default roman family
-
-("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\oberdiek\kvoptions.sty"
-Package: kvoptions 2011/06/30 v3.11 Key value format for package options (HO)
-
-("C:\Program Files (x86)\MiKTeX 2.9\tex\generic\oberdiek\kvsetkeys.sty"
-Package: kvsetkeys 2012/04/25 v1.16 Key value parser (HO)
-
-("C:\Program Files (x86)\MiKTeX 2.9\tex\generic\oberdiek\etexcmds.sty"
-Package: etexcmds 2011/02/16 v1.5 Avoid name clashes with e-TeX commands (HO)
-Package etexcmds Info: Could not find \expanded.
-(etexcmds)             That can mean that you are not using pdfTeX 1.50 or
-(etexcmds)             that some package has redefined \expanded.
-(etexcmds)             In the latter case, load this package earlier.
-))))
+)
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\base\fontenc.sty"
 Package: fontenc 2005/09/27 v1.99g Standard LaTeX package
 
@@ -551,166 +559,63 @@ LaTeX Font Info:    Try loading font information for T1+qpl on input line 105.
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\tex-gyre\t1qpl.fd"
 File: t1qpl.fd 2009/09/25 v1.2 font definition file for T1/qpl
 )<<t1.cmap>>)
-("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\hyperref\hyperref.sty"
-Package: hyperref 2012/11/06 v6.83m Hypertext links for LaTeX
-
-("C:\Program Files (x86)\MiKTeX 2.9\tex\generic\oberdiek\hobsub-hyperref.sty"
-Package: hobsub-hyperref 2012/04/25 v1.12 Bundle oberdiek, subset hyperref (HO)
-
-
-("C:\Program Files (x86)\MiKTeX 2.9\tex\generic\oberdiek\hobsub-generic.sty"
-Package: hobsub-generic 2012/04/25 v1.12 Bundle oberdiek, subset generic (HO)
-Package: hobsub 2012/04/25 v1.12 Construct package bundles (HO)
-Package hobsub Info: Skipping package `infwarerr' (already loaded).
-Package hobsub Info: Skipping package `ltxcmds' (already loaded).
-Package hobsub Info: Skipping package `ifluatex' (already loaded).
-Package: ifvtex 2010/03/01 v1.5 Detect VTeX and its facilities (HO)
-Package ifvtex Info: VTeX not detected.
-Package: intcalc 2007/09/27 v1.1 Expandable calculations with integers (HO)
-Package hobsub Info: Skipping package `ifpdf' (already loaded).
-Package hobsub Info: Skipping package `etexcmds' (already loaded).
-Package hobsub Info: Skipping package `kvsetkeys' (already loaded).
-Package: kvdefinekeys 2011/04/07 v1.3 Define keys (HO)
-Package: pdftexcmds 2011/11/29 v0.20 Utility functions of pdfTeX for LuaTeX (HO
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\tools\tabularx.sty"
+Package: tabularx 2014/10/28 v2.10 `tabularx' package (DPC)
+\TX@col@width=\dimen118
+\TX@old@table=\dimen119
+\TX@old@col=\dimen120
+\TX@target=\dimen121
+\TX@delta=\dimen122
+\TX@cols=\count109
+\TX@ftn=\toks20
 )
-Package pdftexcmds Info: LuaTeX not detected.
-Package pdftexcmds Info: \pdf@primitive is available.
-Package pdftexcmds Info: \pdf@ifprimitive is available.
-Package pdftexcmds Info: \pdfdraftmode found.
-Package: pdfescape 2011/11/25 v1.13 Implements pdfTeX's escape features (HO)
-Package: bigintcalc 2012/04/08 v1.3 Expandable calculations on big integers (HO
-)
-Package: bitset 2011/01/30 v1.1 Handle bit-vector datatype (HO)
-Package: uniquecounter 2011/01/30 v1.2 Provide unlimited unique counter (HO)
-)
-Package hobsub Info: Skipping package `hobsub' (already loaded).
-Package: letltxmacro 2010/09/02 v1.4 Let assignment for LaTeX macros (HO)
-Package: hopatch 2011/06/24 v1.1 Wrapper for package hooks (HO)
-Package: xcolor-patch 2011/01/30 xcolor patch
-Package: atveryend 2011/06/30 v1.8 Hooks at the very end of document (HO)
-Package hobsub Info: Skipping package `atbegshi' (already loaded).
-Package: refcount 2011/10/16 v3.4 Data extraction from label references (HO)
-Package: hycolor 2011/01/30 v1.7 Color options for hyperref/bookmark (HO)
-)
-("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\oberdiek\auxhook.sty"
-Package: auxhook 2011/03/04 v1.3 Hooks for auxiliary files (HO)
-)
-\@linkdim=\dimen141
-\Hy@linkcounter=\count116
-\Hy@pagecounter=\count117
-
-("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\hyperref\pd1enc.def"
-File: pd1enc.def 2012/11/06 v6.83m Hyperref: PDFDocEncoding definition (HO)
-Now handling font encoding PD1 ...
-... no UTF-8 mapping file for font encoding PD1
-)
-\Hy@SavedSpaceFactor=\count118
-
-("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\00miktex\hyperref.cfg"
-File: hyperref.cfg 2002/06/06 v1.2 hyperref configuration of TeXLive
-)
-Package hyperref Info: Hyper figures OFF on input line 4443.
-Package hyperref Info: Link nesting OFF on input line 4448.
-Package hyperref Info: Hyper index ON on input line 4451.
-Package hyperref Info: Plain pages OFF on input line 4458.
-Package hyperref Info: Backreferencing OFF on input line 4463.
-Package hyperref Info: Implicit mode ON; LaTeX internals redefined.
-Package hyperref Info: Bookmarks ON on input line 4688.
-\c@Hy@tempcnt=\count119
-
-("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\url\url.sty"
-\Urlmuskip=\muskip11
-Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
-)
-LaTeX Info: Redefining \url on input line 5041.
-\XeTeXLinkMargin=\dimen142
-\Fld@menulength=\count120
-\Field@Width=\dimen143
-\Fld@charsize=\dimen144
-Package hyperref Info: Hyper figures OFF on input line 6295.
-Package hyperref Info: Link nesting OFF on input line 6300.
-Package hyperref Info: Hyper index ON on input line 6303.
-Package hyperref Info: backreferencing OFF on input line 6310.
-Package hyperref Info: Link coloring OFF on input line 6315.
-Package hyperref Info: Link coloring with OCG OFF on input line 6320.
-Package hyperref Info: PDF/A mode OFF on input line 6325.
-LaTeX Info: Redefining \ref on input line 6365.
-LaTeX Info: Redefining \pageref on input line 6369.
-\Hy@abspage=\count121
-\c@Item=\count122
-\c@Hfootnote=\count123
-)
-
-Package hyperref Message: Driver (autodetected): hpdftex.
-
-("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\hyperref\hpdftex.def"
-File: hpdftex.def 2012/11/06 v6.83m Hyperref driver for pdfTeX
-\Fld@listcount=\count124
-\c@bookmark@seq@number=\count125
-
-("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\oberdiek\rerunfilecheck.sty"
-Package: rerunfilecheck 2011/04/15 v1.7 Rerun checks for auxiliary files (HO)
-Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 2
-82.
-)
-\Hy@SectionHShift=\skip52
+(C:\Users\Sykor_000\AppData\Roaming\MiKTeX\2.9\tex\latex\booktabs\booktabs.sty
+Package: booktabs 2005/04/14 v1.61803 publication quality tables
+\heavyrulewidth=\dimen123
+\lightrulewidth=\dimen124
+\cmidrulewidth=\dimen125
+\belowrulesep=\dimen126
+\belowbottomsep=\dimen127
+\aboverulesep=\dimen128
+\abovetopsep=\dimen129
+\cmidrulesep=\dimen130
+\cmidrulekern=\dimen131
+\defaultaddspace=\dimen132
+\@cmidla=\count110
+\@cmidlb=\count111
+\@aboverulesep=\dimen133
+\@belowrulesep=\dimen134
+\@thisruleclass=\count112
+\@lastruleclass=\count113
+\@thisrulewidth=\dimen135
 )
 Package hyperref Info: Option `plainpages' set `false' on input line 142.
-
 (fithesis/style/mu/fithesis-12.clo
 File: fithesis/style/mu/fithesis-12.clo 2015/06/23
 )) (fithesis/style/mu/fithesis-fi.sty
 Package: fithesis/style/mu/fithesis-fi 2015/06/27
 )
-Package hyperref Info: Option `unicode' set `true' on input line 41.
+Package hyperref Info: Option `unicode' set `true' on input line 43.
 
-("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\hyperref\puenc.def"
-File: puenc.def 2012/11/06 v6.83m Hyperref: PDF Unicode definition (HO)
-Now handling font encoding PU ...
-... no UTF-8 mapping file for font encoding PU
-)
-(pdflatex.aux)
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 41.
-LaTeX Font Info:    ... okay on input line 41.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 41.
-LaTeX Font Info:    ... okay on input line 41.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 41.
-LaTeX Font Info:    ... okay on input line 41.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 41.
-LaTeX Font Info:    ... okay on input line 41.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 41.
-LaTeX Font Info:    ... okay on input line 41.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 41.
-LaTeX Font Info:    ... okay on input line 41.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 41.
-LaTeX Font Info:    ... okay on input line 41.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 41.
-LaTeX Font Info:    ... okay on input line 41.
-
-(C:\Users\Sykor_000\AppData\Roaming\MiKTeX\2.9\tex\context\base\supp-pdf.mkii
-[Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count126
-\scratchdimen=\dimen145
-\scratchbox=\box30
-\nofMPsegments=\count127
-\nofMParguments=\count128
-\everyMPshowfont=\toks26
-\MPscratchCnt=\count129
-\MPscratchDim=\dimen146
-\MPnumerator=\count130
-\makeMPintoPDFobject=\count131
-\everyMPtoPDFconversion=\toks27
-)
-\AtBeginShipoutBox=\box31
- ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\oberdiek\pdflscape.sty"
-Package: pdflscape 2008/08/11 v0.10 Display of landscape pages in PDF (HO)
-
-("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\graphics\lscape.sty"
-Package: lscape 2000/10/22 v3.01 Landscape Pages (DPC)
-)
-Package pdflscape Info: Auto-detected driver: pdftex on input line 80.
-)
-Package hyperref Info: Link coloring OFF on input line 41.
+(PDFLATEX.aux)
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 43.
+LaTeX Font Info:    ... okay on input line 43.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 43.
+LaTeX Font Info:    ... okay on input line 43.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 43.
+LaTeX Font Info:    ... okay on input line 43.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 43.
+LaTeX Font Info:    ... okay on input line 43.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 43.
+LaTeX Font Info:    ... okay on input line 43.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 43.
+LaTeX Font Info:    ... okay on input line 43.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 43.
+LaTeX Font Info:    ... okay on input line 43.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 43.
+LaTeX Font Info:    ... okay on input line 43.
+\AtBeginShipoutBox=\box28
+Package hyperref Info: Link coloring OFF on input line 43.
 
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\hyperref\nameref.sty"
 Package: nameref 2012/10/27 v2.43 Cross-referencing by name of section
@@ -718,21 +623,44 @@ Package: nameref 2012/10/27 v2.43 Cross-referencing by name of section
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\generic\oberdiek\gettitlestring.sty"
 Package: gettitlestring 2010/12/03 v1.4 Cleanup title references (HO)
 )
-\c@section@level=\count132
+\c@section@level=\count114
 )
-LaTeX Info: Redefining \ref on input line 41.
-LaTeX Info: Redefining \pageref on input line 41.
-LaTeX Info: Redefining \nameref on input line 41.
+LaTeX Info: Redefining \ref on input line 43.
+LaTeX Info: Redefining \pageref on input line 43.
+LaTeX Info: Redefining \nameref on input line 43.
 
-(pdflatex.out) (pdflatex.out)
+(PDFLATEX.out) (PDFLATEX.out)
 \@outlinefile=\write3
 
-<fithesis/logo/mu/fithesis-fi-color.pdf, id=108, 291.0875pt x 292.09125pt>
+(C:\Users\Sykor_000\AppData\Roaming\MiKTeX\2.9\tex\context\base\supp-pdf.mkii
+[Loading MPS to PDF converter (version 2006.09.02).]
+\scratchcounter=\count115
+\scratchdimen=\dimen136
+\scratchbox=\box29
+\nofMPsegments=\count116
+\nofMParguments=\count117
+\everyMPshowfont=\toks21
+\MPscratchCnt=\count118
+\MPscratchDim=\dimen137
+\MPnumerator=\count119
+\makeMPintoPDFobject=\count120
+\everyMPtoPDFconversion=\toks22
+) ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\oberdiek\pdflscape.sty"
+Package: pdflscape 2008/08/11 v0.10 Display of landscape pages in PDF (HO)
+
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\graphics\lscape.sty"
+Package: lscape 2000/10/22 v3.01 Landscape Pages (DPC)
+)
+Package pdflscape Info: Auto-detected driver: pdftex on input line 80.
+)
+\big@size=\dimen138
+
+<fithesis/logo/mu/fithesis-fi-color.pdf, id=112, 291.0875pt x 292.09125pt>
 File: fithesis/logo/mu/fithesis-fi-color.pdf Graphic file (type pdf)
 
 <use fithesis/logo/mu/fithesis-fi-color.pdf>
 Package pdftex.def Info: fithesis/logo/mu/fithesis-fi-color.pdf used on input l
-ine 41.
+ine 43.
 (pdftex.def)             Requested size: 113.81102pt x 114.20036pt.
  [1
 
@@ -745,12 +673,7 @@ sis/logo/mu/fithesis-fi-color.pdf>] [2
 ] [-1
 
 
-]pdfTeX warning (ext4): destination with the same identifier (name{page.}) has 
-been already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.41 \begin{document}
-                      [0
+] [0
 
 
 ] [1
@@ -770,7 +693,7 @@ l.41 \begin{document}
 ] [6
 
 
-] (pdflatex.toc
+] (PDFLATEX.toc
 LaTeX Font Info:    Try loading font information for OT1+ppl on input line 2.
 
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\psnfss\ot1ppl.fd"
@@ -808,164 +731,44 @@ LaTeX Font Warning: Font shape `T1/qpl/m/sl' in size <12> not available
 ] [8
 
 
-] (pdflatex.lot)
+] (PDFLATEX.lot)
 \tf@lot=\write5
  [9] [10
 
 
-] (pdflatex.lof)
+] (PDFLATEX.lof)
 \tf@lof=\write6
  [11] [12
 
 
 ]
 Kapitola 1.
-LaTeX Font Info:    Try loading font information for T1+lmtt on input line 47.
+LaTeX Font Info:    Try loading font information for T1+lmtt on input line 49.
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\lm\t1lmtt.fd"
 File: t1lmtt.fd 2009/10/30 v1.6 Font defs for Latin Modern
-)
-Overfull \hbox (6.14969pt too wide) in paragraph at lines 47--48
-[]\T1/qpl/m/n/12 P°edstavené po-stupy bu-dou ná-sledn¥ apli-ko-vány p°i tes-to-
-vání apli-
- []
+) [1
 
 
-Overfull \hbox (0.95374pt too wide) in paragraph at lines 52--53
-[]\T1/qpl/m/n/12 Hotové testy bu-dou spou²-t¥ny au-to-ma-ticky p°i ak-tu-a-li-z
-o-vání apli-
- []
-
-pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has 
-been already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.55 
-      [1
-
-
-]pdfTeX warning (ext4): destination with the same identifier (name{page.2}) has
- been already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.56   \chapter
-               {TestovÃ¡nÃ­ webovÃ© aplikace a pouÅ¾itÃ© pÅ™Ã­stupy} [2]
+] [2]
 Kapitola 2.
-
-Package hyperref Warning: Composite letter `\textasciicaron+r'
-(hyperref)                not defined in PD1 encoding,
-(hyperref)                removing `\textasciicaron' on input line 56.
-
-
-Overfull \hbox (4.62294pt too wide) in paragraph at lines 56--56
-[]\T1/qpl/b/n/17.28 2  Tes-to-vání webové apli-kace a po-u-ºité p°í-stupy 
- []
-
-
-Package hyperref Warning: Composite letter `\textasciicaron+c'
-(hyperref)                not defined in PD1 encoding,
-(hyperref)                removing `\textasciicaron' on input line 60.
-
-
-Overfull \hbox (5.1177pt too wide) in paragraph at lines 61--62
-\T1/qpl/m/n/12 Cílem funk£-ního tes-to-vání je otes-to-vání správ-ného cho-vání
- funkcí £ásti
- []
-
-
-Overfull \hbox (7.14584pt too wide) in paragraph at lines 61--62
-\T1/qpl/m/n/12 mezi jed-not-li-vými strán-kami apli-kace, o²et-°ení zá-pisu ne-
-plat-ných hod-
- []
-
-
-Overfull \hbox (9.44962pt too wide) in paragraph at lines 64--65
-\T1/qpl/m/n/12 Tento typ tes-to-vání vy-u-ºívá ma-lých, tes-to-va-tel-ných £ást
-í apli-kace. Touto
- []
-
 [3
 
 
-]
-
-Package hyperref Warning: Composite letter `\textasciicaron+c'
-(hyperref)                not defined in PD1 encoding,
-(hyperref)                removing `\textasciicaron' on input line 73.
-
-
-Package hyperref Warning: Composite letter `\textasciicaron+r'
-(hyperref)                not defined in PD1 encoding,
-(hyperref)                removing `\textasciicaron' on input line 73.
-
-
-Package hyperref Warning: Composite letter `\textasciicaron+n'
-(hyperref)                not defined in PD1 encoding,
-(hyperref)                removing `\textasciicaron' on input line 73.
-
-[4]
-Overfull \hbox (5.09372pt too wide) in paragraph at lines 80--81
-\T1/qpl/m/n/12 cího pro-cesu jsou vhod-ným °e-²e-ním pro tyto si-tu-ace. Mezi j
-e-jich hlavní
- []
-
-[5] [6
-
-
-]
+] [4] [5] [6]
 Kapitola 3.
-[7] [8
+[7
+
+
+] [8
 
 
 ]
 Kapitola 4.
-
-Package hyperref Warning: Composite letter `\textasciicaron+c'
-(hyperref)                not defined in PD1 encoding,
-(hyperref)                removing `\textasciicaron' on input line 84.
-
-
-Overfull \hbox (5.6937pt too wide) in paragraph at lines 85--86
-\T1/qpl/m/n/12 byly po-u-ºity £i s po-u-ºi-tým °e-²e-ním n¥-ja-kým zp·-so-bem s
-ou-visí. Hlavní
- []
-
-
-Overfull \hbox (14.34567pt too wide) in paragraph at lines 88--89
-\T1/qpl/m/n/12 tic-kému tes-to-vání webo-vých apli-kací. Jedná se o open source
- fra-mework,
- []
-
-
-Overfull \hbox (1.0257pt too wide) in paragraph at lines 90--91
-\T1/qpl/m/n/12 mo-hou být r·zné b¥ºn¥ pro-vá-d¥né úkony, jako na-p°í-klad po-hy
-b my²í,
- []
-
-
-Underfull \vbox (badness 4072) has occurred while \output is active []
-
- [9]
-Overfull \hbox (7.94974pt too wide) in paragraph at lines 95--96
-\T1/qpl/m/n/12 Web-Dri-ver a p·-vod-ního Se-le-nium 1.0 a oproti star²í verzi n
-a-bízí mnohá
- []
-
-
-Overfull \hbox (19.01378pt too wide) in paragraph at lines 95--96
-\T1/qpl/m/n/12 ter-net Ex-plo-rer, Mo-zilla Fi-re-fox, Go-o-gle Chrome, Sa-fari
-, Opera, HtmlUnit
- []
-
-[10] [11] [12
+[9] [10] [11] [12
 
 
 ]
 Kapitola 5.
-
-Package hyperref Warning: Composite letter `\textring+u'
-(hyperref)                not defined in PD1 encoding,
-(hyperref)                removing `\textring' on input line 109.
-
 [13] [14
 
 
@@ -976,84 +779,67 @@ Kapitola 6.
 
 ]
 Kapitola 7.
-
-Package hyperref Warning: Composite letter `\textasciicaron+e'
-(hyperref)                not defined in PD1 encoding,
-(hyperref)                removing `\textasciicaron' on input line 111.
-
 [17] [18
 
 
 ]
-Underfull \hbox (badness 7326) in paragraph at lines 117--118
-[]\T1/qpl/m/n/12 3. \T1/qpl/m/it/12 What is Functi-o-nal tes-ting (Tes-ting of 
-functi-ons) in soft-
+Underfull \hbox (badness 1082) in paragraph at lines 123--124
+[]\T1/qpl/m/it/12 What is Unit tes-ting? \T1/qpl/m/n/12 IS-TQB Exam Cer-ti-fi-c
+ation [on-line]. [cit.
  []
 
 
-Underfull \hbox (badness 8000) in paragraph at lines 117--118
-\T1/qpl/m/it/12 ware? \T1/qpl/m/n/12 IS-TQB Exam Cer-ti-fi-cation [on-line]. 20
-15 [cit. 2015-
+Underfull \hbox (badness 10000) in paragraph at lines 124--125
+[]\T1/qpl/m/it/12 What is Re-gres-sion tes-ting in soft-ware? \T1/qpl/m/n/12 IS
+-TQB Exam Cer-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 117--118
-\T1/qpl/m/n/12 04-12]. Do-stupné z: []$\T1/lmtt/m/n/12 http : / / istqbexamcert
-ification . com /
+Underfull \hbox (badness 10000) in paragraph at lines 124--125
+\T1/qpl/m/n/12 ti-fi-cation [on-line]. [cit. 2015-11-06]. Do-stupné z: []$\T1/l
+mtt/m/n/12 http :
  []
 
 
-Overfull \hbox (33.1422pt too wide) in paragraph at lines 117--118
-\T1/lmtt/m/n/12 what-[]is-[]functional-[]testing-[]testing-[]of-[]functions-[]i
-n-[]software/$[] 
+Underfull \hbox (badness 10000) in paragraph at lines 124--125
+\T1/lmtt/m/n/12 / / istqbexamcertification . com / what -[] is -[] regression -
+[]
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 118--119
-[]\T1/qpl/m/n/12 4. \T1/qpl/m/it/12 What is Soft-ware Tes-ting? \T1/qpl/m/n/12 
-IS-TQB Exam Cer-ti-fi-cation
+Underfull \hbox (badness 10000) in paragraph at lines 127--128
+[]\T1/qpl/m/n/12 Fowler, Mar-tin. \T1/qpl/m/it/12 Con-ti-nu-ous in-te-gration. 
+\T1/qpl/m/n/12 Mar-tin Fowler.
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 118--119
-\T1/qpl/m/n/12 [on-line]. 2015 [cit. 2015-04-12]. Do-stupné z: []$\T1/lmtt/m/n/
-12 http : / /
+Underfull \hbox (badness 10000) in paragraph at lines 127--128
+\T1/qpl/m/n/12 [on-line]. 22.11.2015 [cit. 2015-11-22]. Do-stupné z:
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 120--121
-[]\T1/qpl/m/n/12 6. \T1/qpl/m/it/12 What is Re-gres-sion tes-ting in soft-ware?
- \T1/qpl/m/n/12 IS-TQB
+Overfull \hbox (22.99779pt too wide) in paragraph at lines 127--128
+\T1/qpl/m/n/12 http://www.martinfowler.com/articles/continuousIntegration.html 
+
  []
 
-
-Underfull \hbox (badness 10000) in paragraph at lines 120--121
-\T1/qpl/m/n/12 Exam Cer-ti-fi-cation [on-line]. [cit. 2015-11-06]. Do-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 120--121
-\T1/qpl/m/n/12 stupné z: []$\T1/lmtt/m/n/12 http : / / istqbexamcertification .
- com /
- []
-
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 124.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 129.
 [19]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 124.
- (pdflatex.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 124.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 124.
-Package rerunfilecheck Info: File `pdflatex.out' has not changed.
-(rerunfilecheck)             Checksum: 6530016BD1391221D04B010E358CEE9E;1915.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 129.
+ (PDFLATEX.aux)
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 129.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 129.
+Package rerunfilecheck Info: File `PDFLATEX.out' has not changed.
+(rerunfilecheck)             Checksum: 1D0EE7CDF63FF2361087ED283F745D3D;4595.
  ) 
 Here is how much of TeX's memory you used:
- 12137 strings out of 493673
- 169420 string characters out of 3141517
- 247292 words of memory out of 3000000
- 15156 multiletter control sequences out of 15000+200000
+ 11518 strings out of 493673
+ 161872 string characters out of 3141517
+ 246868 words of memory out of 3000000
+ 14597 multiletter control sequences out of 15000+200000
  60570 words of font info for 61 fonts, out of 3000000 for 9000
- 1025 hyphenation exceptions out of 8191
- 51i,7n,38p,1029b,4011s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 1026 hyphenation exceptions out of 8191
+ 52i,7n,38p,1027b,345s stack positions out of 5000i,500n,10000p,200000b,50000s
 {C:/Program Files (x86)/MiKTeX 2.9/fonts/enc/dvips/lm/lm-ec.enc}{C:/Program F
 iles (x86)/MiKTeX 2.9/fonts/enc/dvips/tex-gyre/q-ec.enc}{C:/Program Files (x86)
 /MiKTeX 2.9/fonts/enc/dvips/tex-gyre/q-ec-sc.enc}<C:/Program Files (x86)/MiKTeX
@@ -1062,9 +848,9 @@ type1/public/lm/lmtt12.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/publi
 c/tex-gyre/qplb.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/tex-g
 yre/qplr.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/tex-gyre/qpl
 ri.pfb>
-Output written on pdflatex.pdf (35 pages, 215445 bytes).
+Output written on PDFLATEX.pdf (35 pages, 219380 bytes).
 PDF statistics:
- 368 PDF objects out of 1000 (max. 8388607)
- 77 named destinations out of 1000 (max. 500000)
- 234 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 346 PDF objects out of 1000 (max. 8388607)
+ 49 named destinations out of 1000 (max. 500000)
+ 242 words of extra memory for PDF output out of 10000 (max. 10000000)
 
