@@ -46,7 +46,7 @@ Vývoj softwaru je komplexní proces sestávající z~mnoha kroků. Tento proces
 
 Webové aplikace jsou dnes velice rozšířeným druhem softwaru. Testování webové aplikace zahrnuje spoustu oblastí, jmenovitě například funkční testování, testování kompatibility či validace a verifikace. Tyto způsoby testování se běžně používají pro testování softwaru obecně, nicméně testování webových aplikací má svá specifika. Metodami testování použitými pro testování konkrétní webové aplikace se bude zabývat druhá kapitola.
 
-Představené postupy budou následně aplikovány při testování aplikace pro výuku zeměpisu – Slepé mapy\footnote{\url{http://slepemapy.cz/}}. Jelikož tato aplikace postrádá specifikaci softwaru, bude důležitou částí práce analýza aplikace, čemuž bude věnována třetí kapitola. Tato práce je zaměřena na funkční testování, proto zde bude také popsáno chování a funkčnost aplikace, jež bude následně otestována.
+Představené postupy budou následně aplikovány při testování aplikace pro výuku zeměpisu – Slepé mapy\cite{SlepeMapy}. Jelikož tato aplikace postrádá specifikaci softwaru, bude důležitou částí práce analýza aplikace, čemuž bude věnována třetí kapitola. Tato práce je zaměřena na funkční testování, proto zde bude také popsáno chování a funkčnost aplikace, jež bude následně otestována.
 
 Pro tvorbu samotných testů je možno vybrat ze široké škály nástrojů. Pro testování aplikace Slepé mapy byla vybrána testovací platforma Arquillian a rozšiřující plugin Graphene. Tato platforma si zaslouží podrobnější popis, proto se čtvrtá kapitola bude zabývat představením tohoto a dalších použitých nástrojů.
 Na získaných znalostech o~použitých technologiích bude stavět pátá kapitola, ve které bude vysvětlen postup při tvorbě testů. Vysvětlen bude kompletní postup použitý při testování webové aplikace Slepé mapy, a to od počáteční tvorby testového plánu, rozdělení aplikace na testovatelné části, návrh jednotlivých testových případů a následně jejich realizace pomocí výše zmíněných technologií.
@@ -127,9 +127,40 @@ Druhým Selenium nástrojem pro tvorbu testů je Selenium IDE\footnote{Integrate
 Jednoduchost tohoto nástroje je jeho silná stránka, nicméně není příliš vhodný k tvrobě složitějších testů. Pro větší množství robustnějších testů je vhodnější použít nástroj Selenium WebDriver. Další nevýhodou je také vázanost pouze na internetový prohlížeč Mozilla Firefox. Tuto vlastnost lze částečně obejít exportem testových případů do programovacího jazyka Java, Ruby, Python nebo C\# a následným udržováním v některém z testovacích aplikačních rámců.
 
 \subsection{Selenium Grid}
-Za zmínku stojí také nástroj původně nazývaný Selenium Grid. Ve své podstatě se jedná o prostředí k distribuovanému provádění testů. To sebou přináší dvě hlavní výhody. Je možné testy současně provádět na více strojích, každý s různým webovým prohlížečem (případně jinými verzemi stejného prohlížeče) nebo operačním systémem. Další z výhod je snížení času potřebného k provedení testů díky paralelnímu zpracování na více strojích. Momentálně není tento nástroj dostupný samostatně, ale jeho funkcionalita je obsažena v nástroji Selenium RC, který je také součástí nástroje Selenium WebDriver\cite{Selenium}.
+Za zmínku stojí také nástroj původně nazývaný Selenium Grid. Ve své podstatě se jedná o prostředí k distribuovanému provádění testů. To sebou přináší dvě hlavní výhody. Je možné testy současně provádět na více strojích, každý s různým webovým prohlížečem (případně jinými verzemi stejného prohlížeče) nebo operačním systémem. Další z výhod je snížení času potřebného k provedení testů díky paralelnímu zpracování na více strojích. Momentálně není tento nástroj dostupný samostatně, ale jeho funkcionalita je obsažena v nástroji Selenium RC, který je také součástí nástroje Selenium WebDriver \cite{Selenium}.
+
 \section{Arquillian}
+
+Arquillian je testovací platformou vyvinutou za účelem tvorby automatizovaných integračních, funkčních a akceptačních testů v prostředí Java EE\footnote{Java Platform, Enterprise Edition}. Zjednodušuje testování pomocí správy běhu programu, čehož dosahuje pomocí:
+\begin{itemize}
+\item Správy životního cyklu kontejneru (kontejnerů)
+\item Zabalením testovacího případu, všech závislých tříd a zdrojů do ShrinkWrap \cite{ShrinkWrap} archivu (archivů)
+\item Nasazení archivu (archivů) do kontejneru (kontejnerů)
+\item Obohacení testového případu poskytnutím injekce závislostí a ostatních deklarativních služeb
+\item Provádění testů uvnitř (nebo proti) kontejneru
+\item Zachycení výsledků a jejich předání spouštěči testů, který o výsledcích reportuje
+\end{itemize}
+
+Projekt Arquillian se řídí třemi základními principy. Prvním z nich je přenositelnost testů do jakéhokoliv podporovaného kontejneru. Jelikož rozhraní specifické pro jednotlivé kontejnery není v testech používáno, lze verifikovat přenositelnost aplikace spuštěním testů v různých kontejnerech.
+
+Dalším principem je možnost spouštět testy jak přímo z vývojového prostředí, tak pomocí nástroje pro sestavení aplikace. Z vývojového prostředí je při testování možné přeskočit krok sestavení aplikace a ušetřit čas. Navíc vývojář může pracovat ve svém vývojovém prostředí, s nímž je obeznámen. Tyto výhody neznemožňují využít testy v systému průběžné integrace.
+
+Poslední z řídících principů je rozšiřování či integrování stávajících testovacích aplikačních rámců. Spouštění Arquillian testů je proto jednoduché jak přímo z vývojového prostředí výběrem \uv{Run As > Test} nebo spuštěním cíle \uv{test} v nástroji pro sestavení aplikace.
+
+Aby nebylo zbytečně komplikováno sestavení aplikace, tak lze Arquillian integrovat s testovacími aplikačními rámci jako například JUnit nebo TestNG. Arquillian také nabízí několik rozšíření. Těmi hlavními pro účely této práce jsou Arquillian Graphene a Arquillian Drone, které budou nyní představeny.
+
 \subsection{Arquillian Graphene}
+
+Arquillian Graphene si klade za cíl rozšířit možnosti Selenium WebDriver technologie a přidává spousu vlastností umožňujících psát znovu použitelné a udržovatelné funkční testy. Důraz je také kladen na jednoduché rozhraní, přenositelnost mezi webovými prohlížeči a psaní robustních testů podporujících AJAX\footnote{Asynchronous JavaScript and XML} technologii. Arquillian Graphene je závislý na rozšíření Arquillian Drone, které se stará o životní cyklus použitých webových prohlížečů. Rozšíření Drone bude podrobněji popsáno níže.
+
+Jednou z vlastností rozšíření Graphene je podporování ve využití abstrakcí webové stránky, konkrétně objekty stránky(Page Objects) a fragmenty stránky(Page Fragments). Objekt stránky zapouzdřuje strukturu testované stránky do jediného objektu, se kterým následně test komunikuje. Takto zapouzdřený objekt by měl vývojáři nabízet stejné služby jako modelovaná stránka. Zároveň by ale měl být jediným místem, které pracuje s vnitřní strukturou webové stránky. Jednoduše řečeno se jedná o rozhraní testované stránky. Díky tomu je při změně uživatelského rozhraní testované webové stránky nutné provést změnu jen na jednom místě v objektu stránky. Výhodou využití objektů stránky je také omezení duplicity a tvorba robustního kódu \cite{Selenium}.
+
+Druhou možnou abstrakcí webové stránky jsou fragmenty stránky. Jde o velice podobný koncept jako v případě objektů stránky. Také jde o zapouzdření struktury, ale na rozdíl od objektů stránky nejde o zapouzdření určité webové stránky (nebo její část). Fragment stránky zapouzdřuje pouze určitou malou součást stránky, která je znovu použitelná napříč všemi testovanými stránkami \cite{Graphene}. Příkladem může být navigační menu, které je součástí více webových stránek. Pokud by mělo být využito pouze objektů stránek, tak by struktura tohoto navigačního menu musela být opakovaně definována ve všech objektech stránky, které jej využívají. Lze ale definovat pouze jeden fragment stránky pro toto navigační menu a v objektech stránky pouze využívat tento fragment. Konkrétní použití obou druhů abstrakcí bude popsáno v páté kapitole.
+
+Dále Graphene nabízí vylepšení synchronizace s webovým prohlížečem. Toto je velice důležitá vlastnost, jelikož WebDriver příkazy jsou vykonávány rychleji, než dokáže webový prohlížeč provést změnu stavu stránky. Pomocí \emph{Waiting API} rozhraní lze test synchronizovat například čekáním, dokud se na stránce nezobrazí určitý element nebo dokud nebude splněna nějaká podmínka. Další možností synchronizace je využití tzv. \emph{Request Guards.} Ty umožňují ověřit, zda daná interakce s webovým prohlížečem vyvolala příslušný požadavek na server. Je možno ověřovat, zda došlo k HTTP nebo AJAX požadavku, případně zda nedošlo k žádnému požadavku. Vykonávání interakce s prohlížečem musí skončit v časovém intervalu příslušném druhu požadavku. Pokud skončí dříve, tak se pokračuje ve vykonávání testu.
+
+Dalším vylepšením oproti Selenium WebDriver technologii je také rozšíření možností, jak nalézt požadované prvky testovaného uživatelského rozhraní. Kromě metody @FindBy, kterou využívá i WebDriver, podporuje Graphene také možnost vytvořit vlastní vyhledávací strategie. Metoda @FindByJQuery, která umožňuje vyhledávat na základě JQuery dotazu, je v Graphene již vytvořená a okamžitě použitelná.
+
 \subsection{Arquillian Drone}
 \section{Ostatní nástroje}
 \subsection{Git}
@@ -152,6 +183,10 @@ Hlavní částí této práce je vytvoření funkčních testů pro aplikaci Sle
 \bibitem{Selenium}\emph{Selenium documentation.} [online]. 12.11.2015 [cit. 2015-11-12]. Dostupné z: \url{http://docs.seleniumhq.org/docs/index.jsp}
 \bibitem{SeleniumGithub}\emph{Selenium documentation} [online]. 12.11.2015 [cit. 2015-11-12]. Dostupné z:\url{https://seleniumhq.github.io/docs/index.html}
 \bibitem{Fowler}Fowler, Martin. \emph{Continuous integration.} Martin Fowler. [online]. 22.11.2015 [cit. 2015-11-22]. Dostupné z: \url{http://www.martinfowler.com/articles/continuousIntegration.html}
-\bibitem{Guru99} \emph{Static Vs Dynamic Testing.} Guru99. [online]. © 2015 [cit. 2015-11-26]. Dostupné z: \url{http://www.guru99.com/static-dynamic-testing.html}
+\bibitem{Guru99}\emph{Static Vs Dynamic Testing.} Guru99. [online]. © 2015 [cit. 2015-11-26]. Dostupné z: \url{http://www.guru99.com/static-dynamic-testing.html}
+\bibitem{Arquillian}\emph{Arquillian.} Arquillian. [online]. © 2009-2015 [cit. 2015-12-08]. Dostupné z: \url{http://arquillian.org/}
+\bibitem{SlepeMapy}\emph{Slepé Mapy.} Slepé Mapy. [online]. © 2015 [cit. 2015-12-10]. Dostupné z: \url{http://slepemapy.cz/}
+\bibitem{ShrinkWrap}\emph{Creating Deployable Archives with ShrinkWrap} Arquillian Guides. [online]. © 2009-2015 [cit. 2015-12-11]. Dostupné z: \url{http://arquillian.org/guides/shrinkwrap_introduction/}
+\bibitem{Graphene}\emph{Graphene 2.} Project Documentation Editor. [online]. 5.8.2014 [cit. 2015-12-13]. Dostupné z: \url{https://docs.jboss.org/author/display/ARQGRA2}
 \end{thebibliography}
 \end{document}
