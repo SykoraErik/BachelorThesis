@@ -8,7 +8,9 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.openqa.selenium.By;
+import org.openqa.selenium.support.FindBy;
 
+import cz.muni.proso.geography.fragment.AlertMessage;
 import cz.muni.proso.geography.fragment.ProgressButton;
 import cz.muni.proso.geography.page.MapOverview;
 
@@ -18,15 +20,15 @@ public class MapOverviewTest extends TestUtilityClass {
 	@Page
 	private MapOverview page;
 
+	@FindBy(className = "bottom-alert")
+	private AlertMessage alert;
+	
 	@Before
 	public void openPage() {
 		browser.get(BASE_URL + "/overview/");
 		if (!page.getNavMenu().isUserLoggedIn()) {
 			page.getNavMenu().clickLogin();
 			page.getLogin().loginWithEmail(USERNAME, PASSWORD);
-		}
-		if (!page.getNavMenu().getActiveLanguage().equals("en")) {
-			page.getNavMenu().switchLanguage("en");
 		}
 		browser.get(BASE_URL + "/overview/");
 		waitUntilPageLoaded();
@@ -87,6 +89,9 @@ public class MapOverviewTest extends TestUtilityClass {
 
 	@Test
 	public void testStates() {
+		if(alert.isDisplayed()){
+			alert.closeAlert();
+		}
 		page.getListOfStates().get(0).getProgressBar().mouseOver();
 		assertTrue(page.getTooltip().isDisplayed());
 

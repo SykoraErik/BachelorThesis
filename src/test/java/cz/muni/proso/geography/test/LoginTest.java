@@ -2,6 +2,7 @@ package cz.muni.proso.geography.test;
 
 import static org.jboss.arquillian.graphene.Graphene.guardAjax;
 import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.assertFalse;
 
 import org.jboss.arquillian.junit.Arquillian;
 import org.junit.After;
@@ -49,6 +50,7 @@ public class LoginTest extends TestUtilityClass {
 	@After
 	public void logOff() {
 		navMenu.signOut();
+		assertFalse(navMenu.isUserLoggedIn());
 	}
 
 	@Test

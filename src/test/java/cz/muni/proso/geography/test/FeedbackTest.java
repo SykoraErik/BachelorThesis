@@ -20,11 +20,11 @@ public class FeedbackTest extends TestUtilityClass {
 	@FindBy(css = "body > div.modal.fade.ng-isolate-scope.in > div > div")
 	private Feedback feedback;
 
-	@FindBy(css = "#feedback-btn > a")
+	@FindBy(css = "#feedback-btn > span > a.main-btn")
 	private WebElement feedbackButton;
 
 	@Before
-	public void openPage() throws InterruptedException{
+	public void openPage(){
 		browser.get(BASE_URL);
 		Graphene.waitModel().until().element(feedbackButton).is().visible();
 		feedbackButton.click();
@@ -43,10 +43,10 @@ public class FeedbackTest extends TestUtilityClass {
 	}
 
 	@Test
-	public void testErrorDisplay() {
-		feedback.inputOptionalEmail("@");
+	public void testAlertDisplay() {
+		feedback.sendFeedback("graphene-test", EMAIL);
 		feedback.clickSendFeedback();
-		assertFalse(feedback.getAlertMsg().isSuccessAlert());
+		assertTrue(feedback.getAlertMsg().isDisplayed());
 		feedback.getAlertMsg().closeAlert();
 		assertFalse(feedback.getAlertMsg().isDisplayed());
 	}

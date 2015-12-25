@@ -12,25 +12,25 @@ public class Login {
 	@FindBy(className = "alert")
 	private AlertMessage alertMsg;
 
-	@FindBy(xpath = "/html/body/div[6]/div/div/div[2]/a[1]")
+	@FindBy(xpath = "./div[2]/a[1]")
 	private WebElement loginGoogleButton;
 
-	@FindBy(xpath = "/html/body/div[6]/div/div/div[2]/a[2]")
+	@FindBy(xpath = "./div[2]/a[2]")
 	private WebElement loginFacebookButton;
 
-	@FindBy(xpath = "/html/body/div[6]/div/div/div[2]/form/div[1]/input")
+	@FindBy(xpath = "./div[2]/form/div[1]/input")
 	private GrapheneElement loginUsername;
 
-	@FindBy(xpath = "/html/body/div[6]/div/div/div[2]/form/div[2]/input")
+	@FindBy(xpath = "./div[2]/form/div[2]/input")
 	private WebElement loginPassword;
 
-	@FindBy(xpath = "/html/body/div[6]/div/div/div[2]/form/button")
+	@FindBy(xpath = "./div[2]/form/button")
 	private WebElement loginSubmitButton;
 
-	@FindBy(xpath = "/html/body/div[6]/div/div/div[3]/a")
+	@FindBy(xpath = "./div[3]/a")
 	private WebElement signUpButton;
 
-	@FindBy(xpath = "/html/body/div[6]/div/div/div[1]/button")
+	@FindBy(xpath = "./div[1]/button")
 	private WebElement closeLoginButton;
 
 	public AlertMessage getAlertMsg() {
