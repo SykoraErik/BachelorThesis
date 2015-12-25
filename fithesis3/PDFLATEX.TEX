@@ -24,8 +24,8 @@
     advisor       = Mgr. Jan Papoušek,
     title         = {Funkční testování aplikace pro výuku zeměpisu},
     TeXtitle      = {Funkční testování aplikace pro výuku zeměpisu},
-    keywords      = {funkční testování, webové aplikace, Java, Arquillian Graphene, automatizace testování...},
-    TeXkeywords   = {funkční testování, webové aplikace, Java, Arquillian Graphene, automatizace testování\ldots},
+    keywords      = {funkční testování, webová aplikace, Java, Arquillian, automatizace testování...},
+    TeXkeywords   = {funkční testování, webová aplikace, Java, Arquillian, automatizace testování\ldots},
 }
 \thesislong{abstract}{
 	This is the abstract of my thesis, which can
@@ -35,16 +35,22 @@
 \thesislong{thanks}{
 Rád bych zde poděkoval zejména svému vedoucímu Mgr. Janu Papouškovi za cenné rady a odbornou pomoc při tvorbě této práce. Dále chci také poděkovat své rodině za jejich podporu a pochopení během tvorby této práce.
 }
+
+\usepackage{array}
+\newcolumntype{L}[1]{>{\raggedright\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+
 \PassOptionsToPackage{hyphens}{url}
 \usepackage[unicode]{hyperref} 
+\usepackage{listings}
 \hypersetup{pageanchor=false}
 \babelhyphenation[czech]{ap-li-ka-ce}
 \setlength{\emergencystretch}{0.5em}
 \begin{document}
+\lstset{language=Java} 
 \chapter{Úvod}
 Vývoj softwaru je komplexní proces sestávající z~mnoha kroků. Tento proces se liší dle použitého vývojového modelu, nicméně vždy by měl zahrnovat určitou formu testování. Náklady na opravu chyby totiž strmě rostou při jejím pozdním nalezení, v~případě kritického softwaru může neošetřená chyba dokonce způsobit ztráty na životech.
 
-Webové aplikace jsou dnes velice rozšířeným druhem softwaru. Testování webové aplikace zahrnuje spoustu oblastí, jmenovitě například funkční testování, testování kompatibility či validace a verifikace. Tyto způsoby testování se běžně používají pro testování softwaru obecně, nicméně testování webových aplikací má svá specifika. Metodami testování použitými pro testování konkrétní webové aplikace se bude zabývat druhá kapitola.
+Webové aplikace jsou dnes velice rozšířeným druhem softwaru. Testování webové aplikace zahrnuje spoustu oblastí, jmenovitě například funkční testování, testování kompatibility či validace a verifikace. Tyto způsoby testování se běžně používají pro testování softwaru obecně, nicméně testování webových aplikací má svá specifika. Metodami testování použitými pro testování webové aplikace se bude zabývat druhá kapitola.
 
 Představené postupy budou následně aplikovány při testování aplikace pro výuku zeměpisu – Slepé mapy\cite{SlepeMapy}. Jelikož tato aplikace postrádá specifikaci softwaru, bude důležitou částí práce analýza aplikace, čemuž bude věnována třetí kapitola. Tato práce je zaměřena na funkční testování, proto zde bude také popsáno chování a funkčnost aplikace, jež bude následně otestována.
 
@@ -118,7 +124,7 @@ Po dlouhou dobu byl hlavním modulem Selenium projektu Selenium Remote Control (
 Přirozenou evolucí projektu Selenium RC se stal Selenium WebDriver (nazývaný také Selenium 2.0). Ten vznikl sloučením projektu WebDriver a původního Selenium 1.0 a oproti starší verzi nabízí mnohá vylepšení. Tím hlavním je využití tzv. WebDriver API\footnote{Application Programming Interface}, které využívá nativní podpory komunikovat přímo s~webovým prohlížečem. Každý podporovaný webový prohlížeč má svůj vlastní WebDriver, který zajišťuje specifika práce s~tímto prohlížečem. Uživatel pak už jen využívá WebDriver rozhraní, aniž by musel řešit rozdílné chování webových prohlížečů. 
 
 \subsection*{Podpora webových prohlížečů a programovacích jazyků}
-Výhodou Selenium WebDriveru je podpora běžných prohlížečů a programovacích jazyků. Podporováný jsou následující prohlížeče: Internet Explorer, Mozilla Firefox, Google Chrome, Safari, Opera, HtmlUnit a PhantomJS. Selenium WebDriver podporuje velké množství programovacích jazyků, mezi ty hlavní patří například Java, C\#, Ruby, Python a JavaScript.
+Výhodou Selenium WebDriveru je podpora běžných prohlížečů a programovacích jazyků. Podporováný jsou následující prohlížeče: Internet Explorer, Mozilla Firefox, Google Chrome, Safari, Opera a také dva prohlížeče bez uživatelského rozhraní, HtmlUnit a PhantomJS. Selenium WebDriver podporuje velké množství programovacích jazyků, mezi ty hlavní patří například Java, C\#, Ruby, Python a JavaScript.
 
 \subsection{Selenium IDE}
 
@@ -147,7 +153,7 @@ Dalším principem je možnost spouštět testy jak přímo z vývojového prost
 
 Poslední z řídících principů je rozšiřování či integrování stávajících testovacích aplikačních rámců. Spouštění Arquillian testů je proto jednoduché jak přímo z vývojového prostředí výběrem \uv{Run As > Test} nebo spuštěním cíle \uv{test} v nástroji pro sestavení aplikace.
 
-Aby nebylo zbytečně komplikováno sestavení aplikace, tak lze Arquillian integrovat s testovacími aplikačními rámci jako například JUnit nebo TestNG. Arquillian také nabízí několik rozšíření. Těmi hlavními pro účely této práce jsou Arquillian Graphene a Arquillian Drone, které budou nyní představeny.
+Aby nebylo zbytečně komplikováno sestavení aplikace, tak lze Arquillian integrovat s testovacími aplikačními rámci jako například JUnit nebo TestNG. Arquillian také nabízí několik rozšíření. Těmi hlavními pro účely této práce jsou Arquillian Graphene a Arquillian Drone, které budou nyní představeny. Konkrétní způsob použití bude dále vysvětlen v páté kapitole.
 
 \subsection{Arquillian Graphene}
 
@@ -157,19 +163,126 @@ Jednou z vlastností rozšíření Graphene je podporování ve využití abstra
 
 Druhou možnou abstrakcí webové stránky jsou fragmenty stránky. Jde o velice podobný koncept jako v případě objektů stránky. Také jde o zapouzdření struktury, ale na rozdíl od objektů stránky nejde o zapouzdření určité webové stránky (nebo její část). Fragment stránky zapouzdřuje pouze určitou malou součást stránky, která je znovu použitelná napříč všemi testovanými stránkami \cite{Graphene}. Příkladem může být navigační menu, které je součástí více webových stránek. Pokud by mělo být využito pouze objektů stránek, tak by struktura tohoto navigačního menu musela být opakovaně definována ve všech objektech stránky, které jej využívají. Lze ale definovat pouze jeden fragment stránky pro toto navigační menu a v objektech stránky pouze využívat tento fragment. Konkrétní použití obou druhů abstrakcí bude popsáno v páté kapitole.
 
-Dále Graphene nabízí vylepšení synchronizace s webovým prohlížečem. Toto je velice důležitá vlastnost, jelikož WebDriver příkazy jsou vykonávány rychleji, než dokáže webový prohlížeč provést změnu stavu stránky. Pomocí \emph{Waiting API} rozhraní lze test synchronizovat například čekáním, dokud se na stránce nezobrazí určitý element nebo dokud nebude splněna nějaká podmínka. Další možností synchronizace je využití tzv. \emph{Request Guards.} Ty umožňují ověřit, zda daná interakce s webovým prohlížečem vyvolala příslušný požadavek na server. Je možno ověřovat, zda došlo k HTTP nebo AJAX požadavku, případně zda nedošlo k žádnému požadavku. Vykonávání interakce s prohlížečem musí skončit v časovém intervalu příslušném druhu požadavku. Pokud skončí dříve, tak se pokračuje ve vykonávání testu.
+Dále Graphene nabízí vylepšení synchronizace s webovým prohlížečem. Toto je velice důležitá vlastnost, jelikož WebDriver příkazy jsou vykonávány rychleji, než dokáže webový prohlížeč provést změnu stavu stránky. Pomocí \emph{Waiting API} rozhraní lze test synchronizovat například čekáním, dokud se na stránce nezobrazí určitý element nebo dokud nebude splněna nějaká podmínka. Další možností synchronizace je využití tzv. \emph{střežení požadavků}(Request Guards). Ty umožňují ověřit, zda daná interakce s webovým prohlížečem vyvolala příslušný požadavek na server. Je možno ověřovat, zda došlo k HTTP nebo AJAX požadavku, případně zda nedošlo k žádnému požadavku. Vykonávání interakce s prohlížečem musí skončit v časovém intervalu příslušném druhu požadavku. Pokud skončí dříve, tak se pokračuje ve vykonávání testu.
 
-Dalším vylepšením oproti Selenium WebDriver technologii je také rozšíření možností, jak nalézt požadované prvky testovaného uživatelského rozhraní. Kromě metody @FindBy, kterou využívá i WebDriver, podporuje Graphene také možnost vytvořit vlastní vyhledávací strategie. Metoda @FindByJQuery, která umožňuje vyhledávat na základě JQuery dotazu, je v Graphene již vytvořená a okamžitě použitelná.
+Dalším vylepšením oproti Selenium WebDriver technologii je také rozšíření možností, jak nalézt požadované prvky testovaného uživatelského rozhraní. Kromě metody @FindBy, kterou využívá i WebDriver, podporuje Graphene také možnost vytvořit vlastní vyhledávací strategie. Metoda @FindByJQuery, která umožňuje vyhledávat na základě JQuery funkce, je v Graphene již vytvořená a okamžitě použitelná.
 
 \subsection{Arquillian Drone}
+
+Rozšíření Drone přináší do platformy Arquillian technologii Selenium WebDriver, která zjednodušuje práci s uživatelským rozhraním webových stránek. WebDriver poskytuje rozhraní, pomocí nějž lze komunikovat s webovým prohlížečem. Arquillian Drone umožňuje využít toto rozhraní a také přináší další výhody \cite{Drone}:
+\begin{itemize}
+\item Správa životního cyklu webového prohlížeče
+\item Interakce s kontejnery, které poskytuje Arquillian
+\item Jednoduché použití více prohlížečů v jednom testu
+\item Konfigurace je na jediném místě mimo Java kód
+\item Podpora injektování objektů stránek, fragmentů stránek, střežení požadavků a dalších vlastností rozšíření Graphene
+\item Testování mobilních prohlížečů (Arquillian Droidium)
+\item Integrace JavaScriptového nástroje QUnit pro vykonávání testové sady
+\item Kompatibilní s technologiemi Selenium WebDriver a Grid
+\end{itemize}
+
 \section{Ostatní nástroje}
+Pro psaní testů byla zvolena platforma Arquillian, jelikož výše popsané výhody oproti Selenium nástrojům značně zjednodušují psaní testů. To sebou také nese jistá omezení spojená s tímto výběrem. Jelikož Arquillian podporuje pouze programovací jazyk Java, budou testy psány v tomto jazyce. Dále jsou popsány některé další nástroje a technologie, které byly použity.
 \subsection{Git}
+Testovaná aplikace je vyvíjena za pomoci open source verzovacího systému Git \cite{Git}. S tím je také spojena webová služba GitHub, která obsahuje repozitář projektu. Repozitář, v němž je obsažena testovaná aplikace bude následně využit pro systém průběžné integrace. Vytvořené testy se ale nacházejí v jiném repozitáři, který jsem pro tyto účely vytvořil. Práci s oběma repozitáři zajišťuje systém průběžné integrace Travis CI popsaný v kapitole šest.
 \subsection{JUnit}
+JUnit \cite{JUnit} je aplikační rámec pro psaní jednotkových testů v jazyce Java. Tento aplikační rámec využívá k psaní testů také platforma Arquillian. Pro psaní jednotkových testů jsem mohl vybrat také nástroj TestNG, který také Arquillian podporuje, nicméně JUnit je standardně dostupný ve vývojovém prostředí Eclipse, které jsem pro psaní testů využil.
 \subsection{Maven}
+Apache Maven \cite{Maven} je nástroj pro správu, řízení a sestavení aplikací. Základem fungování Mavenu je tzv. Project Object Model soubor. Jde o soubor formátu XML\footnote{Extensible Markup Language}, v němž popsána struktura projektu, všechny použité pluginy, závislosti a další funkce, jako například nastavení profilů či definování vlastních proměnných. Konkrétní nastavení Mavenu použité v této práci bude popsáno v páté kapitole.
 \subsection{Travis CI}
+Travis CI je webová služba umožňující testovat a sestavovat projekty pomocí systému průběžné integrace. Ta umožňuje po zaznamenání změny v repozitáři testované aplikace spustit připravené testy a o výsledku testování informovat. Použitím tohoto systému se bude podrobněji zabývat celá šestá kapitola.
+\subsection{Webové prohlížeče}
+V projektu bylo při testování využito více různých prohlížečů. Díky využití platformy Arquillian s rozšířením Drone je využití více prohlížečů rozumné a samotné testy jsou na výběru prohlížečů nezávislé. Z nejběžnějších prohlížečů byly vybrány prohlížeče Google Chrome a Mozilla Firefox, jelikož jeden z těchto prohlížečů používá více než 85\% uživatelů \cite{Browsers}.
+
+Dále byl vybrán také webový prohlížeč bez uživatelského rozhraní PhantomJS. Výhodou prohlížečů bez uživatelského rozhraní jsou mimo jiné nižší požadavky na zdroje, mírné zrychlení vykonávání testů a jednodušší využití v systémech průběžné integrace. Tento prohlížeč má vestavěnou podporu v použitém systému průběžné integrace Travis CI a je také podporován WebDriver technologií a tím pádem i použitým rozšířením Arquillian Drone.
+
 \chapter{Aplikace Slepé Mapy a její analýza}
-Hlavní částí této práce je vytvoření funkčních testů pro aplikaci Slepé Mapy. V této kapitole bude tato aplikace přiblížena, výsledkem analýzy aplikace bude identifikování funkčních částí aplikace. Pro tyto testované scénáře budou následně napsány testy pomocí zvolených technologií.
+Hlavní částí této práce je vytvoření funkčních testů pro aplikaci Slepé Mapy. V této kapitole bude tato aplikace přiblížena a analyzována její funkcionalita, pro kterou  budou navrhnuty testovací scénáře. Testovacím scénářem je myšlen popis funkcionality, která se bude testovat. Na základě testovacích scénářu budou dále vytvořeny testovací případy, které krok za krokem popisují testovací proces. Z těchto testovacích případů budou následně odvozeny samotné testy napsané pomocí platformy Arquillian v jazyce Java.
+
+Cílem aplikace je hravou formou procvičovat znalosti zeměpisu. Podle vědomostí uživatele aplikace volí podobu a frekvenci opakování otázek. Znalosti uživatele jsou barevně zobrazeny na mapě, což uživateli vizuálně pomáhá určit jeho míru znalosti. Tuto znalost může poměřovat jak sám se sebou, tak proti průměru všech uživatelů. Na výběr k procvičování jsou slepé mapy světa, všech kontinentů a vybraných států. Na těchto mapách lze studovat státy(regiony, provincie, kraje, atd\ldots), města, řeky, jezera, pohoří a ostrovy. Na všech mapách ale zatím nejsou dostupné všechny tyto možnosti.
+
+Procvičování probíhá v sadě otázek po deseti. Po dokončení sady otázek dojde k vyhodnocení úspěšnosti a uživatel dostane body, pomocí kterých zvyšuje úroveň svého profilu. Pokud není uživatel spokojený s dosaženým výsledkem, může opakovat procvičování stejné mapy, případně vybrat mapu jinou. Po několika sadách otázek je uživatel vyzván k subjektivnímu určení obtížnosti otázek, na které odpovídal. Existují 3 typy otázek, lišící se způsobem výběru správné odpovědi:
+
+\begin{itemize}
+\item kliknutím na specifické místo do slepé mapy
+\item pojmenováním jednoho místa vyznačeného na slepé mapě
+\item kliknutím na jedno z dvou a více míst zaznačených na slepé mapě
+\end{itemize}
+
+Aplikace má také vlastní \emph{staging server}, na němž jsou zkoušeny změny v aplikaci před zavedením do hlavní webové stránky aplikace. Testování nejprve probíhalo na webové stránce určené i pro uživatele, nicméně cílem je testovat aplikaci běžící na staging serveru.
+
+\section{Identifikace testovacích scénářů}
+Testovaná aplikace Slepé Mapy nedisponuje vlastní specifikací, proto je nutné věnovat zvláštní pozornost analýze aplikace a výběru správných částí aplikace k testování. Jednoduše řečeno jsem se nejdříve zabýval hledáním testovacích scénářů, které lze chápat jako odpověď na otázku \uv{Co se bude testovat?}. Identifikace scénářů probíhala tak, že jsem systematicky procházel možné stránky aplikace a kladl si otázku: \uv{Jakou funkcionalitu webová aplikace nabízí uživateli?} Cílem bylo nalézt veškeré funkce, které má uživatel dostupné a z těchto vybrat podmnožinu těch nejdůležitějších, které budou testovány. Níže bude stručně popsána testovaná funkcionalita aplikace, rozdělená na ucelené části. Tato funkcionalita bude dokumentována pro každou testovanou část aplikace v podobě následující tabulky obsahující identifikátor a účel scénáře a také identifikátor testovacího případu (či případů), které se zabývají jeho řešením. Celá dokumentace se nachází v příloze.
+
+\begin{table}[h]
+\begin{tabular}{ | L{2cm} | L{7cm} | L{2cm}}
+\hline
+	ID scénáře & Účel scénáře & Testovací případ \\ \hline
+	A\_SC1 & Ověřit funkčnost odeslání zpětné vazby & A1 \\ \hline
+	A\_SC2 & Ověřit funkčnost zavření formuláře zpětné vazby & A2 \\ \hline
+	A\_SC3.1 & Ověřit funkčnost chybových hlášek formuláře zpětné vazby & A3 \\ \hline
+	A\_SC3.2 & Ověřit zavření chybových hlášek formuláře zpětné vazby & A4 \\ \hline
+\end{tabular}
+\caption{Testovací scénáře zpětné vazby}
+\end{table}
+
+\subsection{Přehledová mapa}
+Jednou z nejdůležitějších částí testované aplikace jsou bezesporu mapy. Jejich správná funkčnost bude pro bezchybný běh aplikace klíčová a bude zahrnuta do testovací sady. Konkrétně lze na mapě testovat spoustu vlastností. Hlavní bude ověření správnosti zobrazených informací o místech na mapě, všechna místa musí mít svůj popis zobrazený po najetí myší. Veškerá procvičovaná místa musí být zobrazena v podobě seznamu také v ovládacím panelu mapy, který mimo jiné obsahuje i přepínání mezi druhy map, případně skrytí a odkrytí části mapy (například všech států) a odkazy na procvičování. Zmíněná funkcionalita bude také otestována. Dále bude testována funkčnost tlačítek pro přepínání znalostí mezi průměrným a aktuálním uživatelem a také možnost přiblížit či oddálit mapu. Ve spojení s procvičováním bude také vhodné otestovat, zda se na mapách správně zaznačují změny ve znalostech uživatele.
+
+\subsection{Procvičování}
+Procvičování slepých map je hlavní funkcionalitou této aplikace, proto se procvičování bude věnovat podstatná část testů. Při procvičování mají mapy trochu jiné vlastnosti oproti přehledovým mapám. Tou hlavní je možnost při odpovídání na otázku kliknout do mapy na vybrané místo, které se následně obarví dle správnosti odpovědi. Je také třeba otestovat vyznačení míst, která lze vybrat jako odpověď. Při výběru odpovědi z více míst vyznačených na mapě by kliknutí na jiná než vyznačená místa neměla provést žádnou akci. Dalším prvkem při procvičování je ovládací panel, který obsahuje aktuální otázku, tlačítka pro pokračování a dle typu otázky i seznam možných odpovědí a zvýraznění možných odpovědí v mapě. Kromě zde zmíněné funkcionality bude dále předmětem testování ukazatel postupu, který dává uživateli vizuální informaci o zbývajícím počtu otázek. Poslední testovanou funkcionalitou bude panel vyhodnocení, který zobrazuje přehled úspěšnosti v procvičované sadě otázek a obsahuje tlačítka pro pokračování procvičování, přechod na světovou mapu a na výběr jiné mapy.
+
+\subsection{Přihlášení a registrace uživatele}
+Pro zachování svého postupu se může uživatel registrovat. Pro vytvoření účtu se lze registrovat kliknutím na možnost \uv{Přihlásit se} v navigačním menu, což vyvolá přihlašovací formulář. V tomto formuláři lze kromě možnosti přihlášení se vybrat také možnost \uv{Registrovat se}, což vyvolá registrační formulář pro zadání registračních údajů. Je možné provést registraci vytvořením nového účtu na stránce aplikace, což vyžaduje zadat platný e-mail a heslo. Dále aplikace nabízí možnost registrovat se a následně se přihlásit pomocí uživatelova existujícího Facebook či Google účtu. Tato funkcionalita si vynucuje interakci s webovou stránou mimo testovanou aplikaci, i přesto se ale testování bude věnovat i této části. Nicméně je nutné mít na paměti, že funkcionalita registrace a přihlášení pomocí Google a Facebook účtu se může nečekaně změnit, testy zabývající se touto částí aplikace proto budou méně robustní.
+
+\subsection{Navigační menu}
+Navigační menu je hlavním nástrojem k pohybu po stránce. Testování funkcionality této části aplikace bude přímočaré, půjde hlavně o funkčnost všech odkazů a rozbalovacích menu, které navigační menu poskytuje. Dále lze z navigačního menu vyvolat formulář pro přihlášení uživatele a možnost změnit jazyk. Po přihlášení uživatele se také objeví dříve skryté rozbalovací menu umožňující dostat se do profilu uživatele a případně se odhlásit.
+
+\subsection{Zpětná vazba}
+Poslední testovanou částí správná funkcionalita odesílání zpětné vazby. Tlačítko odkazující na formulář zpětné vazby se nachází na každé stránce aplikace. Zpětnou vazbu lze zaslat buďto anonymně, nebo lze nepovinně vyplnit svou e-mailovou adresu. Tento formulář o úspěšném či neúspěšném odeslání zpětné vazby informuje krátkou hláškou.
+
+\section{Tvorba testovacích případů}
+Pomocí testovacích případů je na základě testovacích scénářů přesně definován postup kroků, které se pro otestování daného scénáře musí vykonat. Testovací případy jsou proto založené na identifikovaných testovacích scénářích. Každý testovací scénář musí být zcela pokryt jedním či více testovacími případy. Stejně jako testovací scénáře jsou i testovací případy zdokumentovány tabulkou obsahující nejpodstatnější informace o testovacím případu. Pro jednoduchost jsem vybral jen ty nejnutnější údaje, které lze využít pro napsaní testů. Těmi hlavními údaji jsou účel a kroky nutné k vykonání testovacího případu a také očekávaný výsledek testování. Zde je pro upřesnění uveden příklad dokumentace testovacího případu pro ověření funkčnosti odesílání zpětné vazby.
+
+\begin{table}[ht]
+\begin{tabular}{ | L{3cm} | L {8cm}| }
+\hline
+	ID & A1 \\ \hline
+	Název & Odeslání zpětné vazby \\ \hline
+	Účel & Ověřit, zda lze odeslat text jako zpětnou vazbu \\ \hline
+	Vstupní podmínky & Je dostupné tlačítko pro zpětnou vazbu \\ \hline
+	Kroky & 
+\begin{enumerate}
+\item Kliknout na tlačítko pro otevření formuláře zpětné vazby
+\item Vepsat text do textového pole pro zpětnou vazbu
+\item Vyplnit email
+\item Kliknout na tlačítko pro odeslání zpětné vazby
+\end{enumerate}
+ \\ \hline
+	Očekávaný výsledek &
+\begin{enumerate}
+\item Objeví se zpráva o úspěšném odeslání
+\item Formulář zůstane otevřený
+\end{enumerate}
+ \\ \hline
+	Poznámky & \  \\ \hline
+\end{tabular}
+\caption{Testovací případ odeslání zpětné vazby}
+\end{table}
+
 \chapter{Tvorba testů}
+Zopakovat a zdůvodnit volbu testovacích nástrojů, nastínit průběh kapitoly.
+\section{Příprava testování}
+Maven, IDE, pluginy(M2E, git), nastavení arquillian.xml, pom.xml
+\section{Abstrakce testovaných stránek}
+Page fragmenty a page objekty, jejich identifikace a tvorba(ukázka kódu), výhody
+
+Jelikož budou v testech využity abstrakce webových stránek, je nutné také identifikovat dílčí fragmenty stránky, které by mohly seskupovat určitou funkcionalitu.
+\subsection{Fragmenty stránek}
+\subsection{Objekty stránek}
+
+\section{Tvorba testových tříd}
+
 \chapter{Systém automatizovaného testování}
 \chapter{Závěr}
 \renewcommand{\refname}{Seznam literatury}
@@ -178,15 +291,21 @@ Hlavní částí této práce je vytvoření funkčních testů pro aplikaci Sle
 \bibitem{Patton}PATTON, Ron. \emph{Testování softwaru.} Vyd. 1. Praha: Computer Press, 2002, xiv, 313 s. Programování. ISBN 80-7226-636-5. 
 \bibitem{FunctionalISTQB}\emph{What is Functional testing (Testing of functions) in software?} ISTQB Exam Certification [online]. 2015 [cit. 2015-04-12].Dostupné z: \url{http://istqbexamcertification.com/what-is-functional-testing-testing-of-functions-in-software/}
 \bibitem{SoftwareISTQB}\emph{What is Software Testing?} ISTQB Exam Certification [online]. 2015 [cit. 2015-04-12]. Dostupné z: \url{http://istqbexamcertification.com/what-is-a-software-testing/}
-\bibitem{UnitISTQB}\emph{What is Unit testing?} ISTQB Exam Certification [online]. [cit. 2015-11-06]. Dostupné z: \url{http://istqbexamcertification.com/what-is-unit-testing/}
+\bibitem{UnitISTQB}\emph{What is Unit testing?} ISTQB Exam Certification [online]. 2015 [cit. 2015-11-06]. Dostupné z: \url{http://istqbexamcertification.com/what-is-unit-testing/}
 \bibitem{Myers}MYERS, Glenford J, Corey SANDLER a Tom BADGETT. \emph{The art of software testing.} 3rd ed. Hoboken, N.J.: John Wiley \& Sons, c2012, xi, 240 p. ISBN 1118133145.
 \bibitem{Selenium}\emph{Selenium documentation.} [online]. 12.11.2015 [cit. 2015-11-12]. Dostupné z: \url{http://docs.seleniumhq.org/docs/index.jsp}
 \bibitem{SeleniumGithub}\emph{Selenium documentation} [online]. 12.11.2015 [cit. 2015-11-12]. Dostupné z:\url{https://seleniumhq.github.io/docs/index.html}
-\bibitem{Fowler}Fowler, Martin. \emph{Continuous integration.} Martin Fowler. [online]. 22.11.2015 [cit. 2015-11-22]. Dostupné z: \url{http://www.martinfowler.com/articles/continuousIntegration.html}
+\bibitem{Fowler}Fowler, Martin. \emph{Continuous integration.} Martin Fowler. [online]. 2006 [cit. 2015-11-22]. Dostupné z: \url{http://www.martinfowler.com/articles/continuousIntegration.html}
 \bibitem{Guru99}\emph{Static Vs Dynamic Testing.} Guru99. [online]. © 2015 [cit. 2015-11-26]. Dostupné z: \url{http://www.guru99.com/static-dynamic-testing.html}
 \bibitem{Arquillian}\emph{Arquillian.} Arquillian. [online]. © 2009-2015 [cit. 2015-12-08]. Dostupné z: \url{http://arquillian.org/}
 \bibitem{SlepeMapy}\emph{Slepé Mapy.} Slepé Mapy. [online]. © 2015 [cit. 2015-12-10]. Dostupné z: \url{http://slepemapy.cz/}
 \bibitem{ShrinkWrap}\emph{Creating Deployable Archives with ShrinkWrap} Arquillian Guides. [online]. © 2009-2015 [cit. 2015-12-11]. Dostupné z: \url{http://arquillian.org/guides/shrinkwrap_introduction/}
 \bibitem{Graphene}\emph{Graphene 2.} Project Documentation Editor. [online]. 5.8.2014 [cit. 2015-12-13]. Dostupné z: \url{https://docs.jboss.org/author/display/ARQGRA2}
+\bibitem{Drone}\emph{Drone.} Project Documentation Editor. [online]. 5.8.2014 [cit. 2015-12-13]. Dostupné z: \url{https://docs.jboss.org/author/display/ARQ/Drone}
+\bibitem{Git}\emph{Git} Git. [online]. 2014 [cit. 2015-12-15]. Dostupné z: \url{https://git-scm.com/}
+\bibitem{JUnit}\emph{About.} JUnit. [online]. 12.3.2015 [cit. 2015-12-15]. Dostupné z: \url{http://junit.org/}
+\bibitem{Maven}\emph{Welcome to Apache Maven} Maven [online]. 1.12.2015 [cit. 2015-12-15]. Dostupné z: \url{https://maven.apache.org}
+\bibitem{Travis}\emph{Test and Deploy with Confidence.} Travis CI. [online]. 2015 [cit. 2015-12-15]. Dostupné z: \url{https://travis-ci.org/}
+\bibitem{Browsers}\emph{Browser Statistics.} W3Schools. [online]. 2015 [cit. 2015-12-15]. Dostupné z: \url{http://www.w3schools.com/browsers/browsers_stats.asp}
 \end{thebibliography}
 \end{document}
