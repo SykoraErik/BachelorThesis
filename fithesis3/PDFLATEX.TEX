@@ -41,12 +41,15 @@ Rád bych zde poděkoval zejména svému vedoucímu Mgr. Janu Papouškovi za cen
 
 \PassOptionsToPackage{hyphens}{url}
 \usepackage[unicode]{hyperref} 
+
 \usepackage{listings}
+\lstset{captionpos=b, frame=single, tabsize=4}
+\renewcommand{\lstlistingname}{Zdrojový kód}
+
 \hypersetup{pageanchor=false}
 \babelhyphenation[czech]{ap-li-ka-ce}
 \setlength{\emergencystretch}{0.5em}
 \begin{document}
-\lstset{language=Java} 
 \chapter{Úvod}
 Vývoj softwaru je komplexní proces sestávající z~mnoha kroků. Tento proces se liší dle použitého vývojového modelu, nicméně vždy by měl zahrnovat určitou formu testování. Náklady na opravu chyby totiž strmě rostou při jejím pozdním nalezení, v~případě kritického softwaru může neošetřená chyba dokonce způsobit ztráty na životech.
 
@@ -112,7 +115,7 @@ Pro správné využití průběžné integrace je nutné udržovat repozitář p
 \chapter{Technologie pro funkční testování webové aplikace}
 V~dnešní době existuje pro testování webových aplikací spousta různých nástrojů. Tyto technologie se liší jak v~podpoře různých webových prohlížečů, skriptovacích jazyků nebo cenou. Hlavním cílem této kapitoly není představení velkého množství těchto nástrojů, ale pouze ty, které byly použity či s~použitým řešením nějakým způsobem souvisí.
 
-Hlavní technologií, která byla při vytváření testů použita, je testovací platforma Arquillian a její rozšíření Graphene a Drone. Velmi populární alternativou je testovací nástroj Selenium, jehož komponenta WebDriver je využita i ve dvou použitých rozšířeních platformy Arquillian. Kromě těchto nástrojů zde budou představeny i další specializované nástroje využité například k sestavení aplikace, průběžné integraci či verzování projektu.
+Hlavní technologií, která byla při vytváření testů použita, je testovací platforma Arquillian a její rozšíření Graphene a Drone. Vlastnosti a výhody použití této platformy budou představena v této kapitole. Populárnější alternativou je testovací nástroj Selenium, jehož komponenta WebDriver je využita i ve dvou použitých rozšířeních platformy Arquillian. Kromě těchto nástrojů zde budou představeny i další specializované nástroje využité například k sestavení aplikace, průběžné integraci či verzování projektu.
 
 \section{Selenium}
 Selenium je jeden z~nejpopulárnějších nástrojů sloužících k~automatickému testování webových aplikací.   Jedná se o~open source aplikační rámec, jehož součástí je několik komponent, momentálně hlavně Selenium IDE a Selenium WebDriver, které budou dále představeny. Původní část projektu Selenium Remote Control je již zastaralá a jejím nástupcem je Selenium Webdriver, který také obsahuje schopnosti původně samostatné části Selenium Grid. Tento celek nabízí velice flexibilní platformu umožňující tvorbu testů pro širokou škálu webových prohlížečů a operačních systémů.
@@ -188,7 +191,7 @@ Testovaná aplikace je vyvíjena za pomoci open source verzovacího systému Git
 \subsection{JUnit}
 JUnit \cite{JUnit} je aplikační rámec pro psaní jednotkových testů v jazyce Java. Tento aplikační rámec využívá k psaní testů také platforma Arquillian. Pro psaní jednotkových testů jsem mohl vybrat také nástroj TestNG, který také Arquillian podporuje, nicméně JUnit je standardně dostupný ve vývojovém prostředí Eclipse, které jsem pro psaní testů využil.
 \subsection{Maven}
-Apache Maven \cite{Maven} je nástroj pro správu, řízení a sestavení aplikací. Základem fungování Mavenu je tzv. Project Object Model soubor. Jde o soubor formátu XML\footnote{Extensible Markup Language}, v němž popsána struktura projektu, všechny použité pluginy, závislosti a další funkce, jako například nastavení profilů či definování vlastních proměnných. Konkrétní nastavení Mavenu použité v této práci bude popsáno v páté kapitole.
+Apache Maven \cite{Maven} je nástroj pro správu, řízení a sestavení aplikací. Základem fungování Mavenu je tzv. Project Object Model soubor. Jde o soubor, v němž je popsána struktura projektu, všechny použité pluginy, závislosti a další užitečné funkce, jako například nastavení profilů či definování vlastních proměnných. Tento soubor je popsán pomocí značkovacího jazyka XML\footnote{Extensible Markup Language}. Konkrétní nastavení Mavenu použité v této práci bude popsáno v páté kapitole.
 \subsection{Travis CI}
 Travis CI je webová služba umožňující testovat a sestavovat projekty pomocí systému průběžné integrace. Ta umožňuje po zaznamenání změny v repozitáři testované aplikace spustit připravené testy a o výsledku testování informovat. Použitím tohoto systému se bude podrobněji zabývat celá šestá kapitola.
 \subsection{Webové prohlížeče}
@@ -271,13 +274,36 @@ Pomocí testovacích případů je na základě testovacích scénářů přesn�
 \end{table}
 
 \chapter{Tvorba testů}
-Zopakovat a zdůvodnit volbu testovacích nástrojů, nastínit průběh kapitoly.
-\section{Příprava testování}
-Maven, IDE, pluginy(M2E, git), nastavení arquillian.xml, pom.xml
+V třetí kapitole byly představeny nástroje, pomocí nichž lze provádět testování webové aplikace, zatímco čtvrtá kapitola se zabývala identifikací funkcionality, která bude testována. Toto nám dává dostatečné teoretické základy pro samotnou tvorbu testů pomocí vhodných technologií, tudíž se již v této kapitole můžeme zabývat praktickou částí této práce. Hlavním tématem této kapitoly bude představení tvorby funkčních testů pomocí testovací platformy Arquillian a rozšíření Graphene a Drone. Podstatnou část před psaním testovacích tříd tvoří také nastavení vývojového prostředí a nástroje pro sestavení aplikace. Větší část kapitoly bude také věnována tvorbě abstrakcí testované aplikace pomocí fragmentů stránek a objektů stránek. Až po jejich vytvoření bude možné se věnovat psaní testovacích tříd.
+
+\section{Příprava vývojového prostředí}
+Prvním krokem v přípravě na testování bylo nastavení vývojového prostředí. Jelikož jsem měl předchozí zkušenosti s nástrojem Eclipse, zvolil jsem právě tento. Výhodou je také fakt, že v nástroji Eclipse je standardně zahrnut i testovací aplikační rámec JUnit, nebylo tedy třeba vývojové prostředí  pro práci s JUnit připravovat. Spouštění JUnit testů z vývojového prostředí je jednoduché, stačí kliknout pravým tlačítkem myši na požadovanou testovací třídu a zvolit možnosti \emph{Run As -> JUnit Test}. Tento způsob testování umožňuje pohodlně spouštět testy a využívat ladící nástroje. Jelikož ale v projektu bude využit nástroj pro sestavení aplikace Maven, je vhodné nainstalovat rozšíření M2Eclipse. Všechna rozšíření lze jednoduše nainstalovat pomocí služby Eclipse Marketplace také přímo z vývojového prostředí. Rozšíření M2Eclipse není nutností, s nástrojem Maven lze také pracovat z příkazové řádky.
+
+Dalším využitým rozšířením je EGit, který umožňuje využívat verzovací systém Git přímo z vývojového prostředí Eclipse. Toto rozšíření v mém případě práci se systémem Git značně zjednodušuje, například nejběžnější prováděnou akci \emph{Commit} lze provést jednoduše kliknutím pravým tlačítkem myši na třídu a volbou možností \emph{Team -> Commit\ldots}, vyplněním zprávy o provedených změnách a potvrzením možností \emph{Commit and Push}. I toto rozšíření není nutné, pokud je pro vývojáře pohodlnější používání příkazové řádky, v mém případě ale zvyšuje efektivitu práce.
+
+\section{Konfigurace nástrojů Maven a Arquillian}
+Nástroje Maven a Arquillian byly popsány ve třetí kapitole, zde se budeme zabývat jejich konkrétním nastavením. Maven je konfigurován v souboru pom.xml, který se nachází v kořenovém adresáři sestavovaného projektu. V tomto projektu konfigurační soubor slouží ke 3 hlavním účelům – správě závislostí a všech rozšíření, nastavení uživatelských proměnných a správě profilů.
+
+Projektem využívané závislosti jsou definovány v elementu \emph{Dependency Management}. Každá jednotlivá závislost má vlastní \emph{Dependency} element, v němž jsou uvedeny informace, podle nichž Maven vyhledá požadovanou závislost ve vzdálených repozitářích. Maven zároveň tranzitivně vyhledá veškeré závislosti, které námi specifikovaná závislost vyžaduje.
+
+\lstset{language=XML, caption={Ukázka zápisu závislosti - Arquillian}} 
+\begin{lstlisting}
+<dependency>
+	<groupId>org.jboss.arquillian</groupId>
+	<artifactId>arquillian-bom</artifactId>
+	<version>1.1.7.Final</version>
+	<scope>import</scope>
+	<type>pom</type>
+</dependency>
+\end{lstlisting} 
+Maven, nastavení arquillian.xml, pom.xml
+
 \section{Abstrakce testovaných stránek}
+
 Page fragmenty a page objekty, jejich identifikace a tvorba(ukázka kódu), výhody
 
 Jelikož budou v testech využity abstrakce webových stránek, je nutné také identifikovat dílčí fragmenty stránky, které by mohly seskupovat určitou funkcionalitu.
+
 \subsection{Fragmenty stránek}
 \subsection{Objekty stránek}
 
@@ -308,4 +334,6 @@ Jelikož budou v testech využity abstrakce webových stránek, je nutné také 
 \bibitem{Travis}\emph{Test and Deploy with Confidence.} Travis CI. [online]. 2015 [cit. 2015-12-15]. Dostupné z: \url{https://travis-ci.org/}
 \bibitem{Browsers}\emph{Browser Statistics.} W3Schools. [online]. 2015 [cit. 2015-12-15]. Dostupné z: \url{http://www.w3schools.com/browsers/browsers_stats.asp}
 \end{thebibliography}
+
+\chapter{Přílohy}
 \end{document}
