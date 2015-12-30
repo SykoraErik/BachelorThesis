@@ -21,7 +21,7 @@
 		<facebook.email>outlinemaps.test@gmail.com</facebook.email>
 		<facebook.password>slepemapy</facebook.password>
 		<google.email>outlinemaps.test@gmail.com</google.email>
-		<google.password>slepemapy</google.password>
+		<google.password>slepemapytest</google.password>
 	</properties>
 
 	<build>
@@ -109,8 +109,7 @@
 		<dependency>
 			<groupId>org.jboss.arquillian.extension</groupId>
 			<artifactId>arquillian-phantom-driver</artifactId>
-			</dependency>
-
+		</dependency>
 	</dependencies>
 
 	<profiles>
@@ -122,15 +121,15 @@
 		</profile>
 		<profile>
 			<id>chrome</id>
-			<activation>
-				<activeByDefault>true</activeByDefault>
-			</activation>
 			<properties>
 				<browser>chrome</browser>
 			</properties>
 		</profile>
 		<profile>
 			<id>phantomjs</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
 			<properties>
 				<browser>phantomjs</browser>
 			</properties>
