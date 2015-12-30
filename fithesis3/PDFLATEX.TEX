@@ -162,11 +162,11 @@ Aby nebylo zbytečně komplikováno sestavení aplikace, tak lze Arquillian inte
 
 Arquillian Graphene si klade za cíl rozšířit možnosti Selenium WebDriver technologie a přidává spousu vlastností umožňujících psát znovu použitelné a udržovatelné funkční testy. Důraz je také kladen na jednoduché rozhraní, přenositelnost mezi webovými prohlížeči a psaní robustních testů podporujících AJAX\footnote{Asynchronous JavaScript and XML} technologii. Arquillian Graphene je závislý na rozšíření Arquillian Drone, které se stará o životní cyklus použitých webových prohlížečů. Rozšíření Drone bude podrobněji popsáno níže.
 
-Jednou z vlastností rozšíření Graphene je podporování ve využití abstrakcí webové stránky, konkrétně objekty stránky(Page Objects) a fragmenty stránky(Page Fragments). Objekt stránky zapouzdřuje strukturu testované stránky do jediného objektu, se kterým následně test komunikuje. Takto zapouzdřený objekt by měl vývojáři nabízet stejné služby jako modelovaná stránka. Zároveň by ale měl být jediným místem, které pracuje s vnitřní strukturou webové stránky. Jednoduše řečeno se jedná o rozhraní testované stránky. Díky tomu je při změně uživatelského rozhraní testované webové stránky nutné provést změnu jen na jednom místě v objektu stránky. Výhodou využití objektů stránky je také omezení duplicity a tvorba robustního kódu \cite{Selenium}.
+Jednou z vlastností rozšíření Graphene je podporování ve využití abstrakcí webových stránek (Page Abstractions), konkrétně objekty stránky(Page Objects) a fragmenty stránky(Page Fragments). Objekt stránky zapouzdřuje strukturu testované stránky do jediného objektu, se kterým následně test komunikuje. Takto zapouzdřený objekt by měl vývojáři nabízet stejné služby jako modelovaná stránka. Zároveň by ale měl být jediným místem, které pracuje s vnitřní strukturou webové stránky. Jednoduše řečeno se jedná o rozhraní testované stránky. Díky tomu je při změně uživatelského rozhraní testované webové stránky nutné provést změnu jen na jednom místě v objektu stránky. Výhodou využití objektů stránky je také omezení duplicity a tvorba robustního kódu \cite{Selenium}.
 
 Druhou možnou abstrakcí webové stránky jsou fragmenty stránky. Jde o velice podobný koncept jako v případě objektů stránky. Také jde o zapouzdření struktury, ale na rozdíl od objektů stránky nejde o zapouzdření určité webové stránky (nebo její část). Fragment stránky zapouzdřuje pouze určitou malou součást stránky, která je znovu použitelná napříč všemi testovanými stránkami \cite{Graphene}. Příkladem může být navigační menu, které je součástí více webových stránek. Pokud by mělo být využito pouze objektů stránek, tak by struktura tohoto navigačního menu musela být opakovaně definována ve všech objektech stránky, které jej využívají. Lze ale definovat pouze jeden fragment stránky pro toto navigační menu a v objektech stránky pouze využívat tento fragment. Konkrétní použití obou druhů abstrakcí bude popsáno v páté kapitole.
 
-Dále Graphene nabízí vylepšení synchronizace s webovým prohlížečem. Toto je velice důležitá vlastnost, jelikož WebDriver příkazy jsou vykonávány rychleji, než dokáže webový prohlížeč provést změnu stavu stránky. Pomocí \emph{Waiting API} rozhraní lze test synchronizovat například čekáním, dokud se na stránce nezobrazí určitý element nebo dokud nebude splněna nějaká podmínka. Další možností synchronizace je využití tzv. \emph{střežení požadavků}(Request Guards). Ty umožňují ověřit, zda daná interakce s webovým prohlížečem vyvolala příslušný požadavek na server. Je možno ověřovat, zda došlo k HTTP nebo AJAX požadavku, případně zda nedošlo k žádnému požadavku. Vykonávání interakce s prohlížečem musí skončit v časovém intervalu příslušném druhu požadavku. Pokud skončí dříve, tak se pokračuje ve vykonávání testu.
+Dále Graphene nabízí vylepšení synchronizace s webovým prohlížečem. Toto je velice důležitá vlastnost, jelikož WebDriver příkazy jsou vykonávány rychleji, než dokáže webový prohlížeč provést změnu stavu stránky. Pomocí \emph{Waiting API}\footnote{https://docs.jboss.org/author/display/ARQGRA2/Waiting+API} rozhraní lze test synchronizovat například čekáním, dokud se na stránce nezobrazí určitý element nebo dokud nebude splněna nějaká podmínka. Další možností synchronizace je využití tzv. \emph{střežení požadavků}(Request Guards). Ty umožňují ověřit, zda daná interakce s webovým prohlížečem vyvolala příslušný požadavek na server. Je možno ověřovat, zda došlo k HTTP nebo AJAX požadavku, případně zda nedošlo k žádnému požadavku. Vykonávání interakce s prohlížečem musí skončit v časovém intervalu příslušném druhu požadavku. Pokud skončí dříve, tak se pokračuje ve vykonávání testu.
 
 Dalším vylepšením oproti Selenium WebDriver technologii je také rozšíření možností, jak nalézt požadované prvky testovaného uživatelského rozhraní. Kromě metody @FindBy, kterou využívá i WebDriver, podporuje Graphene také možnost vytvořit vlastní vyhledávací strategie. Metoda @FindByJQuery, která umožňuje vyhledávat na základě JQuery funkce, je v Graphene již vytvořená a okamžitě použitelná.
 
@@ -191,7 +191,7 @@ Testovaná aplikace je vyvíjena za pomoci open source verzovacího systému Git
 \subsection{JUnit}
 JUnit \cite{JUnit} je aplikační rámec pro psaní jednotkových testů v jazyce Java. Tento aplikační rámec využívá k psaní testů také platforma Arquillian. Pro psaní jednotkových testů jsem mohl vybrat také nástroj TestNG, který také Arquillian podporuje, nicméně JUnit je standardně dostupný ve vývojovém prostředí Eclipse, které jsem pro psaní testů využil.
 \subsection{Maven}
-Apache Maven \cite{Maven} je nástroj pro správu, řízení a sestavení aplikací. Základem fungování Mavenu je tzv. Project Object Model soubor. Jde o soubor, v němž je popsána struktura projektu, všechny použité pluginy, závislosti a další užitečné funkce, jako například nastavení profilů či definování vlastních proměnných. Tento soubor je popsán pomocí značkovacího jazyka XML\footnote{Extensible Markup Language}. Konkrétní nastavení Mavenu použité v této práci bude popsáno v páté kapitole.
+Apache Maven \cite{Maven} je nástroj pro správu, řízení a sestavení aplikací. Základem fungování Mavenu je tzv. Project Object Model soubor. Jde o soubor, v němž je popsána struktura projektu, všechny použité pluginy, závislosti a další užitečné funkce, jako například nastavení profilů či definování vlastních proměnných. Tento soubor je popsán pomocí značkovacího jazyka XML\footnote{Extensible Markup Language}. V projektu je také využit Maven Surefire Plugin, což je rozšíření zajišťující spouštění jednotkových testů aplikace využívající toto rozšíření. Konkrétní Maven nastavení použité v této práci bude popsáno v páté kapitole.
 \subsection{Travis CI}
 Travis CI je webová služba umožňující testovat a sestavovat projekty pomocí systému průběžné integrace. Ta umožňuje po zaznamenání změny v repozitáři testované aplikace spustit připravené testy a o výsledku testování informovat. Použitím tohoto systému se bude podrobněji zabývat celá šestá kapitola.
 \subsection{Webové prohlížeče}
@@ -281,12 +281,12 @@ Prvním krokem v přípravě na testování bylo nastavení vývojového prostř
 
 Dalším využitým rozšířením je EGit, který umožňuje využívat verzovací systém Git přímo z vývojového prostředí Eclipse. Toto rozšíření v mém případě práci se systémem Git značně zjednodušuje, například nejběžnější prováděnou akci \emph{Commit} lze provést jednoduše kliknutím pravým tlačítkem myši na třídu a volbou možností \emph{Team -> Commit\ldots}, vyplněním zprávy o provedených změnách a potvrzením možností \emph{Commit and Push}. I toto rozšíření není nutné, pokud je pro vývojáře pohodlnější používání příkazové řádky, v mém případě ale zvyšuje efektivitu práce.
 
-\section{Konfigurace nástrojů Maven a Arquillian}
-Nástroje Maven a Arquillian byly popsány ve třetí kapitole, zde se budeme zabývat jejich konkrétním nastavením. Maven je konfigurován v souboru pom.xml, který se nachází v kořenovém adresáři sestavovaného projektu. V tomto projektu konfigurační soubor slouží ke 3 hlavním účelům – správě závislostí a všech rozšíření, nastavení uživatelských proměnných a správě profilů.
+\section{Konfigurace a použití nástroje Maven}
+Nástroje Maven a Arquillian byly popsány ve třetí kapitole, zde se budeme zabývat jejich konkrétním nastavením. Maven je konfigurován v souboru pom.xml, který se nachází v kořenovém adresáři sestavovaného projektu. V tomto projektu konfigurační soubor slouží ke 3 hlavním účelům – správě závislostí a všech rozšíření, nastavení uživatelských proměnných a správě profilů. Celý soubor se nachází v příloze.
 
-Projektem využívané závislosti jsou definovány v elementu \emph{Dependency Management}. Každá jednotlivá závislost má vlastní \emph{Dependency} element, v němž jsou uvedeny informace, podle nichž Maven vyhledá požadovanou závislost ve vzdálených repozitářích. Maven zároveň tranzitivně vyhledá veškeré závislosti, které námi specifikovaná závislost vyžaduje.
+Projektem využívané závislosti jsou definovány v elementu \emph{Dependency Management}. Každá závislost má vlastní \emph{Dependency} element, v němž jsou uvedeny jednotlivé informace, podle nichž Maven vyhledá požadovanou závislost ve vzdálených repozitářích. Maven zároveň tranzitivně vyhledá veškeré závislosti, které námi specifikovaná závislost vyžaduje.
 
-\lstset{language=XML, caption={Ukázka zápisu závislosti - Arquillian}} 
+\lstset{language=XML, caption={Ukázka zápisu závislosti v souboru pom.xml}} 
 \begin{lstlisting}
 <dependency>
 	<groupId>org.jboss.arquillian</groupId>
@@ -296,16 +296,89 @@ Projektem využívané závislosti jsou definovány v elementu \emph{Dependency 
 	<type>pom</type>
 </dependency>
 \end{lstlisting} 
-Maven, nastavení arquillian.xml, pom.xml
+
+Kromě vlastních proměnných Maven také nabízí možnost definovat uživatelské proměnné, které se definují v elementu \emph{properties}. V těchto proměnných jsou mimo jiné ukládám informace o uživatelských jménech a heslech používaných pro přihlášení do aplikace pomocí různých služeb. Jelikož jsou tyto údaje definované jen na tomto místě, je možné při změně těchto údajů provést změnu jen v souboru pom.xml a nikoliv na všech místech výskytu v testech. Hodnoty proměnných lze také jednoduše měnit z příkazové řádky pomocí Maven příkazu \emph{-DnázevProměnné=hodnotaProměnné}. Jednou z užitečných standartních Maven proměnných použitých během vytváření testů je proměnná \emph{test}, která umožňuje spouštět pouze jednu testovací třídu z celé testovací sady, případně jen jeden test z testovací třídy.
+
+Pro využití uživatelem definovaných proměnných v testech je ale nutné proměnné definovat také v použitém rozšíření Maven Surefire Plugin, jehož proměnným předávám hodnoty Maven proměnných. Ty pak budou dostupné i při spouštění testů, což se provádí pomocí příkazu \emph{mvn clean verify}, případně \emph{mvn test}. Rozdíl mezi těmito způsoby spuštění testů je takový, že \emph{mvn test} pouze spustí test pomocí vhodného testovacího aplikačního rámce (v tomto případě JUnit), zatímco \emph{mvn clean verify} navíc provede kontrolu validity a splnění určité úrovně kvality projektu.
+
+Posledním nastavením nástroje Maven je definování vlastních profilů. Tyto profily slouží k výběru webového prohlížeče, který bude k testování použit. Jeden z profilů je označen jako výchozí, ten je používán pokud není specifikován jiný profil. To lze provést jednoduše z příkazové řádky pomocí Maven příkazu \emph{-PnázevProfilu}. Nyní jsou nastaveny profily pro tři prohlížeče: Mozilla Firefox, Google Chrome a PhantomJS. Přidání podpory dalších prohlížečů lze provést jednoduše přidáním dalšího profilu do souboru \emph{pom.xml} a dle druhu prohlížeče také konfigurací souboru \emph{arquillian.xml}, který se stará o nastavení nástroje Arquillian.
+
+\section{Konfigurace nástroje Arquillian}
+Nástroj Arquillian a jeho rozšíření jsou konfigurovány v souboru arquillian.xml, dostupném v adresáři projektu \emph{\textbackslash src\textbackslash test\textbackslash resources}. Tento konfigurační soubor není povinný, v případě této práce slouží pouze pro nastavení rozšíření Arquillian Drone. V konfiguračním souboru jsou nastavovány tři proměnné, hodnoty těchto proměnných jsou přebírány z Maven nastavení. Proto lze nastavení tohoto souboru měnit stejně jako konfiguraci Maven i přes příkazový řádek. Proměnná \emph{browser} určuje, který webový prohlížeč bude Arquillian Drone využívat pro testování. Proměnná \emph{dimensions} slouží k nastavení velikosti okna webového prohlížeče. Toto nastavení je nutné hlavně pro prohlížeč PhantomJS, jelikož ten má ve výchozím nastavení velice malé rozměry, což vedlo k chybám v testech. Poslední proměnnou je cesta ke spustitelnému souboru prohlížeče Google Chrome.
 
 \section{Abstrakce testovaných stránek}
-
-Page fragmenty a page objekty, jejich identifikace a tvorba(ukázka kódu), výhody
-
-Jelikož budou v testech využity abstrakce webových stránek, je nutné také identifikovat dílčí fragmenty stránky, které by mohly seskupovat určitou funkcionalitu.
+Základními stavebními kameny při tvorbě testů budou abstrakce stránek (fragmenty stránek a objekty stránek). Ty byly představeny v kapitole 3.2.1, zde se budeme zabývat převážně jejich vytvářením. Postup při jejich tvorbě bude vždy podrobně vysvětlen na jednom konkrétním případu pro oba druhy abstrakcí.
 
 \subsection{Fragmenty stránek}
+Tvorba fragmentů stránky bude stěžejní částí v procesu tvorby testů, jelikož testy budou právě využívat funkcionalitu poskytovanou vytvořenými fragmenty stránek. Fragmenty budou představovat takové části uživatelského rozhraní, které se buďto opakují na více stránkách testované aplikace, případně seskupují určitou funkcionalitu. Každý fragment stránky se skládá z jedné třídy jazyka Java a všechny fragmenty jsou obsaženy v balíčku \emph{cz.muni.proso.geography.fragment}. Tvorba konkrétního fragmentu stránky bude podrobněji představena na fragmentu pro přihlášení uživatele, nicméně alespoň zběžně budou představeny všechny vytvořené fragmenty.
+
+\subsection*{Tvorba fragmentu stránky}
+
+Jako každá běžná třída jazyka Java se i fragment skládá z atributů a metod. V případě fragmentu stránky jsou atributy tvořeny jednotlivými elementy uživatelského rozhraní, které fragment představuje. Fragmenty stránek do sebe můžou být také vnořovány, atributem může tedy být i fragment stránky, jehož deklarace je identická s deklarací obyčejného elementu webové stránky. Příkladem takového elementu může být element textového pole pro přihlašovací heslo. 
+
+\lstset{language=Java, caption={Atribut pro tlačítko registrace}} 
+\begin{lstlisting}
+@FindBy(xpath = "./div[2]/form/div[2]/input")
+private WebElement loginPassword;
+\end{lstlisting} 
+
+Anotace @FindBy slouží k nalezení elementu (případně kořenu celého fragmentu stránky nebo objektu stránky) podle lokační strategie zvolené v argumentu anotace. Použití jazyka XPath lze považovat za přehlednější než jiné lokační strategie, jelikož umožňuje jednoduše využívat relativní cestu k elementu, což zkracuje zápis a zvyšuje přehlednost oproti využití například CSS lokátorů. Spolehlivější a robustnější je hledání elementů podle ID atributu, nicméně podstatná část elementů využitých v testech tímto atributem nedisponuje.
+
+WebElement je datový typ reprezentující HTML element. Většina operací s uživatelským rozhraním probíhá zavoláním příslušné metody na tomto datového typu. WebElement umožňuje provádět běžné operace, jako například kliknutí na element, zjištění jeho polohy, zjištění hodnot atributů elementu či nalezení jiného elementu uvnitř tohoto elementu. Rozšířením tohoto datového typu je GrapheneElement, což je datový typ specifický pro rozšíření Arquillian Graphene. Ten nabízí veškerou funkcionalitu datového typu WebElement a navíc má velice užitečnou metodu isPresent(). Tato metoda umožňuje rozhodnout, zda se element nachází na stránce. Použití této metody předchází výjimkám typu NoSuchElementException().
+
+Vlastností fragmentu stránky je zapouzdření určité funkcionality, kterou část webové stránky nabízí. Metody fragmentu stránky by proto měly nabízet přesně takovou funkcionalitu, kterou disponuje modelovaná webová stránka.
+
+\lstset{language=Java, caption={Atribut pro tlačítko registrace}, basicstyle=\small} 
+\begin{lstlisting}
+	/**
+	 * Writes the specified password into the password 
+	 * field. Clears the field first.
+	 * 
+	 * @param password
+	 * 	password to write into the password field
+	 */
+	public void inputPassword(String password) {
+		Graphene.waitAjax().until().
+			element(loginPassword).is().present();
+		loginPassword.clear();
+		loginPassword.sendKeys(password);
+	}
+\end{lstlisting} 
+
+První příkaz metody \emph{inputPassword} slouží k synchronizaci s webovou stránkou. Tento příkaz zajistí, že následující příkazy nebudou vykonány dokud se používaný element neobjeví na obrazovce. Doba čekání je nastavena na 2 sekundy(což zhruba odpovídá době, za kterou by měla být vykonána AJAX akce) pomocí metody waitAjax(). Je zde využito Graphene rozhraní pro čekání Waiting API, které umožňuje pracovat s čekáním jednodušeji a přehledněji.  Pokud by zde toto čekání nebylo, mohlo by se stát, že testy využívající tuto metodu by skončily s chybou oznamující, že na webové stránce nelze nalézt určitý element.
+
+Druhý a třetí příkaz metody \emph{inputPassword} pracují přímo s výše deklarovaným atributem loginPassword. Zde jsou využity dvě metody datového typu WebElement. Metoda \emph{clear()} zajistí, že pole pro heslo bude prázdné. Následující metoda sendKeys() slouží k vepsání textového řetězce do elementu. Pokud by zde nebyla metoda \emph{clear()}, mohlo by v případě neprázdného textového pole dojít k vepsání jiného hesla, než bylo zadáno v argumentu metody.
+
+V případě, že je potřeba poskytnout ve fragmentu stránky, objektu stránky či testu také funkce WebDriver rozhraní, je možné pomocí anotace \emph{@Drone} poskytnout instanci webového prohlížeče. Arquillian Drone umožňuje držet více WebDriver instancí, což ale v této práci nebylo potřeba.
+
+\lstset{language=Java, caption={Injekce webového prohlížeče}} 
+\begin{lstlisting}
+	@Drone
+	private WebDriver browser;
+\end{lstlisting} 
+
+\subsection*{Fragmenty pro přihlášení}
+Kromě fragmentu \emph{Login.java} se přihlašováním zabývají fragmenty FacebookAuth.java, FacebookConfirmAuth.java, GoogleAuth.java a GoogleConfirmAuth.java. Lze zde také zahrnout fragment pro registraci nového uživatele, SignUp.java. Důvodů pro toto rozdělení přihlašování do více tříd je několik. Prvním z nich je omezení fragmentů stránek na použití pouze těch elementů uživatelského rozhraní, které jsou zahrnuty v DOM\footnote{http://www.w3.org/DOM/Overview} struktuře kořenu fragmentu stránky. To vylučuje zahrnutí přihlašování pomocí Google a Facebook účtu do jediného fragmentu, jelikož tyto služby přesměrují uživatele na jinou webovou stránku.
+
+Dalším důvodem rozdělení je možná změna funkcionality přihlašování pomocí těchto služeb, a to i bez vědomí vývojářů testované aplikace. Toto řešení umožňuje jednoduše spravovat tuto funkcionalitu a případně přidávat nové fragmenty, pokud se v budoucnu bude možné přihlašovat pomocí účtů jiných služeb. Pro tento případ je vytvořeno rozhraní SocialMediaLogin.java, které vynucuje základní funkcionalitu přihlašování.
+
+\subsection*{Fragmenty pro mapu}
+Fragmenty stránek zabývající se funkcionalitou map se nacházejí ve třídách: Map.java, MapControl.java, MapControlContext.java, MapTooltip.java, OverviewMap.java a PracticeMap.java. Dále se prací s mapou zabývá také pomocná třída \emph{ColourHashMap.java}, která umožňuje zjistit informace o vztahu mezi barvami vyznačujícími znalost uživatelů a jejich odpovídajícími významy. Třída Map.java je abstraktní třída představující obecnou mapu, zatímco třídy OverviewMap.java a PracticeMap.java jsou její implementací a představují \emph{přehledovou mapu} a \emph{procvičovací mapu}. Třída MapControl.java představuje ovládací panel mapy, obsahující přepínače druhů map a jejich viditelnost, ukazatel znalosti mapy a seznam procvičovaných položek. Procvičované položky jsou definovány ve fragmentu MapControlContext.java.
+
+\subsection*{Fragmenty pro procvičování}
+Funkcionalita procvičování je řešena v třídách Practice.java, PracticeFeedback.java, PracticeMap.java, PracticeSummary.java. Třída PracticeMap.java se stará o funkcionalitu procvičovací mapy, například umožňuje do mapy klikat nebo získat správné odpovědi. Navíc tato třída obsahuje metodu na rozlišení typu otázky, jelikož ten lze odvodit pouze od počtu vyznačených míst na mapě. Třída Practice.java pak představuje panel obsahující otázku a tlačítka pro interakci s aplikací. Zároveň se v této třídě nachází ukazatel postupu a čítač otázek, který umožňuje zjistit, kolikátá otázka je momentálně zobrazena. Tato informace je důležitá, jelikož otázky jsou generovány postupně a na začátku procvičování nejsou přitomny v DOM struktuře webové stránky. Čítač otázek je proto využit při hledání elementů pomocí anotace \emph{@FindBy()}. Jedním z atributů třídy Practice.java je také fragment PracticeSummary.java, který představuje vyhodnocení procvičování, jenž se zobrazí po zodpovězení všech otázek. Posledním fragmentem procvičování je PracticeFeedback, ten představuje pop-up okno zpětné vazby s tlačítky pro volbu obtížnosti odpovídaných otázek.
+
+\subsection*{Ostatní fragmenty}
+Zbývajícími fragmenty, zajišťující různé užitečné služby, jsou uvedeny zde. Třída AlertMessage.java představuje zprávy, jimiž aplikace v různých částech aplikace dává informace o úspěchu či neúspěchu interakce uživatele. Třída NavigationMenu zajišťuje funkcionalitu navigačního menu. Dalším vytvořeným fragmentem je PracticedContext.java, který představuje jednu položku v \emph{Přehledu map}. Součástí tohoto fragmentu je také fragmenty ProgressButton.java a ProgressBar.java. ProgressButton je složený z tlačítka a ukazatele znalosti, který je definovaný ve vlastní třídě ProgressBar.java. Tento ukazatel znalosti je použit na více místech aplikace, nejen v \emph{Přehledu map}.
+
 \subsection{Objekty stránek}
+Objekty stránek představují testovanou stránku webové aplikace, proto jejich identifikace byla v porovnání s fragmenty stránky jednodušší. Veškeré testovací scénáře totiž probíhají buď na jednotlivých fragmentech nebo na jedné ze tří hlavních stránkách aplikace: světové mapě, přehledu map a procvičování konkrétní mapy. Stejně jako v případě fragmentů stránek každý objekt stránky představuje jednu třídu jazyka Java, nachází se v balíčku \emph{cz.muni.proso.geography.page}. Pro společné fragmenty všech objektů stránek byla vytvořena abstraktní třída \emph{CommonPageFragments.java}, jejíž potomci jsou samotné objekty stránek využívané v testech.
+
+\subsection*{Tvorba objektu stránky}
+
+Objekt stránky je stejně jako fragment stránky tvořen jednou třídou jazyka Java. Oproti fragmentu stránky bude ale význam atributů a metod rozdílný. Atributy objektu stránky jsou tvořeny převážně dříve vytvořenými fragmenty stránky, které musí mít své \emph{get} metody, které pak tvoří rozhraní pro komunikaci s fragmenty stránky. V praxi je samozřejmě reálné, že veškerá funkcionalita modelované stránky není úplně zahrnuta v použitých fragmentech stránky. Proto je možné v objektech stránky stejně jako ve fragmentech stránky deklarovat elementy uživatelského rozhraní a metody, které s nimi pracují. Cílem je, aby objekt stránky nabízel úplně stejnou funkcionalitu jako modelovaná stránka.
+
+Princip tvorby objektu stránky je až na zmíněné rozdíly velice podobný tvorbě fragmentů stránek. Lze využívat vlastností jako WebDriver rozhraní, anotace\emph{@FindBy}, \emph{@Drone}. Rozdíl ale nastává při deklaraci objektu stránky v testech. Oproti fragmentům není využita anotace @FindBy, ale anotace @Page, která nemá žádné argumenty. Další vlastností objektů stránek je možnost využití anotace @Location, které lze v argumentu předat místo, na němž se nachází modelovaná stránka. Toho lze poté využít v testech, kde není třeba deklarovat použitý objekt stránky anotací @Page, ale je možné využít anotace @InitialPage v argumentu testovací metody. Výhodou tohoto přístupu je, že se testovaná stránka při vstupu do testovací metody automaticky otevře.
 
 \section{Tvorba testových tříd}
 

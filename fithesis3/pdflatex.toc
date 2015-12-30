@@ -35,11 +35,12 @@
 \contentsline {section}{\numberline {4.2}\slshape Tvorba testovac\IeC {\'\i }ch p\IeC {\v r}\IeC {\'\i }pad\IeC {\r u}}{22}{section.4.2}
 \contentsline {chapter}{\numberline {5}\bfseries Tvorba test\IeC {\r u}}{25}{chapter.5}
 \contentsline {section}{\numberline {5.1}\slshape P\IeC {\v r}\IeC {\'\i }prava v\IeC {\'y}vojov\IeC {\'e}ho prost\IeC {\v r}ed\IeC {\'\i }}{25}{section.5.1}
-\contentsline {section}{\numberline {5.2}\slshape Konfigurace n\IeC {\'a}stroj\IeC {\r u} Maven a Arquillian}{26}{section.5.2}
-\contentsline {section}{\numberline {5.3}\slshape Abstrakce testovan\IeC {\'y}ch str\IeC {\'a}nek}{26}{section.5.3}
-\contentsline {subsection}{\numberline {5.3.1}\rmfamily Fragmenty str\IeC {\'a}nek}{27}{subsection.5.3.1}
-\contentsline {subsection}{\numberline {5.3.2}\rmfamily Objekty str\IeC {\'a}nek}{27}{subsection.5.3.2}
-\contentsline {section}{\numberline {5.4}\slshape Tvorba testov\IeC {\'y}ch t\IeC {\v r}\IeC {\'\i }d}{27}{section.5.4}
-\contentsline {chapter}{\numberline {6}\bfseries Syst\IeC {\'e}m automatizovan\IeC {\'e}ho testov\IeC {\'a}n\IeC {\'\i }}{29}{chapter.6}
-\contentsline {chapter}{\numberline {7}\bfseries Z\IeC {\'a}v\IeC {\v e}r}{31}{chapter.7}
-\contentsline {chapter}{\numberline {8}\bfseries P\IeC {\v r}\IeC {\'\i }lohy}{35}{chapter.8}
+\contentsline {section}{\numberline {5.2}\slshape Konfigurace a pou\IeC {\v z}it\IeC {\'\i } n\IeC {\'a}stroje Maven}{26}{section.5.2}
+\contentsline {section}{\numberline {5.3}\slshape Konfigurace n\IeC {\'a}stroje Arquillian}{27}{section.5.3}
+\contentsline {section}{\numberline {5.4}\slshape Abstrakce testovan\IeC {\'y}ch str\IeC {\'a}nek}{28}{section.5.4}
+\contentsline {subsection}{\numberline {5.4.1}\rmfamily Fragmenty str\IeC {\'a}nek}{28}{subsection.5.4.1}
+\contentsline {subsection}{\numberline {5.4.2}\rmfamily Objekty str\IeC {\'a}nek}{32}{subsection.5.4.2}
+\contentsline {section}{\numberline {5.5}\slshape Tvorba testov\IeC {\'y}ch t\IeC {\v r}\IeC {\'\i }d}{33}{section.5.5}
+\contentsline {chapter}{\numberline {6}\bfseries Syst\IeC {\'e}m automatizovan\IeC {\'e}ho testov\IeC {\'a}n\IeC {\'\i }}{35}{chapter.6}
+\contentsline {chapter}{\numberline {7}\bfseries Z\IeC {\'a}v\IeC {\v e}r}{37}{chapter.7}
+\contentsline {chapter}{\numberline {8}\bfseries P\IeC {\v r}\IeC {\'\i }lohy}{41}{chapter.8}
