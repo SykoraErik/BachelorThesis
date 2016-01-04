@@ -35,12 +35,14 @@ public class PracticeFeedback {
 	}
 
 	public void clickAppropriateButton() {
-		Graphene.waitAjax().until().element(appropriateButton).is().not().visible();
+		Graphene.waitAjax().until().element(appropriateButton).is().not()
+				.visible();
 		appropriateButton.click();
 	}
 
 	public void clickTooDifficultButton() {
-		Graphene.waitAjax().until().element(tooDifficultButton).is().not().visible();
+		Graphene.waitAjax().until().element(tooDifficultButton).is().not()
+				.visible();
 		tooDifficultButton.click();
 	}
 
@@ -54,8 +56,8 @@ public class PracticeFeedback {
 		closeButton.click();
 		Graphene.waitAjax().until().element(closeButton).is().not().visible();
 	}
-	
-	public boolean isPresent(){
+
+	public boolean isPresent() {
 		return tooEasyButton.isPresent();
 	}
 }

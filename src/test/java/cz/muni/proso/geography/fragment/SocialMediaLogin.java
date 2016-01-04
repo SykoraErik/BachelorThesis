@@ -24,11 +24,12 @@ public interface SocialMediaLogin {
 	void submitLogin();
 
 	/**
-	 * Takes the provided email and password and does a complete login or sign up.
+	 * Takes the provided email and password and does a complete login or sign
+	 * up.
 	 * 
 	 * @param email
 	 * @param password
-	 * @throws InterruptedException 
+	 * @throws InterruptedException
 	 */
 	void login(String email, String password) throws InterruptedException;
 }

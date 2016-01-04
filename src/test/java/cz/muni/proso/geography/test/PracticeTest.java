@@ -3,137 +3,148 @@ package cz.muni.proso.geography.test;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.assertFalse;
 
-import org.jboss.arquillian.graphene.Graphene;
+import java.util.ArrayList;
+import java.util.List;
+
+import org.jboss.arquillian.graphene.page.Page;
 import org.jboss.arquillian.junit.Arquillian;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.FindBy;
-
-import com.google.common.base.Predicate;
 
 import cz.muni.proso.geography.fragment.Practice;
 import cz.muni.proso.geography.page.PracticePage;
+import cz.muni.proso.geography.page.WorldMap;
 
 @RunWith(Arquillian.class)
 public class PracticeTest extends TestUtilityClass {
 
-	@FindBy(xpath = "/html/body")
-	private PracticePage page;
+	@Page
+	private PracticePage practicePage;
+
+	@Page
+	private WorldMap worldPage;
 
 	@Before
-	public void openPage() throws InterruptedException {
+	public void openPage() {
 		browser.get(BASE_URL + "/practice/us/state");
-		if (!page.getNavMenu().getActiveLanguage().equals("en")) {
-			page.getNavMenu().switchLanguage("en");
+
+		if (!practicePage.getNavMenu().getActiveLanguage().equals("en")) {
+			practicePage.getNavMenu().switchLanguage("en");
 		}
+
 		waitUntilPageLoaded();
+
 		Practice.setQuestionCounter(1);
 	}
 
 	@Test
-	public void testAnswering() throws InterruptedException {
+	public void testAnswering() {
+		List<String> allPracticedItems = new ArrayList<String>();
+
 		while (Practice.getQuestionCounter() <= 10) {
-			int progressBarWidth = page.getPractice()
+			int progressBarWidth = practicePage.getPractice()
 					.getProgressBarWidthPercentage();
 			String currentPracticeItem = "";
-			Thread.sleep(3000);
-			String currentQuestionType = page.getMap().getQuestionType();
-			
+			String currentQuestionType = practicePage.getMap()
+					.getQuestionType();
+
 			if (currentQuestionType.equals("one highlighted")) {
 
-				page.getMap().waitForHighlightedAnswers();
-				currentPracticeItem = page.getMap().getHighlightedAnswers()
-						.get(0);
-				page.getPractice().clickAnswerOption(currentPracticeItem);
+				practicePage.getMap().waitForHighlightedAnswers();
+				currentPracticeItem = practicePage.getMap()
+						.getHighlightedAnswers().get(0);
+				practicePage.getPractice().clickAnswerOption(
+						currentPracticeItem);
 
-				page.getMap().waitForCorrectAnswers();
+				practicePage.getMap().waitForCorrectAnswers();
 
-				assertTrue(page.getMap().getCorrectAnswers()
+				assertTrue(practicePage.getMap().getCorrectAnswers()
 						.contains(currentPracticeItem));
 			} else {
-				page.getPractice().waitForPracticeItem();
-
-				currentPracticeItem = page.getPractice().getPracticeItemName();
-				page.getMap().clickPlace(currentPracticeItem);
-
-				page.getMap().waitForCorrectAnswers();
-
-				assertTrue(page.getMap().getCorrectAnswers()
+				practicePage.getPractice().waitForPracticeItem();
+				currentPracticeItem = practicePage.getPractice()
+						.getPracticeItemName();
+				practicePage.getMap().clickPlace(currentPracticeItem);
+				practicePage.getMap().waitForCorrectAnswers();
+				assertTrue(practicePage.getMap().getCorrectAnswers()
 						.contains(currentPracticeItem));
 			}
 
-			assertTrue(progressBarWidth < page.getPractice()
+			assertTrue(progressBarWidth < practicePage.getPractice()
 					.getProgressBarWidthPercentage());
-			assertTrue(page.getMap().getWrongAnswers().isEmpty());
+			assertTrue(practicePage.getMap().getWrongAnswers().isEmpty());
 			Practice.incrementQuestionCounter();
 
 		}
 
-		if (page.getPracticeFeedback().isPresent()) {
-			page.getPracticeFeedback().clickAppropriateButton();
-			assertTrue(page.getPracticeFeedback().getAlertMessage()
+		if (practicePage.getPracticeFeedback().isPresent()) {
+			practicePage.getPracticeFeedback().clickAppropriateButton();
+			assertTrue(practicePage.getPracticeFeedback().getAlertMessage()
 					.isSuccessAlert());
-			page.getPracticeFeedback().closeForm();
-			assertFalse(page.getPracticeFeedback().isPresent());
+			practicePage.getPracticeFeedback().closeForm();
+			assertFalse(practicePage.getPracticeFeedback().isPresent());
 		}
 
-		assertTrue(page.getPractice().getProgressBarWidthPercentage() == 100);
+		assertTrue(practicePage.getPractice().getProgressBarWidthPercentage() == 100);
 
-		for (String practicedPlace : page.getPractice().getPracticeSummary()
-				.getFlashcardList()) {
-			assertTrue(page.getMap().getCorrectAnswers()
+		for (String practicedPlace : practicePage.getPractice()
+				.getPracticeSummary().getFlashcardList()) {
+			assertTrue(practicePage.getMap().getCorrectAnswers()
 					.contains(practicedPlace));
 		}
 
-		page.getPractice().getPracticeSummary().clickKnowledgeMap();
+		allPracticedItems.addAll(practicePage.getPractice()
+				.getPracticeSummary().getFlashcardList());
+		practicePage.getPractice().getPracticeSummary().clickKnowledgeMap();
 		waitUntilPageLoaded();
-		assertTrue(browser
-				.findElement(By.xpath("//*[@id='ng-view']/div[1]/h1"))
-				.getText().equals("U.S."));
+		assertTrue(worldPage.getWorldMap().getMapName().equals("U.S."));
+		worldPage.getMapControl().showPoliticalTab();
+		assertTrue(worldPage.getMapControl().getCities().getContextNamesList()
+				.containsAll(allPracticedItems));
 	}
 
 	@Test
-	public void testControls() throws InterruptedException {
-		int progressBarWidth = page.getPractice()
+	public void testControls() {
+		int progressBarWidth = practicePage.getPractice()
 				.getProgressBarWidthPercentage();
-		page.getPractice().waitForPracticeItem();
-		String currentPracticeItem = page.getPractice().getPracticeItemName();
-		Thread.sleep(3000);
-		String currentQuestionType = page.getMap().getQuestionType();
+		practicePage.getPractice().waitForPracticeItem();
+		String currentPracticeItem = practicePage.getPractice()
+				.getPracticeItemName();
+		String currentQuestionType = practicePage.getMap().getQuestionType();
 
 		if (!currentQuestionType.equals("no highlighted")) {
-			int placeWidth = page.getMap().getPlaceSize(currentPracticeItem)
-					.getWidth();
-			page.getPractice().highlightAgain();
-			assertTrue(page.getMap().getPlaceSize(currentPracticeItem)
+			int placeWidth = practicePage.getMap()
+					.getPlaceSize(currentPracticeItem).getWidth();
+			practicePage.getPractice().highlightAgain();
+			assertTrue(practicePage.getMap().getPlaceSize(currentPracticeItem)
 					.getWidth() != placeWidth);
-			page.getPractice().clickDontKnow();
+			practicePage.getPractice().clickDontKnow();
 
 			if (currentQuestionType.equals("one highlighted")) {
-				page.getPractice().waitForAnswerNames();
-				assertTrue(page.getPractice().getAnswersNames()
+				practicePage.getPractice().waitForAnswerNames();
+				assertTrue(practicePage.getPractice().getAnswersNames()
 						.contains(currentPracticeItem));
 			} else {
-				page.getPractice().waitForPracticeItem();
-				assertTrue(page.getMap().getCorrectAnswers()
-						.contains(page.getPractice().getPracticeItemName()));
+				practicePage.getPractice().waitForPracticeItem();
+				assertTrue(practicePage
+						.getMap()
+						.getCorrectAnswers()
+						.contains(
+								practicePage.getPractice()
+										.getPracticeItemName()));
 			}
-			page.getPractice().highlightAgain();
-			assertTrue(page.getMap().getPlaceSize(currentPracticeItem)
+			practicePage.getPractice().highlightAgain();
+			assertTrue(practicePage.getMap().getPlaceSize(currentPracticeItem)
 					.getWidth() == placeWidth);
 		} else {
-			page.getPractice().clickDontKnow();
-			page.getMap().waitForCorrectAnswers();
-			assertTrue(page.getMap().getCorrectAnswers()
-					.contains(page.getPractice().getPracticeItemName()));
+			practicePage.getPractice().clickDontKnow();
+			practicePage.getMap().waitForCorrectAnswers();
+			assertTrue(practicePage.getMap().getCorrectAnswers()
+					.contains(practicePage.getPractice().getPracticeItemName()));
+			practicePage.getPractice().clickContinue();
 		}
 
-		page.getPractice().clickContinue();
-		assertTrue(page.getPractice().getProgressBarWidthPercentage() > progressBarWidth);
-		assertFalse(page.getPractice().getPracticeItemName()
-				.equals(currentPracticeItem));
+		assertTrue(practicePage.getPractice().getProgressBarWidthPercentage() > progressBarWidth);
 	}
 }

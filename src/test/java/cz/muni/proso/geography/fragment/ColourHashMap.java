@@ -8,9 +8,9 @@ public abstract class ColourHashMap {
 
 	public static final String WRONG = "#ee2233";
 	public static final String SELECTION = "#dddddd";
-	public static final String HIGHLIGHT = "#bbbbbb";
+	public static final String HIGHLIGHT = "#777777";
 	public static final String CORRECT = "#00dd00";
-	
+
 	private static final Map<String, String> COLOUR_MAP;
 	static {
 		Map<String, String> tempMap = new HashMap<String, String>();
@@ -27,14 +27,15 @@ public abstract class ColourHashMap {
 		tempMap.put("#00dd00", "10");
 		tempMap.put("#ee2233", "wrong");
 		tempMap.put("#dddddd", "selection");
-		tempMap.put("#bbbbbb", "highlight");
+		tempMap.put("#777777", "highlight");
 		COLOUR_MAP = Collections.unmodifiableMap(tempMap);
 	}
 
 	/**
 	 * Reads from a hash map containing mapping of colours and their meanings.
 	 * 
-	 * @param colour a hexadecimal value representing colour
+	 * @param colour
+	 *            a hexadecimal value representing colour
 	 * @return <code>String</code> containing meaning of specified colour
 	 */
 	public static String getColourMeaning(String colour) {

@@ -65,7 +65,7 @@ public abstract class Map {
 
 	/**
 	 * Returns <code>Dimension</code> object containing the height and width of
-	 *         the <code>WebElement</code> representing the specified place.
+	 * the <code>WebElement</code> representing the specified place.
 	 * 
 	 * @param placeName
 	 * @return <code>Dimension</code> object containing the height and width of

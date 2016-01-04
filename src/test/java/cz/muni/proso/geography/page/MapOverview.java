@@ -57,8 +57,7 @@ public class MapOverview extends CommonPageFragments {
 	 * 
 	 * @param stateToGet
 	 * @return page fragment containing specified state. Throws
-	 *         <code>NoSuchElementException</code> if the state was not
-	 *         found.
+	 *         <code>NoSuchElementException</code> if the state was not found.
 	 */
 	public PracticedContext getState(String stateToGet) {
 		for (PracticedContext state : listOfStates) {
@@ -69,6 +68,12 @@ public class MapOverview extends CommonPageFragments {
 		throw new NoSuchElementException("State was not found.");
 	}
 
+	/**
+	 * Return tooltip currently displayed on Map Overview page.
+	 * 
+	 * @return page fragment containing currently displayed tooltip. Waits 10
+	 *         seconds or until the tooltip is displayed.
+	 */
 	public ProgressBarTooltip getTooltip() {
 		Graphene.waitModel().until(new Predicate<WebDriver>() {
 			@Override

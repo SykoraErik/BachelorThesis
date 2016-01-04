@@ -16,6 +16,9 @@ public class OverviewMap extends Map {
 	@Drone
 	private WebDriver browser;
 
+	@FindBy(xpath = "//h1")
+	private WebElement mapName;
+
 	@FindBy(xpath = "//*[@id='ng-view']/div[1]/div[2]/a[1]")
 	private WebElement myKnowledgeButton;
 
@@ -24,6 +27,13 @@ public class OverviewMap extends Map {
 
 	@FindBy(xpath = "//div[contains(@class, 'qtip-focus') and contains(@style, 'display: block')]")
 	private MapTooltip tooltip;
+
+	/**
+	 * @return <code>String</code> containing name of map
+	 */
+	public String getMapName() {
+		return mapName.getText();
+	}
 
 	/**
 	 * Clicks My knowledge button.
@@ -55,16 +65,18 @@ public class OverviewMap extends Map {
 	}
 
 	/**
-	 * Return a list of <code>WebElement</code> representing specified places on the map.
+	 * Return a list of <code>WebElement</code> representing specified places on
+	 * the map.
 	 * 
 	 * @param place
 	 *            Possible values: state, city, river, lake, mountains, island
-	 * @return A list of <code>WebElement</code> representing specified places on the map
+	 * @return A list of <code>WebElement</code> representing specified places
+	 *         on the map
 	 */
 	public List<WebElement> getListOf(String place) {
 		return browser.findElements(By.className(place));
 	}
-	
+
 	/**
 	 * Compares two places and returns which has better knowledge estimate.
 	 * 

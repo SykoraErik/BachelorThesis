@@ -1,5 +1,6 @@
 package cz.muni.proso.geography.fragment;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.openqa.selenium.support.Color;
@@ -72,6 +73,21 @@ public class MapControlContext {
 	 */
 	public String getListItemColour(String itemName) {
 		return parseColour(getListItem(itemName));
+	}
+
+	/**
+	 * Returns <code>List<String></code> holding names of all items in context
+	 * list.
+	 * 
+	 * @return <code>List<String></code> holding names of all items in context
+	 *         list.
+	 */
+	public List<String> getContextNamesList() {
+		List<String> itemList = new ArrayList<String>();
+		for (WebElement item : contextList) {
+			itemList.add(item.getText());
+		}
+		return itemList;
 	}
 
 	/**

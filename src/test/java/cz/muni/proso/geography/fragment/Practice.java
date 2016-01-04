@@ -20,7 +20,7 @@ public class Practice {
 
 	private static int questionCounter = 1;
 
-	@FindBy(xpath = "//*[@id='container']/div[3]/div[11]")
+	@FindBy(className = "summary")
 	private PracticeSummary summary;
 
 	@FindBy(xpath = "//*[@id='ng-view']/div[2]/div")
@@ -37,11 +37,11 @@ public class Practice {
 	public static void setQuestionCounter(int questionCounter) {
 		Practice.questionCounter = questionCounter;
 	}
-	
-	public static void incrementQuestionCounter(){
+
+	public static void incrementQuestionCounter() {
 		questionCounter++;
 	}
-	
+
 	public List<WebElement> getAnswersList() {
 		return browser.findElements(By.xpath("//*[@id='container']/div[3]/div["
 				+ questionCounter + "]/span[1]/span/button"));
@@ -140,10 +140,11 @@ public class Practice {
 
 			}
 		}
-		throw new NoSuchElementException("There is no correctly answered place in answer list");
+		throw new NoSuchElementException(
+				"There is no correctly answered place in answer list");
 	}
-	
-	public void waitForPracticeItem(){
+
+	public void waitForPracticeItem() {
 		Graphene.waitModel().until(new Predicate<WebDriver>() {
 			@Override
 			public boolean apply(WebDriver browser) {
@@ -151,8 +152,8 @@ public class Practice {
 			}
 		});
 	}
-	
-	public void waitForAnswerNames(){
+
+	public void waitForAnswerNames() {
 		Graphene.waitModel().until(new Predicate<WebDriver>() {
 			@Override
 			public boolean apply(WebDriver browser) {

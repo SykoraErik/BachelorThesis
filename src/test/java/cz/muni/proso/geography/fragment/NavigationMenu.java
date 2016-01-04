@@ -86,15 +86,17 @@ public class NavigationMenu {
 	public void clickWorld() {
 		Graphene.waitModel().until().element(worldButton).is().present();
 		worldButton.click();
-		
+
 		Graphene.waitModel().withTimeout(10, TimeUnit.SECONDS)
-		.until(new Predicate<WebDriver>() {
-			@Override
-			public boolean apply(WebDriver browser) {
-				return browser.findElement(
-						By.xpath("//*[@id='ng-view']/div[1]/h1")).getText().equals("World");
-			}
-		});
+				.until(new Predicate<WebDriver>() {
+					@Override
+					public boolean apply(WebDriver browser) {
+						return browser
+								.findElement(
+										By.xpath("//*[@id='ng-view']/div[1]/h1"))
+								.getText().equals("World");
+					}
+				});
 	}
 
 	/**
@@ -168,9 +170,9 @@ public class NavigationMenu {
 	 */
 	public void signOut() {
 		clickLoggedIn();
-		Graphene.waitGui().until().element(signOutButton).is().visible();
+		Graphene.waitModel().until().element(signOutButton).is().visible();
 		signOutButton.click();
-		Graphene.waitGui().until().element(signInButton).is().visible();
+		Graphene.waitModel().until().element(signInButton).is().visible();
 	}
 
 	/**
@@ -252,7 +254,8 @@ public class NavigationMenu {
 	 * language.
 	 * 
 	 * @return <code>String</code> containing abbreviation of currently active
-	 *         language. Possible values: English - en, Czech - cs, Spanish - es
+	 *         language. Possible values: English - en, Czech - cs, Spanish -
+	 *         es, Deutsch - de
 	 */
 	public String getActiveLanguage() {
 		return languageButton.findElement(By.xpath("./i"))

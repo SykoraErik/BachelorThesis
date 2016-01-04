@@ -58,7 +58,8 @@ public class PracticedContext {
 	 * 
 	 * @param placeToGet
 	 * @return specific progress button from the list of all progress buttons
-	 *         available for the current context. Throws <code>NoSuchElementException<code>
+	 *         available for the current context. Throws
+	 *         <code>NoSuchElementException<code>
 	 *         if the button was not found.
 	 */
 	public ProgressButton getProgressButton(String placeToGet) {

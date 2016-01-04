@@ -13,103 +13,107 @@ import org.openqa.selenium.support.FindBy;
 import cz.muni.proso.geography.fragment.AlertMessage;
 import cz.muni.proso.geography.fragment.ProgressButton;
 import cz.muni.proso.geography.page.MapOverview;
+import cz.muni.proso.geography.page.WorldMap;
 
 @RunWith(Arquillian.class)
 public class MapOverviewTest extends TestUtilityClass {
 
 	@Page
-	private MapOverview page;
+	private MapOverview mapOverviewPage;
+
+	@Page
+	private WorldMap worldPage;
 
 	@FindBy(className = "bottom-alert")
 	private AlertMessage alert;
-	
+
 	@Before
 	public void openPage() {
 		browser.get(BASE_URL + "/overview/");
-		if (!page.getNavMenu().isUserLoggedIn()) {
-			page.getNavMenu().clickLogin();
-			page.getLogin().loginWithEmail(USERNAME, PASSWORD);
+		if (!mapOverviewPage.getNavMenu().isUserLoggedIn()) {
+			mapOverviewPage.getNavMenu().clickLogin();
+			mapOverviewPage.getLogin().loginWithEmail(USERNAME, PASSWORD);
 		}
 		browser.get(BASE_URL + "/overview/");
 		waitUntilPageLoaded();
+
+		if (alert.isDisplayed()) {
+			alert.closeAlert();
+		}
 	}
 
 	@Test
 	public void testWorld() {
-		page.getWorld().getProgressBar().mouseOver();
-		assertTrue(page.getTooltip().isDisplayed());
-		assertTrue(Math.abs(page.getTooltip().learnedPercentage()
-				- page.getWorld().getProgressBar().getLearnedBarWidth()) < 0.001);
+		mapOverviewPage.getWorld().getProgressBar().mouseOver();
+		assertTrue(mapOverviewPage.getTooltip().isDisplayed());
+		assertTrue(Math.abs(mapOverviewPage.getTooltip().learnedPercentage()
+				- mapOverviewPage.getWorld().getProgressBar()
+						.getLearnedBarWidth()) < 0.001);
 
-		for (ProgressButton place : page.getWorld().getProgressButtonList()) {
+		for (ProgressButton place : mapOverviewPage.getWorld()
+				.getProgressButtonList()) {
 			place.getProgressBar().mouseOver();
-			assertTrue(page.getTooltip().isDisplayed());
-			assertTrue(Math.abs(page.getTooltip().learnedPercentage()
+			assertTrue(mapOverviewPage.getTooltip().isDisplayed());
+			assertTrue(Math.abs(mapOverviewPage.getTooltip()
+					.learnedPercentage()
 					- place.getProgressBar().getLearnedBarWidth()) < 0.001);
 		}
 
-		String placeTitle = page.getWorld().getPlaceTitle();
-		page.getWorld().clickViewPlace();
-		assertTrue(browser
-				.findElement(By.xpath("//*[@id='ng-view']/div[1]/h1"))
-				.getText().equals(placeTitle));
+		String placeTitle = mapOverviewPage.getWorld().getPlaceTitle();
+		mapOverviewPage.getWorld().clickViewPlace();
+		assertTrue(worldPage.getWorldMap().getMapName().equals(placeTitle));
 
 		browser.get(BASE_URL + "/overview/");
 		waitUntilPageLoaded();
-		page.getWorld().getProgressButtonList().get(0).clickButton();
+		mapOverviewPage.getWorld().getProgressButtonList().get(0).clickButton();
 		waitUntilPageLoaded();
 		assertTrue(browser.findElement(By.className("practice")).isDisplayed());
 	}
 
 	@Test
 	public void testContinents() {
-		page.getListOfContinents().get(0).getProgressBar().mouseOver();
-		assertTrue(page.getTooltip().isDisplayed());
+		mapOverviewPage.getListOfContinents().get(0).getProgressBar()
+				.mouseOver();
+		assertTrue(mapOverviewPage.getTooltip().isDisplayed());
 
-		for (ProgressButton place : page.getListOfContinents().get(0)
-				.getProgressButtonList()) {
+		for (ProgressButton place : mapOverviewPage.getListOfContinents()
+				.get(0).getProgressButtonList()) {
 			place.getProgressBar().mouseOver();
-			assertTrue(page.getTooltip().isDisplayed());
+			assertTrue(mapOverviewPage.getTooltip().isDisplayed());
 		}
 
-		String continentTitle = page.getListOfContinents().get(0)
+		String continentTitle = mapOverviewPage.getListOfContinents().get(0)
 				.getPlaceTitle();
-		page.getListOfContinents().get(0).clickViewPlace();
-		assertTrue(browser
-				.findElement(By.xpath("//*[@id='ng-view']/div[1]/h1"))
-				.getText().equals(continentTitle));
+		mapOverviewPage.getListOfContinents().get(0).clickViewPlace();
+		assertTrue(worldPage.getWorldMap().getMapName().equals(continentTitle));
 
 		browser.get(BASE_URL + "/overview/");
 		waitUntilPageLoaded();
-		page.getListOfContinents().get(0).getProgressButtonList().get(0)
-				.clickButton();
+		mapOverviewPage.getListOfContinents().get(0).getProgressButtonList()
+				.get(0).clickButton();
 		waitUntilPageLoaded();
 		assertTrue(browser.findElement(By.className("practice")).isDisplayed());
 	}
 
 	@Test
 	public void testStates() {
-		if(alert.isDisplayed()){
-			alert.closeAlert();
-		}
-		page.getListOfStates().get(0).getProgressBar().mouseOver();
-		assertTrue(page.getTooltip().isDisplayed());
+		mapOverviewPage.getListOfStates().get(0).getProgressBar().mouseOver();
+		assertTrue(mapOverviewPage.getTooltip().isDisplayed());
 
-		for (ProgressButton place : page.getListOfStates().get(0)
+		for (ProgressButton place : mapOverviewPage.getListOfStates().get(0)
 				.getProgressButtonList()) {
 			place.getProgressBar().mouseOver();
-			assertTrue(page.getTooltip().isDisplayed());
+			assertTrue(mapOverviewPage.getTooltip().isDisplayed());
 		}
 
-		String stateTitle = page.getListOfStates().get(0).getPlaceTitle();
-		page.getListOfStates().get(0).clickViewPlace();
-		assertTrue(browser
-				.findElement(By.xpath("//*[@id='ng-view']/div[1]/h1"))
-				.getText().equals(stateTitle));
+		String stateTitle = mapOverviewPage.getListOfStates().get(0)
+				.getPlaceTitle();
+		mapOverviewPage.getListOfStates().get(0).clickViewPlace();
+		assertTrue(worldPage.getWorldMap().getMapName().equals(stateTitle));
 
 		browser.get(BASE_URL + "/overview/");
 		waitUntilPageLoaded();
-		page.getListOfStates().get(0).getProgressButtonList().get(0)
+		mapOverviewPage.getListOfStates().get(0).getProgressButtonList().get(0)
 				.clickButton();
 		waitUntilPageLoaded();
 		assertTrue(browser.findElement(By.className("practice")).isDisplayed());

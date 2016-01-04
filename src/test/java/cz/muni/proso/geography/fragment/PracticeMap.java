@@ -53,8 +53,7 @@ public class PracticeMap extends Map {
 	public List<String> getWrongAnswers() {
 		List<String> answerList = new ArrayList<String>();
 		List<WebElement> elementList = browser.findElements(By
-				.xpath("//*[contains(@fill, '" + ColourHashMap.WRONG
-						+ "')]"));
+				.xpath("//*[contains(@fill, '" + ColourHashMap.WRONG + "')]"));
 		for (WebElement answer : elementList) {
 			answerList.add(answer.getAttribute("data-name"));
 		}
@@ -69,9 +68,9 @@ public class PracticeMap extends Map {
 	 */
 	public List<String> getCorrectAnswers() {
 		List<String> answerList = new ArrayList<String>();
-		List<WebElement> elementList = browser.findElements(By
-				.xpath("//*[contains(@fill, '" + ColourHashMap.CORRECT
-						+ "')]"));
+		List<WebElement> elementList = browser
+				.findElements(By.xpath("//*[contains(@fill, '"
+						+ ColourHashMap.CORRECT + "')]"));
 		for (WebElement answer : elementList) {
 			answerList.add(answer.getAttribute("data-name"));
 		}
@@ -111,17 +110,18 @@ public class PracticeMap extends Map {
 			return "multiple highlighted";
 		}
 	}
-	
-	public void waitForCorrectAnswers(){
-		Graphene.waitAjax().pollingEvery(100, TimeUnit.MILLISECONDS).until(new Predicate<WebDriver>() {
-			@Override
-			public boolean apply(WebDriver browser) {
-				return !(getCorrectAnswers().isEmpty());
-			}
-		});
+
+	public void waitForCorrectAnswers() {
+		Graphene.waitModel().pollingEvery(100, TimeUnit.MILLISECONDS)
+				.until(new Predicate<WebDriver>() {
+					@Override
+					public boolean apply(WebDriver browser) {
+						return !(getCorrectAnswers().isEmpty());
+					}
+				});
 	}
-	
-	public void waitForHighlightedAnswers(){
+
+	public void waitForHighlightedAnswers() {
 		Graphene.waitModel().until(new Predicate<WebDriver>() {
 			@Override
 			public boolean apply(WebDriver browser) {

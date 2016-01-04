@@ -42,7 +42,7 @@ public class Login {
 	 * first.
 	 * 
 	 * @param username
-	 *            username to be written
+	 *            username to write into the username text field
 	 */
 	public void inputUsername(String username) {
 		Graphene.waitAjax().until().element(loginUsername).is().present();
@@ -55,7 +55,7 @@ public class Login {
 	 * first.
 	 * 
 	 * @param password
-	 *            password to be written
+	 *            password to write into the password text field
 	 */
 	public void inputPassword(String password) {
 		Graphene.waitAjax().until().element(loginPassword).is().present();
@@ -114,7 +114,8 @@ public class Login {
 	}
 
 	/**
-	 * Clicks the sign up button. Sign up process is handled by {@link SignUp} fragment.
+	 * Clicks the sign up button. Sign up process is handled by {@link SignUp}
+	 * fragment.
 	 */
 	public void clickSignUp() {
 		Graphene.waitAjax().until().element(signUpButton).is().present();
@@ -124,8 +125,8 @@ public class Login {
 	/**
 	 * Returns <code>true</code> if login form is present.
 	 * 
-	 * @return <code>true</code> if login form is present
-	 *         <code>false</code> otherwise
+	 * @return <code>true</code> if login form is present <code>false</code>
+	 *         otherwise
 	 */
 	public boolean isLoginFormPresent() {
 		return loginUsername.isPresent();

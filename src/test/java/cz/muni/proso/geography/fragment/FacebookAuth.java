@@ -66,7 +66,8 @@ public class FacebookAuth implements SocialMediaLogin {
 	}
 
 	/**
-	 * Login or sign up a user with either email address or phone number and password.
+	 * Login or sign up a user with either email address or phone number and
+	 * password.
 	 * 
 	 * @param emailAddressOrPhone
 	 *            the email or phone number to be used for login or sign up

@@ -2,6 +2,7 @@ package cz.muni.proso.geography.test;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
+
 import org.jboss.arquillian.graphene.page.Page;
 import org.jboss.arquillian.junit.Arquillian;
 import org.junit.Before;
@@ -9,7 +10,9 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
 
+import cz.muni.proso.geography.fragment.AlertMessage;
 import cz.muni.proso.geography.page.WorldMap;
 
 @RunWith(Arquillian.class)
@@ -18,23 +21,35 @@ public class WorldMapTest extends TestUtilityClass {
 	@Page
 	private WorldMap page;
 
+	@FindBy(className = "bottom-alert")
+	private AlertMessage alert;
+
 	@Before
 	public void getWebpage() {
 		browser.get(BASE_URL + "/view/world/average");
+
 		if (!page.getNavMenu().getActiveLanguage().equals("en")) {
 			page.getNavMenu().switchLanguage("en");
 		}
+
+		if (alert.isDisplayed()) {
+			alert.closeAlert();
+		}
+		
 		waitUntilPageLoaded();
 	}
 
 	@Test
 	public void testZoom() {
 		String placeToTest = "Australia";
+
 		int heightBefore = page.getWorldMap().getPlaceSize(placeToTest)
 				.getHeight();
+
 		for (int i = 0; i < 5; i++) {
 			page.getWorldMap().zoomIn();
 		}
+
 		int heightAfter = page.getWorldMap().getPlaceSize(placeToTest)
 				.getHeight();
 		assertTrue(heightBefore < heightAfter);
@@ -53,6 +68,7 @@ public class WorldMapTest extends TestUtilityClass {
 
 		page.getMapControl().showPoliticalTab();
 		page.getWorldMap().mouseOverPlace(placeToTest);
+
 		assertTrue(page.getWorldMap().getTooltip().getTitle()
 				.equals(placeToTest));
 		assertTrue(page.getWorldMap().getKnowledgeEstimate(placeToTest) == (page
@@ -71,9 +87,7 @@ public class WorldMapTest extends TestUtilityClass {
 	}
 
 	@Test
-	public void testMapControl() {
-		final String placeToTest = "Cairo";
-
+	public void testMapControl(){
 		page.getMapControl().showPoliticalTab();
 		page.getMapControl().getCities().getProgressBar().mouseOver();
 		assertTrue(Math.abs(page.getProgBarTooltip().learnedPercentage()
@@ -83,9 +97,16 @@ public class WorldMapTest extends TestUtilityClass {
 				- page.getMapControl().getCities().getProgressBar()
 						.getPracticedBarWidth()) < 0.001);
 
-		browser.get(BASE_URL + "/view/world/average");
+		page.getMapControl().getCities().practice();
 		waitUntilPageLoaded();
+		assertTrue(browser.findElement(By.className("practice")).isDisplayed());
+	}
 
+	@Test
+	public void testMapControlToggle(){
+		final String placeToTest = "Cairo";
+
+		page.getMapControl().showPoliticalTab();
 		page.getMapControl().getCities().toggleContext();
 		assertFalse(page.getWorldMap().isPlaceDisplayed(placeToTest));
 		assertFalse(page.getMapControl().getCities()
@@ -93,12 +114,10 @@ public class WorldMapTest extends TestUtilityClass {
 
 		page.getMapControl().getCities().toggleContext();
 		assertTrue(page.getWorldMap().isPlaceDisplayed(placeToTest));
-		
-		page.getMapControl().getCities().practice();
-		waitUntilPageLoaded();
-		assertTrue(browser.findElement(By.className("practice")).isDisplayed());
+		assertTrue(page.getMapControl().getCities()
+				.isListItemDisplayed(placeToTest));
 	}
-
+	
 	@Test
 	public void testTabSwitching() {
 		String placeToTest = "Lake Victoria";
@@ -108,8 +127,6 @@ public class WorldMapTest extends TestUtilityClass {
 		assertTrue(page.getWorldMap().isPlaceDisplayed(placeToTest));
 		assertTrue(page.getWorldMap().getTooltip().getTitle()
 				.equalsIgnoreCase(placeToTest));
-		assertTrue(page.getMapControl().getLakes()
-				.isListItemDisplayed(placeToTest));
 
 		placeToTest = "ICELAND";
 
@@ -118,7 +135,5 @@ public class WorldMapTest extends TestUtilityClass {
 		assertTrue(page.getWorldMap().isPlaceDisplayed(placeToTest));
 		assertTrue(page.getWorldMap().getTooltip().getTitle()
 				.equalsIgnoreCase(placeToTest));
-		assertTrue(page.getMapControl().getIslands()
-				.isListItemDisplayed(placeToTest));
 	}
 }

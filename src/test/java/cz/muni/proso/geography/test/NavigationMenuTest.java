@@ -3,104 +3,84 @@ package cz.muni.proso.geography.test;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
+import org.jboss.arquillian.graphene.page.Page;
 import org.jboss.arquillian.junit.Arquillian;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
 
-import cz.muni.proso.geography.fragment.Login;
-import cz.muni.proso.geography.fragment.NavigationMenu;
+import cz.muni.proso.geography.page.WorldMap;
 
 @RunWith(Arquillian.class)
 public class NavigationMenuTest extends TestUtilityClass {
 
-	@FindBy(css = "#wrap > div.navbar.navbar-inverse")
-	private NavigationMenu navMenu;
-
-	@FindBy(css = "body > div.modal.fade.ng-isolate-scope.in > div > div")
-	private Login login;
+	@Page
+	private WorldMap page;
 
 	@Before
 	public void openPage() {
 		browser.get(BASE_URL);
-		if (!navMenu.getActiveLanguage().equals("en")) {
-			navMenu.switchLanguage("en");
+		if (!page.getNavMenu().getActiveLanguage().equals("en")) {
+			page.getNavMenu().switchLanguage("en");
 		}
-		if(navMenu.isUserLoggedIn()){
-			navMenu.signOut();
-		}
+
 	}
 
 	@Test
-	public void testButtons(){
+	public void testButtons() {
 
-		navMenu.clickWorld();
+		page.getNavMenu().clickWorld();
 		waitUntilPageLoaded();
-		assertTrue((browser.findElement(
-				By.xpath("//*[@id='ng-view']/div[1]/h1")).getText()
-				.equals("World")));
+		assertTrue(page.getWorldMap().getMapName().equals("World"));
 
-		navMenu.clickHome();
+		page.getNavMenu().clickHome();
 		waitUntilPageLoaded();
-		assertTrue((browser.findElement(
-				By.xpath("//*[@id='ng-view']/div[1]/h1")).getText()
-				.equals("Outline maps")));
+		assertTrue(page.getWorldMap().getMapName().equals("Outline maps"));
 
-		navMenu.clickMapOverview();
+		page.getNavMenu().clickMapOverview();
 		waitUntilPageLoaded();
-		assertTrue((browser.findElement(By.xpath("//*[@id='ng-view']/div/h1"))
-				.getText().equals("Maps overview")));
+		assertTrue(page.getWorldMap().getMapName().equals("Maps overview"));
 
-		navMenu.clickLogin();
-		assertTrue(login.isLoginFormPresent());
+		page.getNavMenu().clickLogin();
+		assertTrue(page.getLogin().isLoginFormPresent());
 	}
 
 	@Test
 	public void testContinents() {
-		for (WebElement continent : navMenu.getListOfContinents()) {
-			navMenu.clickContinents();
+		for (WebElement continent : page.getNavMenu().getListOfContinents()) {
+			page.getNavMenu().clickContinents();
 			String continentName = continent.getText();
 			continent.click();
 			waitUntilPageLoaded();
-			assertEquals(continentName, browser.findElement(By.xpath("//h1"))
-					.getText());
+			assertEquals(continentName, page.getWorldMap().getMapName());
 		}
 	}
 
 	@Test
 	public void testStates() {
-		for (WebElement state : navMenu.getListOfStates()) {
-			navMenu.clickStates();
+		for (WebElement state : page.getNavMenu().getListOfStates()) {
+			page.getNavMenu().clickStates();
 			String stateName = state.getText();
 			state.click();
 			waitUntilPageLoaded();
-			if (stateName.equals("United States")
-					|| stateName.equals("Spojen� st�ty americk�")
-					|| stateName.equals("Estados Unidos")) {
-				assertEquals("U.S.", browser.findElement(By.xpath("//h1"))
-						.getText());
+			if (stateName.equals("United States")) {
+				assertEquals("U.S.", page.getWorldMap().getMapName());
 			} else {
-				assertEquals(stateName, browser.findElement(By.xpath("//h1"))
-						.getText());
+				assertEquals(stateName, page.getWorldMap().getMapName());
 			}
 		}
 	}
 
 	@Test
 	public void testLanguages() {
-		for (WebElement language : navMenu.getListOfLanguages()) {
-			navMenu.clickLanguages();
+		for (WebElement language : page.getNavMenu().getListOfLanguages()) {
+			page.getNavMenu().clickLanguages();
 			String activeLang = language.findElement(By.xpath("./i"))
-					.getAttribute("class");
+					.getAttribute("class").substring(5);
 			language.click();
-			assertEquals(
-					activeLang,
-					browser.findElement(
-							By.xpath("//*[@id='nav-main']/ul[2]/li[3]/a/i"))
-							.getAttribute("class"));
+			assertEquals(activeLang, page.getNavMenu().getActiveLanguage());
 		}
 	}
 }

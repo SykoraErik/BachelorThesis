@@ -6,7 +6,6 @@ import org.openqa.selenium.support.FindBy;
 import cz.muni.proso.geography.fragment.FacebookAuth;
 import cz.muni.proso.geography.fragment.FacebookConfirmAuth;
 import cz.muni.proso.geography.fragment.Feedback;
-import cz.muni.proso.geography.fragment.Footer;
 import cz.muni.proso.geography.fragment.GoogleAuth;
 import cz.muni.proso.geography.fragment.GoogleConfirmAuth;
 import cz.muni.proso.geography.fragment.Login;
@@ -14,7 +13,7 @@ import cz.muni.proso.geography.fragment.NavigationMenu;
 import cz.muni.proso.geography.fragment.SignUp;
 
 public abstract class CommonPageFragments {
-	
+
 	@FindBy(css = "body > div.modal.fade.ng-isolate-scope.in > div > div")
 	private Feedback feedback;
 
@@ -38,12 +37,9 @@ public abstract class CommonPageFragments {
 
 	@FindBy(id = "approval_container")
 	private GoogleConfirmAuth googleConfirm;
-	
+
 	@FindBy(css = "body > div.modal.fade.ng-isolate-scope.in > div > div")
 	private SignUp signUp;
-	
-	@FindBy(id = "footer")
-	private Footer footer;
 
 	public Feedback getFeedback() {
 		return feedback;
@@ -77,10 +73,6 @@ public abstract class CommonPageFragments {
 		return signUp;
 	}
 
-	public Footer getFooter() {
-		return footer;
-	}
-	
 	public void openFeedback() {
 		feedbackButton.click();
 	}
